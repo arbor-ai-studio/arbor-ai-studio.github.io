@@ -8,16 +8,16 @@ A software house profile website built with ReactJS and TailwindCSS :computer:
 - [**PostCSS**](https://postcss.org/)
 - [**TailwindCSS**](https://tailwindcss.com/)
 - [**Vercel**](https://vercel.com/)
-- [**NVM**](Node Version Manager) 
+- [**NVM**](Node Version Manager)
 - [**NodeJS**](https://nodejs.org/en/) Version npm 16
 
 ### Library
 - [**emailJS**](https://www.emailjs.com/) : Send email from javascript
 - [**headlessUI**](https://github.com/tailwindlabs/headlessui) : Transition Style
 - [**React Splide**](https://splidejs.com/integration-react-splide/) : Carousel / Slider
-- [**React Reveal**](https://www.react-reveal.com/) : Animation 
+- [**React Reveal**](https://www.react-reveal.com/) : Animation
 - [**React Tabs**](https://www.npmjs.com/package/react-tabs) : Tab component
-- [**React Toastify**](https://www.npmjs.com/package/react-toastify) : Toast notification 
+- [**React Toastify**](https://www.npmjs.com/package/react-toastify) : Toast notification
 - [**ESLint**](https://eslint.org/) : Linting and formatting
 
 ### Available Scripts
@@ -45,6 +45,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 # Initial Setup
+1. Install NVM `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash`
 1. Clone the repository `git clone https://github.com/vmsaif/arbor-ai-studio-website.git`
 2. Navigate to the project directory `cd arbor-ai-studio-website`
 3. Install node 16 using NVM `nvm install 16`

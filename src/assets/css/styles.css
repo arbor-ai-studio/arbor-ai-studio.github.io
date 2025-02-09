@@ -1,0 +1,311 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+section {
+  @apply mb-28;
+}
+
+.active-link {
+  @apply text-theme-blue;
+}
+
+.header {
+  @apply flex flex-col py-4 mb-4 justify-between;
+}
+
+.hero {
+  @apply container px-5 flex flex-col mx-auto;
+}
+
+.hero h1 {
+  @apply whitespace-pre-line;
+}
+
+.portofolio-card:hover .img-hover {
+  @apply opacity-25;
+}
+
+.svg-container {
+  display: flex;
+  align-items: flex-start; /* Aligns the SVG to the top */
+  overflow: hidden;
+}
+.services-svg-container {
+  margin: 6vh auto 0 auto;
+  width: 22vw;
+  height: 40vh;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+.advantages-svg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.advantages-svg-container svg {
+  width: 100vw;
+  height: auto;
+  max-width: 150px;
+}
+/* Extra small devices */
+@media (max-width: 320px) {
+  .svg-container {
+    width: 90vw;
+  }
+  .services-svg-container {
+    width: 90vw;
+    height: 30vh;
+    margin: 3vh auto 0 auto;
+  }
+
+}
+
+/* Small devices */
+@media (min-width: 321px) and (max-width: 412px) {
+  .svg-container {
+    width: 85vw;
+  }
+  .services-svg-container {
+    width: 85vw;
+    height: 35vh;
+    margin: 4vh auto 0 auto;
+  }
+}
+
+/* Medium devices */
+@media (min-width: 413px) and (max-width: 639px) {
+  .svg-container {
+    width: 70vw;
+  }
+  .services-svg-container {
+    width: 70vw;
+    height: 35vh;
+    margin: 4vh auto 0 auto;
+  }
+  .advantages-svg-container {
+    padding: 1rem;
+  }
+
+  [class*='flex-row'] {
+    flex-direction: column;
+  }
+
+  [class*='pl-5'] {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+/* Large devices */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .svg-container {
+    width: 60vw;
+  }
+  .services-svg-container {
+    width: 20vw;
+    height: 15vh;
+    margin: 5vh auto 0 auto;
+  }
+  .advantages-svg-container {
+    width: 20vw;
+    margin: 0;
+  }
+  .advantages-svg-container svg {
+    max-width: 100px;
+  }
+}
+
+/* Extra large devices */
+@media (min-width: 1024px) and (max-width: 1324px) /* Add 'px' here */
+{
+  .header {
+    @apply container w-full flex-row py-8 px-10 mt-2 mb-4 mx-auto items-center content-center border-b border-gray-100;
+  }
+
+  .hero {
+    @apply container flex-row mx-auto mt-8;
+  }
+
+  .svg-container {
+    width: 50vw;
+  }
+  .services-svg-container {
+    width: 22vw;
+    height: 20vh;
+    margin: 6vh auto 0 auto;
+  }
+  .advantages-svg-container {
+    width: 22vw;
+    margin: 0;
+  }
+}
+@media (min-width: 1325px) and (max-width: 1819px) {
+  .header {
+      @apply container w-full flex-row py-8 px-10 mt-2 mb-4 mx-auto items-center content-center border-b border-gray-100;
+    }
+
+    .hero {
+      @apply container flex-row mx-auto mt-8;
+    }
+
+    .svg-container {
+      width: 45vw;
+    }
+    .services-svg-container {
+      width: 15vw;
+      height: 25vh;
+      margin: 6vh auto 0 auto;
+    }
+    .advantages-svg-container {
+      width: 15vw;
+      height: 15vh;
+    }
+  }
+
+/* High resolution devices */
+@media (min-width: 1820px) and (max-width: 2560px) {
+  .header {
+    @apply container w-full flex-row py-8 px-10 mt-2 mb-4 mx-auto items-center content-center border-b border-gray-100;
+  }
+
+  .hero {
+    @apply container flex-row mx-auto mt-8;
+  }
+
+  .svg-container {
+    width: 40vw;
+  }
+  .services-svg-container {
+    width: 15vw;
+    height: 35vh;
+    margin: 6vh auto 0 auto;
+  }
+  .advantages-svg-container {
+    width: 15vw;
+    height: 15vh;
+  }
+}
+
+/* extra large devices */
+@media (min-width: 2561px) {
+  .header {
+    @apply container w-full flex-row py-8 px-10 mt-2 mb-4 mx-auto items-center content-center border-b border-gray-100;
+  }
+
+  .hero {
+    @apply container flex-row mx-auto mt-8;
+  }
+
+  .svg-container {
+    width: 30vw;
+  }
+  .services-svg-container {
+    width: 10vw;
+    height: 40vh;
+    margin: 6vh auto 0 auto;
+  }
+  .advantages-svg-container {
+    width: 15vw;
+    height: 15vh;
+  }
+}
+
+/* Update the medium devices breakpoint */
+@media (max-width: 865px) {
+  .svg-container {
+    width: 70vw;
+  }
+  /* .services-svg-container {
+    width: 70vw;
+    height: 35vh;
+    margin: 4vh auto 0 auto;
+  } */
+  /* .advantages-svg-container {
+    padding: 1rem;
+  } */
+
+  [class*='flex-row'] {
+    flex-direction: column;
+  }
+
+  [class*='pl-5'] {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+
+
+.discuss {
+  background-image: url('/src/assets/images/pattern.svg');
+}
+
+/* Custom styles for Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(160, 157, 157, 0.311);
+  /* Semi-transparent background */
+  border-radius: 50%;
+  font-size: 30px;
+
+  /* Circular shape */
+  width: 33px;
+  /* Size of the buttons */
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  /* Color of the arrow icon */
+}
+
+/* Custom styles for the arrow icons */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 30px;
+  /* Size of the arrow */
+  color: #000;
+  /* Color of the arrow */
+  content: '';
+  /* Override default content */
+  border: solid #000;
+  /* Arrow color */
+  border-width: 0 3px 3px 0;
+  /* Arrow thickness */
+  display: inline-block;
+  padding: 5px;
+}
+
+/* Rotate arrows to point in the correct direction */
+.swiper-button-next::after {
+  transform: rotate(-45deg);
+  /* Right arrow */
+}
+
+.swiper-button-prev::after {
+  transform: rotate(135deg);
+  /* Left arrow */
+}
+
+/* Hover effect for buttons */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Darker background on hover */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: bold !important;
+}
+

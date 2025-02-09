@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0bf0fa4e.css",
+    "main.js": "/static/js/main.d2fef270.js",
+    "static/js/845.69f6f56a.chunk.js": "/static/js/845.69f6f56a.chunk.js",
+    "static/media/gigachadSalesman.png": "/static/media/gigachadSalesman.a88ea3ee6a12422dbdef.png",
+    "static/media/undraw_speech_to_text_re_8mtf_AI.svg": "/static/media/undraw_speech_to_text_re_8mtf_AI.6f535a90fab2904dc44e82aeadbefd06.svg",
+    "static/media/pattern.svg": "/static/media/pattern.87c57a267a9b024d3b5d.svg",
+    "static/media/Sasha.jpg": "/static/media/Sasha.d03a2982978ba6c1ad59.jpg",
+    "static/media/undraw_team_collaboration_re_ow29.svg": "/static/media/undraw_team_collaboration_re_ow29.041670522b30395b3c025a9d7c00d794.svg",
+    "static/media/Reiner.jpg": "/static/media/Reiner.964ca1a031ef72005ed3.jpg",
+    "static/media/saif_mahmud.jpg": "/static/media/saif_mahmud.0777e8664b2ab8611453.jpg",
+    "static/media/undraw_pair_programming_re_or4x.svg": "/static/media/undraw_pair_programming_re_or4x.089e4f2b0757f654f8a6a342732085ae.svg",
+    "static/media/undraw_firmware_re_fgdy.svg": "/static/media/undraw_firmware_re_fgdy.6ac8a71f7822c8514ce46c9177292301.svg",
+    "static/media/undraw_page_not_found_re_e9o6.svg": "/static/media/undraw_page_not_found_re_e9o6.5a31cb7fee92ff4bdf8c02f345299bbe.svg",
+    "static/media/undraw_vr_chat_re_s80u.svg": "/static/media/undraw_vr_chat_re_s80u.4d7767cbd6022e8e97617f6c359e9c4d.svg",
+    "static/media/undraw_interview_re_e5jn.svg": "/static/media/undraw_interview_re_e5jn.63af91b708e8d9163695c634de380702.svg",
+    "static/media/undraw_audio_conversation_re_3t38.svg": "/static/media/undraw_audio_conversation_re_3t38.40e002a54462a29ed2bf99c25dfd06d9.svg",
+    "static/media/control_ai.svg": "/static/media/control_ai.cce4d13562e8f533501f68178f74a54f.svg",
+    "static/media/undraw_growth_analytics_re_pyxf.svg": "/static/media/undraw_growth_analytics_re_pyxf.2bb80329dea0bcf904a3936211b9909b.svg",
+    "static/media/undraw_projections_re_ulc6.svg": "/static/media/undraw_projections_re_ulc6.1023be1e36ab78e5553585eff7eca050.svg",
+    "index.html": "/index.html",
+    "main.0bf0fa4e.css.map": "/static/css/main.0bf0fa4e.css.map",
+    "main.d2fef270.js.map": "/static/js/main.d2fef270.js.map",
+    "845.69f6f56a.chunk.js.map": "/static/js/845.69f6f56a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0bf0fa4e.css",
+    "static/js/main.d2fef270.js"
+  ]
+}

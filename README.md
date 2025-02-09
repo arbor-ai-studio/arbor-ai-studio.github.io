@@ -1,15 +1,15 @@
-# Website of Arbor AI Studio
+# Website of Arbor AI Studio Website Repository
 
 ### About
-A software house profile website built with ReactJS and TailwindCSS :computer:
+This is the repository for the Arbor AI Studio website. The website is built using ReactJS and Tailwind CSS. The website is hosted on GitHub pages. It is a static website.
 
 ### Tech Stack
 - [**ReactJS**](https://github.com/facebook/create-react-app)
 - [**PostCSS**](https://postcss.org/)
 - [**TailwindCSS**](https://tailwindcss.com/)
-- [**Vercel**](https://vercel.com/)
-- [**NVM**](Node Version Manager)
-- [**NodeJS**](https://nodejs.org/en/) Version npm 16
+- [**Github Pages**](https://pages.github.com/)
+- [**NVM**](https://github.com/nvm-sh/nvm)
+- [**NodeJS**](https://nodejs.org/en/) Version NPM 16
 
 ### Library
 - [**emailJS**](https://www.emailjs.com/) : Send email from javascript
@@ -42,7 +42,7 @@ Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+
 
 # Initial Setup
 1. Install NVM `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash`

@@ -10,7 +10,7 @@ import { Fade } from 'react-awesome-reveal';
 import { Transition } from '@headlessui/react';
 import { useLocation } from 'react-router-dom';
 
-import Button from '../elements/Button';
+import Button from '../elements/Button/index.js';
 import BrandIcon from './BrandIcon';
 import { ActiveTheme, SecondaryColor } from '../customize';
 

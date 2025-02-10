@@ -5,17 +5,17 @@
 import React from 'react';
 
 import BrandIcon from './BrandIcon';
-import Button from '../elements/Button';
+import Button from '../elements/Button/index.js';
 
 import {
-  ActiveTheme,  
+  ActiveTheme,
   SecondaryColor,
-  footerSubtitle, 
-  footerOfficeEmail, 
-  footerOfficeLocation, 
-  footerCopyright, 
-  footerCopyrightSublinePartA, 
-  footerCopyrightSublinePartB, 
+  footerSubtitle,
+  footerOfficeEmail,
+  footerOfficeLocation,
+  footerCopyright,
+  footerCopyrightSublinePartA,
+  footerCopyrightSublinePartB,
   partBbuttonLink,
   instagramLink,
   linkedinLink,

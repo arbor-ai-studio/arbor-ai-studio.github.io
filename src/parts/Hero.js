@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useDynamicSvg } from 'svgBgChanger.js';
-import Button from '../elements/Button.js';
+import Button from '../elements/Button/index.js';
 import controlAiSvg from '../assets/images/hero/control_ai.svg';
 import {
   ActiveTheme,

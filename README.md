@@ -1,4 +1,4 @@
-# Website of Arbor AI Studio Website Repository
+# Website of Arbor AI Studio
 
 ### About
 This is the repository for the Arbor AI Studio website. The website is built using ReactJS and Tailwind CSS. The website is hosted on GitHub pages. It is a static website.

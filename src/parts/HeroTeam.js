@@ -12,10 +12,10 @@ import colors from '../themeColors';
 
 import { useDynamicSvg } from '../svgBgChanger';
 
-import { 
-  ActiveTheme, 
-  SecondaryColor, 
-  teamHeader, 
+import {
+  ActiveTheme,
+  SecondaryColor,
+  teamHeader,
   teamSubtitle,
 } from '../customize';
 
@@ -43,7 +43,7 @@ export default function HeroTeam() {
         <Fade direction="up" triggerOnce delay={300}>
         <div
           className="svg-container" // Using the updated CSS class
-          dangerouslySetInnerHTML={{ __html: svgContent }}
+          dangerouslySetInnerHTML={{ __html: svgContent }} // eslint-disable-line react/no-danger
         />
         </Fade>
       </div>

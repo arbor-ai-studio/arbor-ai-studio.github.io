@@ -17,7 +17,7 @@ function SvgDisplay({ svgUrl, colorMappings }) {
   return (
     <div
       className="w-1/3 advantages-svg-container"
-      dangerouslySetInnerHTML={{ __html: svgMarkup }}
+      dangerouslySetInnerHTML={{ __html: svgMarkup }} // eslint-disable-line react/no-danger
     />
   );
 }

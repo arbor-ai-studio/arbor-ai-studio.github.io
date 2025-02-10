@@ -27,9 +27,9 @@ export default function PortfolioDetail({ data }) {
       <section className="container mx-auto">
         <Fade bottom triggerOnce>
           <div className="flex flex-col w-full justify-center">
-            <div 
+            <div
               className="flex w-full justify-center"
-              dangerouslySetInnerHTML={{ __html: svgContent }}
+              dangerouslySetInnerHTML={{ __html: svgContent }} // eslint-disable-line react/no-danger
             />
             <h1 className={`text-${SecondaryColor} text-2xl text-center mt-5`}>
               Project Not Found
@@ -79,9 +79,9 @@ export default function PortfolioDetail({ data }) {
                   Project Detail
                 </h1>
 
-                <p 
+                <p
                   className="font-light text-lg text-gray-400 text-justify"
-                  dangerouslySetInnerHTML={{ __html: item.description }}
+                  dangerouslySetInnerHTML={{ __html: item.description }} // eslint-disable-line react/no-danger
                 />
               </div>
 
@@ -103,16 +103,16 @@ export default function PortfolioDetail({ data }) {
 
               <p className="font-light text-gray-400 mt-16 mx-8 sm:mx-16 xl:mx-28">
 
-                Interested? Let&apos;s get started! <br /><br /> 
-                
+                Interested? Let&apos;s get started! <br /><br />
+
                 <Button
-                  type="link" 
-                  className={`font-normal px-5 py-2 mr-3 text-${ActiveTheme} text-lg border border-${ActiveTheme} rounded-full transition duration-300 hover:bg-${ActiveTheme} hover:focus:outline-none focus:bg-${ActiveTheme} focus:text-white`} 
-                  target="_blank" 
+                  type="link"
+                  className={`font-normal px-5 py-2 mr-3 text-${ActiveTheme} text-lg border border-${ActiveTheme} rounded-full transition duration-300 hover:bg-${ActiveTheme} hover:focus:outline-none focus:bg-${ActiveTheme} focus:text-white`}
+                  target="_blank"
                   isExternal
                   href={item.buyNowLink} // add pricing link here
                 >Visit</Button>
-                
+
                 {/* * This project is just example.
                 {' '}
                 <br />

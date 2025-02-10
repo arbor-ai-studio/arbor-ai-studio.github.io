@@ -10,11 +10,11 @@ import heroPortfolio from 'assets/images/hero/undraw_vr_chat_re_s80u.svg';
 
 import { useDynamicSvg } from 'svgBgChanger';
 
-import { 
-  SecondaryColor, 
-  projectsHeader, 
-  projectsSubtitle, 
-  ColorMappings, 
+import {
+  SecondaryColor,
+  projectsHeader,
+  projectsSubtitle,
+  ColorMappings,
 } from '../customize';
 
 export default function HeroPortfolio() {
@@ -36,7 +36,7 @@ export default function HeroPortfolio() {
         <div
           className="svg-container" // Using the updated CSS class
           alt="Hero"
-          dangerouslySetInnerHTML={{ __html: svgContent }}
+          dangerouslySetInnerHTML={{ __html: svgContent }} // eslint-disable-line react/no-danger
         />
         </Fade>
       </div>

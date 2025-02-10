@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useDynamicSvg } from 'svgBgChanger.js';
-import Button from '../elements/Button';
+import Button from '../elements/Button.js';
 import controlAiSvg from '../assets/images/hero/control_ai.svg';
 import {
   ActiveTheme,
@@ -51,7 +51,7 @@ export default function Hero() {
         <Fade direction="up" triggerOnce>
         <div
           className="svg-container" // Using the updated CSS class
-          dangerouslySetInnerHTML={{ __html: svgContent }}
+          dangerouslySetInnerHTML={{ __html: svgContent }} // eslint-disable-line react/no-danger
         />
         </Fade>
       </div>

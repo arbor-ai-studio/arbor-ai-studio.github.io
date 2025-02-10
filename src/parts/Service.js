@@ -23,7 +23,7 @@ function SvgDisplay({ svgUrl, colorMappings }) {
     <div
       className="services-svg-container w-full rounded-t-2xl "
       // fit parent container
-      dangerouslySetInnerHTML={{ __html: svgMarkup }}
+      dangerouslySetInnerHTML={{ __html: svgMarkup }} // eslint-disable-line react/no-danger
     />
   );
 }

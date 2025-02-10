@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable import/extensions */
 /* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/no-danger */
 
 import React, { Component } from 'react';
 
@@ -28,7 +29,7 @@ export default class NotFoundPage extends Component {
   render() {
     return (
       <div className="flex flex-col w-full h-screen justify-center bg-gray-800">
-        <div 
+        <div
           className="flex w-full justify-center"
           dangerouslySetInnerHTML={{ __html: this.svgContent }}
         />

@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp CNAME build",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {

@@ -17,8 +17,8 @@ import {
   footerCopyrightSublinePartA,
   footerCopyrightSublinePartB,
   partBbuttonLink,
-  instagramLink,
-  linkedinLink,
+  // instagramLink,
+  // linkedinLink,
   githubLink,
 } from '../customize';
 
@@ -44,20 +44,44 @@ export default function Footer() {
               {footerOfficeLocation}
             </p>
           </div>
+
+          {/* ---------- Links ---------------- */}
           <div className="w-1/3 ml-16 sm:ml-0 mt-0">
+
             <h1 className={`text-lg text-${SecondaryColor} pt-4 pb-2`}>
-              Social
+              Links
             </h1>
-            <Button href={linkedinLink} type="link" target="_blank" className="flex text-lg text-gray-400 font-light hover:underline" isExternal>
+
+            {/* <Button
+              href={linkedinLink} type="link"
+              target="_blank"
+              className="flex text-lg text-gray-400 font-light hover:underline"
+              isExternal
+            >
               LinkedIn
-            </Button>
-            <Button href={instagramLink} type="link" target="_blank" className="flex text-lg text-gray-400 font-light hover:underline" isExternal>
+            </Button> */}
+{/*
+            <Button
+              href={instagramLink}
+              type="link" target="_blank"
+              className="flex text-lg text-gray-400 font-light hover:underline"
+              isExternal
+            >
               Instagram
             </Button>
-            <Button href={githubLink} type="link" target="_blank" className="flex text-lg text-gray-400 font-light hover:underline" isExternal>
+             */}
+
+            <Button
+              href={githubLink}
+              type="link"
+              target="_blank"
+              className="flex text-lg text-gray-400 font-light hover:underline"
+              isExternal
+            >
               Github
             </Button>
           </div>
+
         </div>
         <div className="flex-col text-center mt-7">
           <p className="text-lg text-gray-400 font-light">

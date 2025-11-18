@@ -1,55 +1,40 @@
-# Website of Arbor AI Studio
+## Arbor AI Studio Website
 
-### About
-This is the repository for the Arbor AI Studio website. The website is built using ReactJS and Tailwind CSS. The website is hosted on GitHub pages. It is a static website.
+Next.js 15 + Tailwind CSS 4 site for [arboraistudio.com](https://arboraistudio.com).  
+The repo keeps the editable source in `main` and publishes the static export to GitHub Pages (same flow as the previous CRA codebase).
 
-### Tech Stack
-- [**ReactJS**](https://github.com/facebook/create-react-app)
-- [**PostCSS**](https://postcss.org/)
-- [**TailwindCSS**](https://tailwindcss.com/)
-- [**Github Pages**](https://pages.github.com/)
-- [**NVM**](https://github.com/nvm-sh/nvm)
-- [**NodeJS**](https://nodejs.org/en/) Version NPM 16
+## Tech stack
 
-### Library
-- [**emailJS**](https://www.emailjs.com/) : Send email from javascript
-- [**headlessUI**](https://github.com/tailwindlabs/headlessui) : Transition Style
-- [**React Splide**](https://splidejs.com/integration-react-splide/) : Carousel / Slider
-- [**React Reveal**](https://www.react-reveal.com/) : Animation
-- [**React Tabs**](https://www.npmjs.com/package/react-tabs) : Tab component
-- [**React Toastify**](https://www.npmjs.com/package/react-toastify) : Toast notification
-- [**ESLint**](https://eslint.org/) : Linting and formatting
+- App Router Next.js with server components + Next Fonts
+- Tailwind CSS 4 (+ tw-animate-css) for styling
+- `lucide-react`, `framer-motion`, `next-themes`, shadcn/ui primitives
 
-### Available Scripts
-In the project directory, you can run:
+## Local development
 
-#### `npm start`
+```bash
+npm install
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Visit `http://localhost:3000`. Pages live under `app/` (e.g. `app/page.tsx`).  
+Global styles live in `app/globals.css`, shared UI in `components/`, and constants/utilities in `lib/`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Static export & GitHub Pages deployment
 
-#### `npm test`
+The site is configured with `output: "export"` so `npm run build` produces a static site in `out/`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To deploy the latest build to `gh-pages` (the branch served by GitHub Pages for this repo):
 
-#### `npm run build`
+```bash
+npm run deploy
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This script:
 
-The build is minified and the filenames include the hashes.\
+1. Builds the static site (`out/`)
+2. Copies `CNAME` and adds `.nojekyll`
+3. Pushes the contents of `out/` to the `gh-pages` branch via `gh-pages`
 
+GitHub Pages will then serve the freshly exported build at the custom domain declared in `CNAME`.
 
-# Initial Setup
-1. Install NVM `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash`
-1. Clone the repository `git clone https://github.com/vmsaif/arbor-ai-studio-website.git`
-2. Navigate to the project directory `cd arbor-ai-studio-website`
-3. Install node 16 using NVM `nvm install 16`
-4. Use node 16 `nvm use 16`
-5. Install the dependencies `npm install`
-6. Run the project `npm start`
-
+> Tip: if you only need the static export (for manual upload, etc.), just run `npm run build` and grab the `out/` directory.

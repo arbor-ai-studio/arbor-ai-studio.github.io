@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image"
-
 import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
@@ -91,13 +89,12 @@ export default function Home() {
                       className="mx-6 flex items-center justify-center p-4 rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card transition-colors"
                       title={tech.name}
                     >
-                      <Image
+                      <img
                         src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color}`}
                         alt={tech.name}
-                        width={40}
-                        height={40}
-                        unoptimized
                         className="w-10 h-10 dark:invert dark:brightness-0 dark:contrast-200"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   ))}

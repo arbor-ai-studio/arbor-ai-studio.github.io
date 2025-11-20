@@ -20,8 +20,15 @@ export function Navbar() {
     <header className="sticky top-0 inset-x-0 w-full bg-background/80 backdrop-blur-lg border-b border-border z-50">
       <Container className="relative flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2 md:flex">
-          <div className="w-10 h-10 flex items-center justify-center">
-            <Image src="/logo.png" alt="Arbor AI Studio Logo" width={40} height={40} className="object-contain rounded-lg" />
+          <div className="h-8 w-auto flex items-center justify-center">
+            <Image
+              src="/logo.png"
+              alt="Arbor AI Studio Logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="h-full w-auto object-contain dark:brightness-0 dark:invert"
+            />
           </div>
           <span className="hidden md:inline text-xl font-semibold">Arbor AI Studio</span>
         </Link>

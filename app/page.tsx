@@ -263,22 +263,16 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Contact Form Placeholder */}
-              <div className="p-8 rounded-xl border border-border bg-card">
-                <h3 className="text-2xl font-semibold mb-6">Send Us a Message</h3>
-                <div className="space-y-4">
-                  <div className="h-12 rounded-lg bg-muted flex items-center px-4 text-muted-foreground">
-                    Name field placeholder
-                  </div>
-                  <div className="h-12 rounded-lg bg-muted flex items-center px-4 text-muted-foreground">
-                    Email field placeholder
-                  </div>
-                  <div className="h-56 rounded-lg bg-muted flex items-center px-4 text-muted-foreground">
-                    Message field placeholder
-                  </div>
-                  <Button className="w-full" size="lg">
-                    Send Message
-                  </Button>
-                </div>
+              <div className="p-8 rounded-xl border border-border bg-card flex flex-col items-center justify-center text-center h-full">
+                <h3 className="text-2xl font-semibold mb-4">Schedule a Consultation</h3>
+                <p className="text-muted-foreground mb-8">
+                  Book a time directly on our calendar to discuss your AI needs.
+                </p>
+                <Button size="lg" className="w-full sm:w-auto" asChild>
+                  <a href="https://calendar.app.google/SQuZ5t9RAyUtYhq7A" target="_blank" rel="noopener noreferrer">
+                    Book a Meeting
+                  </a>
+                </Button>
               </div>
 
               {/* Contact Info */}

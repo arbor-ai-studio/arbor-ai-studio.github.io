@@ -289,7 +289,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className="font-medium">Email</p>
-                        <p className="text-muted-foreground">admin@arboraistudio.com</p>
+                        <p className="text-muted-foreground">contact@arboraistudio.com</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -298,7 +298,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className="font-medium">Phone</p>
-                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                        <p className="text-muted-foreground">+880 131 666 1100</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -307,7 +307,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className="font-medium">Location</p>
-                        <p className="text-muted-foreground">Winnipeg, Canada</p>
+                        <p className="text-muted-foreground">Dhaka, Bangladesh</p>
                       </div>
                     </div>
                   </div>

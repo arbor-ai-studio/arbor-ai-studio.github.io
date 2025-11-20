@@ -8,7 +8,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import Marquee from "@/components/ui/marquee"
 import { services, reviews, aiTechnologies } from "@/lib/constants"
-import { ArrowRight, Mail, Phone, MapPin, User } from "lucide-react"
+import { ArrowRight, Mail, Phone, MapPin, User, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -264,6 +264,9 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Contact Form Placeholder */}
               <div className="p-8 rounded-xl border border-border bg-card flex flex-col items-center justify-center text-center h-full">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                  <Calendar className="w-6 h-6 text-primary" />
+                </div>
                 <h3 className="text-2xl font-semibold mb-4">Schedule a Consultation</h3>
                 <p className="text-muted-foreground mb-8">
                   Book a time directly on our calendar to discuss your AI needs.

@@ -23,7 +23,7 @@ export function BookingWidget() {
           rel="noopener noreferrer"
         >
           <Calendar className="w-5 h-5" />
-          <span className="font-semibold">Book Call</span>
+          <span className="font-semibold">Book Meeting</span>
         </a>
       </Button>
     </motion.div>

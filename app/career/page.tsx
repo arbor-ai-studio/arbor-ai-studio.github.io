@@ -40,16 +40,17 @@ export default function CareerPage() {
                 </div>
               </div>
 
-              <div className="space-y-2 pt-1 mt-16">
+              <div className="space-y-2 pt-1 mt-14 mb-6">
                 <h2 className="text-xs font-bold tracking-[0.12em] text-neutral-500 dark:text-neutral-400 uppercase">
                   What You Will Do
                 </h2>
-                <ul className="space-y-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                <ul className="space-y-1.5 text-sm text-neutral-500 dark:text-neutral-400 leading-snug">
                   {[
-                    "Build and maintain full-stack web applications.",
+                    "Build and maintain full stack web applications.",
                     "Integrate AI features using APIs like OpenAI and Anthropic.",
                     "Create smart agents with frameworks such as CrewAI or LangChain.",
-                    "Use MCP (Model Context Protocol) to connect AI models to real data.",
+                    "Use MCP to connect AI models to real data.",
+                    "Build custom MCP tools for internal use.",
                     "Collaborate with a very active team to ship features fast.",
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">

@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { MapPin } from "lucide-react"
 export default function CareerPage() {
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
   const dayRows = [
@@ -28,7 +29,7 @@ export default function CareerPage() {
             
             {/* Header */}
             <div className="space-y-4">
-              <div className="flex items-start justify-start">
+              <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
                   <h1 className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white leading-[1.02] tracking-tight">
                     FULL STACK<br />
@@ -37,6 +38,16 @@ export default function CareerPage() {
                     </span><br />
                     INTERN
                   </h1>
+                </div>
+                <div className="flex flex-col items-end text-xs font-semibold text-neutral-500 dark:text-neutral-400 self-start pt-1">
+                  <div className="flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-[#31593a] dark:text-[#86a447]" />
+                    <span className="leading-tight text-right uppercase tracking-[0.1em] text-[10px] font-bold">Location</span>
+                  </div>
+                  <div className="flex flex-col items-end mt-1 space-y-0.5">
+                    <span className="leading-tight text-right">Dhanmondi</span>
+                    <span className="leading-tight text-right">Garden City</span>
+                  </div>
                 </div>
               </div>
 

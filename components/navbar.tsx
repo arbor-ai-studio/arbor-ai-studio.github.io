@@ -43,7 +43,11 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
+                  onClick={(e) => {
+                    if (link.href.startsWith("#")) {
+                      scrollToSection(e, link.href)
+                    }
+                  }}
                   className="text-sm hover:text-primary transition-colors cursor-pointer"
                 >
                   {link.label}

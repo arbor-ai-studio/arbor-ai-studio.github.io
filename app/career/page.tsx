@@ -28,25 +28,15 @@ export default function CareerPage() {
             
             {/* Header */}
             <div className="space-y-4">
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-start">
                 <div className="space-y-1">
-                  <h1 className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white leading-[0.9] tracking-tight">
+                  <h1 className="text-5xl md:text-6xl font-black text-neutral-900 dark:text-white leading-[1.02] tracking-tight">
                     FULL STACK<br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#31593a] to-[#86a447]">
                       AI ENGINEER
                     </span><br />
                     INTERN
                   </h1>
-                </div>
-                <div className="flex flex-col items-center gap-1">
-                  <img 
-                    src="/logo.png" 
-                    alt="Arbor AI Studio" 
-                    className="h-10 w-auto object-contain dark:brightness-0 dark:invert"
-                  />
-                  <div className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 leading-tight tracking-wider text-center">
-                    ARBOR AI<br/>STUDIO
-                  </div>
                 </div>
               </div>
 
@@ -149,14 +139,28 @@ export default function CareerPage() {
             </div>
 
             {/* Footer / CTA */}
-            <div className="flex items-baseline justify-between pt-2">
-              <div className="flex flex-col gap-1">
-                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Salary Range</p>
-                <p className="text-lg font-bold text-[#31593a] dark:text-[#86a447]">10k - 15k</p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Apply at</p>
-                <p className="text-sm font-bold text-neutral-900 dark:text-white">arboraistudio.com/career</p>
+            <div className="flex flex-col gap-3 pt-2">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div className="flex flex-col gap-1">
+                  <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Salary Range</p>
+                  <p className="text-lg font-bold text-[#31593a] dark:text-[#86a447]">10k - 15k</p>
+                </div>
+                <div className="flex items-center justify-end gap-2 md:gap-3 ml-auto">
+                  <div className="flex flex-col gap-1 text-right">
+                    <p className="text-xs text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Apply at</p>
+                    <p className="text-sm font-bold text-neutral-900 dark:text-white">arboraistudio.com/career</p>
+                  </div>
+                  <div className="flex flex-col items-center gap-1">
+                    <img 
+                      src="/logo.png" 
+                      alt="Arbor AI Studio" 
+                      className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
+                    />
+                    <div className="text-[10px] font-bold text-neutral-400 dark:text-neutral-500 leading-tight tracking-wider text-center">
+                      ARBOR AI<br/>STUDIO
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 

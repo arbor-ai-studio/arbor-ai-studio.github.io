@@ -40,25 +40,25 @@ export default function CareerPage() {
                 </div>
               </div>
 
-              <div className="space-y-3 pt-1 rounded-2xl border border-black/5 dark:border-white/5 bg-neutral-50/70 dark:bg-neutral-900/50 p-4 md:p-5 shadow-sm">
+              <div className="space-y-2 pt-1 mt-16">
                 <h2 className="text-xs font-bold tracking-[0.12em] text-neutral-500 dark:text-neutral-400 uppercase">
                   What You Will Do
                 </h2>
-                  <div className="grid gap-3 md:grid-cols-2">
-                    {[
-                      "Build and maintain full-stack web applications.",
-                      "Integrate AI features using APIs like OpenAI and Anthropic.",
-                      "Create smart agents with frameworks such as CrewAI or LangChain.",
-                      "Use MCP (Model Context Protocol) to connect AI models to real data.",
-                      "Collaborate with a very active team to ship features fast.",
-                    ].map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <span className="mt-0.5 h-5 w-[2px] rounded-full bg-gradient-to-b from-[#31593a] to-[#86a447]" />
-                        <p className="text-sm text-neutral-700 dark:text-neutral-200 leading-relaxed">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <ul className="space-y-2 text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  {[
+                    "Build and maintain full-stack web applications.",
+                    "Integrate AI features using APIs like OpenAI and Anthropic.",
+                    "Create smart agents with frameworks such as CrewAI or LangChain.",
+                    "Use MCP (Model Context Protocol) to connect AI models to real data.",
+                    "Collaborate with a very active team to ship features fast.",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#31593a] dark:bg-[#86a447]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               </div>
             {/* Middle Section: Details */}
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
@@ -101,6 +101,8 @@ export default function CareerPage() {
                     <span className="text-neutral-400 dark:text-neutral-500">Off</span>
                   </div>
                 </div>
+
+                <p className="text-xs text-neutral-400 dark:text-neutral-500">3 Month Probation Period</p>
               </div>
 
               <div
@@ -110,9 +112,9 @@ export default function CareerPage() {
 
               {/* Stack */}
               <div className="flex flex-col gap-3 h-full">
-                <h3 className="text-xs font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Ship With Elite AI Partners</h3>
+                <h3 className="text-xs font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">Build With World Class AI</h3>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                  Build alongside the strongest AI tooling—fewer roadblocks, faster launches, and cleaner code.
+                  Get subscriptions to the strongest AI coding tools on day one, which work beside you as everyday build partners.
                 </p>
                 <div className="flex gap-3">
                   {/* Claude Code */}

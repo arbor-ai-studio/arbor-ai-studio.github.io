@@ -119,7 +119,7 @@ export default function CareerPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Button asChild className="hidden sm:flex">
+                  <Button asChild className="flex">
                     <Link href={job.applyLink} target="_blank" rel="noopener noreferrer">
                       Apply Now
                     </Link>

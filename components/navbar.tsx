@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Container } from "@/components/ui/container"
 import { Button } from "@/components/ui/button"
@@ -8,6 +9,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { navLinks } from "@/lib/constants"
 
 export function Navbar() {
+  const pathname = usePathname()
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const element = document.querySelector(href)
@@ -42,13 +44,22 @@ export function Navbar() {
             {navLinks.map((link) => (
               <li key={link.href}>
                 {link.href.startsWith("#") ? (
-                  <a
-                    href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    className="text-sm hover:text-primary transition-colors cursor-pointer"
-                  >
-                    {link.label}
-                  </a>
+                  pathname === "/" ? (
+                    <a
+                      href={link.href}
+                      onClick={(e) => scrollToSection(e, link.href)}
+                      className="text-sm hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={`/${link.href}`}
+                      className="text-sm hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {link.label}
+                    </Link>
+                  )
                 ) : (
                   <Link
                     href={link.href}
@@ -65,9 +76,15 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <Button asChild className="hidden md:flex">
-            <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
-              Get Started
-            </a>
+            {pathname === "/" ? (
+              <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>
+                Get Started
+              </a>
+            ) : (
+              <Link href="/#contact">
+                Get Started
+              </Link>
+            )}
           </Button>
         </div>
       </Container>

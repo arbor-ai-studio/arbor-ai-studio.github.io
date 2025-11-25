@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
 import { Button } from "@/components/ui/button"
-import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import Marquee from "@/components/ui/marquee"
 import { services, reviews, aiTechnologies } from "@/lib/constants"
@@ -25,7 +24,6 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full">
-      <Navbar />
 
       {/* Hero Section */}
       <Wrapper>

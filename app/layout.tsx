@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BookingWidget } from "@/components/booking-widget";
 
+import { Navbar } from "@/components/navbar";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -47,6 +49,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <BookingWidget />
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>

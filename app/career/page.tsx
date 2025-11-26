@@ -13,14 +13,10 @@ const LOCATION = "Dhanmondi Garden City, Dhaka";
 
 async function getJobs(): Promise<{ jobs: ApiJob[]; error: string | null }> {
   try {
-    const response = await fetch(JOBS_ENDPOINT, {
-      cache: "no-store",
-    });
-
+    const response = await fetch(JOBS_ENDPOINT);
     if (!response.ok) {
-      throw new Error("Failed to fetch jobs");
+      return { jobs: [], error: "Unable to load open roles right now. Please try again shortly." };
     }
-
     const data = await response.json();
     return { jobs: Array.isArray(data?.results) ? data.results : [], error: null };
   } catch (err) {
@@ -30,6 +26,7 @@ async function getJobs(): Promise<{ jobs: ApiJob[]; error: string | null }> {
 
 export default async function CareerPage() {
   const { jobs, error } = await getJobs();
+  const rolesLabel = `${jobs.length} active role${jobs.length === 1 ? "" : "s"}`;
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-12 px-4 sm:px-6 lg:px-8">
@@ -46,9 +43,7 @@ export default async function CareerPage() {
         <div className="space-y-6">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-semibold text-foreground">Open Positions</h2>
-            <span className="text-sm text-muted-foreground">
-              {`${jobs.length} active role${jobs.length === 1 ? "" : "s"}`}
-            </span>
+            <span className="text-sm text-muted-foreground">{rolesLabel}</span>
           </div>
 
           {error && (

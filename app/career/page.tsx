@@ -32,10 +32,10 @@ export default async function CareerPage() {
     <div className="min-h-screen bg-background pt-24 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
             Join Our Team
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             Build the future of AI with us at Arbor AI Studio.
           </p>
         </div>

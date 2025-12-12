@@ -1,35 +1,60 @@
-import { Bot, Code, Cog, Globe, Sparkles, Shield } from "lucide-react";
+import { Bot, Code, Cog, Globe, Sparkles, Shield, Database, Layout, Smartphone } from "lucide-react";
 
 export const services = [
+
   {
     icon: Bot,
-    title: "AI Agent Development",
-    description: "Custom AI agents that automate tasks, make decisions, and work 24/7 for your business",
+    title: "Intelligent Support Agents",
+    description: "24/7 AI agents that handle customer inquiries, booking, and support tickets instantly.",
+    category: "enterprise",
   },
   {
     icon: Code,
-    title: "AI Integration",
-    description: "Seamlessly integrate AI capabilities into your existing systems and workflows",
+    title: "SaaS Product Engineering",
+    description: "Full-cycle development from idea to MVP to scalable product with final quality check and end to end production deployments.",
+    category: "startup",
   },
   {
     icon: Cog,
-    title: "Process Automation",
-    description: "Automate repetitive tasks and workflows with intelligent AI-powered solutions",
+    title: "Business Process Automation",
+    description: "Connect AI to your existing tools (CRM, Email, Slack) to automate manual workflows and save hours daily.",
+    category: "enterprise",
   },
   {
     icon: Globe,
-    title: "Machine Learning",
-    description: "Custom ML models trained on your data to solve specific business problems",
+    title: "Predictive Business Insights",
+    description: "Turn your historical data into actionable forecasts for inventory, sales, and customer behavior.",
+    category: "enterprise",
   },
   {
     icon: Sparkles,
-    title: "AI Consulting",
-    description: "Strategic guidance on AI adoption and implementation for your organization",
+    title: "Custom AI Solutions",
+    description: "Tailored AI tools built specifically for your unique business challenges and goals.",
+    category: "startup",
   },
   {
     icon: Shield,
-    title: "AI Maintenance & Support",
-    description: "Ongoing support and optimization to keep your AI solutions running at peak performance",
+    title: "Enterprise Security & Support",
+    description: "Bank-grade security implementation with ongoing maintenance to keep your AI infrastructure running smoothly.",
+    category: "enterprise",
+  },
+  {
+    icon: Database,
+    title: "Legacy System Modernization",
+    description: "Upgrade your outdated software infrastructure with modern AI capabilities without a complete rewrite.",
+    category: "enterprise",
+  },
+  {
+    icon: Layout,
+    title: "Data Warehousing & ETL",
+    description: "Centralize your fragmented business data into a single source of truth ready for AI analysis.",
+    category: "enterprise",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App AI Features",
+    description: "Add intelligent features like voice control, vision analysis, or smart recommendations to your mobile app.",
+    category: "startup",
   },
 ];
 
@@ -37,32 +62,32 @@ export const reviews = [
   {
     name: "Sarah Johnson",
     username: "@sarahj",
-    body: "Arbor AI Studio transformed our customer service with their AI agents. Response times down 80%!",
+    body: "The intelligent support agent handles 80% of our tickets now. My team can finally focus on complex issues instead of resetting passwords.",
   },
   {
     name: "Michael Chen",
-    username: "@mchen",
-    body: "The machine learning models they built for us increased our prediction accuracy by 45%. Incredible work!",
+    username: "@mchen_founder",
+    body: "Arbor AI Studio took my napkin sketch and built a fully functional SaaS MVP in 6 weeks. The deployment pipeline is flawless.",
   },
   {
     name: "Emily Rodriguez",
-    username: "@emilyrod",
-    body: "Professional, knowledgeable, and results-driven. Our AI integration was seamless thanks to their team.",
+    username: "@emilyrod_ops",
+    body: "We connected their AI tools to our internal Salesforce. It now automatically updates client records from emails. Huge time saver.",
   },
   {
     name: "David Kim",
     username: "@davidk",
-    body: "Best AI consulting experience we've had. They really understand business needs, not just technology.",
+    body: "Not just another dev shop. They understood our business model and recommended AI features that actually increased revenue.",
   },
   {
     name: "Lisa Thompson",
     username: "@lisathompson",
-    body: "The process automation solutions saved us thousands of hours annually. ROI was immediate.",
+    body: "The custom RAG solution lets our new hires search through 5 years of documentation instantly. Onboarding time was cut in half.",
   },
   {
     name: "James Wilson",
-    username: "@jwilson",
-    body: "Ongoing support has been fantastic. They're always available and proactive about improvements.",
+    username: "@jwilson_cto",
+    body: "Security was our top concern. Arbor's team implemented enterprise-grade protection for all our AI models.",
   },
 ];
 

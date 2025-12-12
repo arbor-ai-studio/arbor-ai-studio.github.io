@@ -161,7 +161,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-12 lg:gap-20">
+          <div className="flex flex-col gap-6 lg:gap-8">
             {[
               {
                 problem: "Support team overwhelmed?",
@@ -181,7 +181,7 @@ export default function Home() {
               }
             ].map((item, i) => (
               <div key={i} className={`flex w-full ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                <div className="relative group w-full md:w-[95%] lg:w-[90%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md">
+                <div className="relative group w-full md:w-[95%] lg:w-[97%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md">
                   <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center">
                     <div className="flex-1 text-center md:text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">The Problem</span>

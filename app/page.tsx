@@ -181,7 +181,7 @@ export default function Home() {
               }
             ].map((item, i) => (
               <div key={i} className={`flex w-full ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                <div className="relative group w-full md:w-[85%] lg:w-[70%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md">
+                <div className="relative group w-full md:w-[90%] lg:w-[80%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md">
                   <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center">
                     <div className="flex-1 text-center md:text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">The Problem</span>

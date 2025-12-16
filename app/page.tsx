@@ -45,7 +45,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 mb-6 leading-tight"
             >
-              Turn AI Potential into Real Business Impact
+              Turn Agentic AI Potential into Real Business Impact
             </motion.h1>
 
             <motion.p

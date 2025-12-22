@@ -1,0 +1,32 @@
+[
+  {
+    "id": "covergen",
+    "title": "CoverGen.io",
+    "description": "An AI-powered tool specifically designed for Upwork freelancers to generate high-quality, personalized cover letters in seconds. It uses advanced NLP to match job requirements with your profile.",
+    "longDescription": "CoverGen.io is the ultimate productivity tool for freelancers on Upwork. By analyzing job descriptions and your unique profile, it crafts personalized, high-converting cover letters in under 10 seconds. It seamlessly integrates into your workflow, helping you send more proposals and win more jobs with less effort.",
+    "coverImage": "/covergen.png",
+    "url": "https://covergen.io",
+    "tags": ["AI", "Productivity", "Freelancing", "SaaS"],
+    "features": [
+      "Instant Proposals in < 10s",
+      "Upwork Profile Integration",
+      "Smart Keyword Optimization",
+      "Multi-Browser Extension Support"
+    ]
+  },
+  {
+    "id": "bettersales",
+    "title": "Better Sales AI",
+    "description": "An AI-driven cold call sales coaching platform that acts as a virtual manager. It analyzes calls, provides objective feedback, and helps sales teams refine their techniques.",
+    "longDescription": "Better Sales AI serves as a virtual sales manager, providing granular, data-driven coaching for sales teams. It listens to cold calls, analyzes performance against key metrics, and assigns targeted 'homework' to help reps improve. It's the scalable way to ensure every sales interaction is optimized for success.",
+    "coverImage": "/bettersales.png",
+    "url": "https://bettersalesai.com/",
+    "tags": ["AI", "Sales", "Coaching", "Analytics"],
+    "features": [
+      "Automated Performance Metrics",
+      "Actionable Feedback & Homework",
+      "Team Management Dashboard",
+      "Shareable Progress Reports"
+    ]
+  }
+]

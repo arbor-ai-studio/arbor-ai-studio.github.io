@@ -9,6 +9,8 @@ import Marquee from "@/components/ui/marquee"
 import { services, reviews, aiTechnologies } from "@/lib/constants"
 import { ArrowRight, Mail, Phone, MapPin, User, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
+import { ProjectCarousel } from "@/components/project-carousel"
+import projectsData from "@/data/projects.json"
 import { cn } from "@/lib/utils"
 
 export default function Home() {
@@ -71,6 +73,15 @@ export default function Home() {
                 Explore Solutions
               </Button>
             </motion.div>
+            
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="w-full mt-12"
+            >
+                <ProjectCarousel projects={projectsData} />
+            </motion.div>
 
             {/* AI Technologies Marquee */}
             <motion.div
@@ -130,20 +141,6 @@ export default function Home() {
             <p className="text-lg text-muted-foreground mb-8">
               At Arbor AI Studio, we don&apos;t just deliver code; we deliver measurable business outcomes. Whether you need to automate internal costs or launch a revenue-generating product, our team aligns technology with your bottom line.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                <p className="text-muted-foreground">Projects Completed</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">30+</div>
-                <p className="text-muted-foreground">Happy Clients</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">98%</div>
-                <p className="text-muted-foreground">Client Satisfaction</p>
-              </div>
-            </div>
           </div>
         </Container>
       </Wrapper>

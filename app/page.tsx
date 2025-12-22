@@ -12,6 +12,8 @@ import { motion } from "framer-motion"
 import { ProjectCarousel } from "@/components/project-carousel"
 import projectsData from "@/data/projects.json"
 import { cn } from "@/lib/utils"
+import { FadeIn } from "@/components/ui/fade-in"
+import { BorderBeam } from "@/components/ui/border-beam"
 
 export default function Home() {
   const scrollToSection = (href: string) => {
@@ -133,30 +135,34 @@ export default function Home() {
       {/* About Section */}
       <Wrapper id="about" className="py-24 bg-muted/30">
         <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <SectionBadge title="About Us" className="mb-6" />
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              We Build the AI Tech So You Can Build the Business
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              At Arbor AI Studio, we don&apos;t just deliver code; we deliver measurable business outcomes. Whether you need to automate internal costs or launch a revenue-generating product, our team aligns technology with your bottom line.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center">
+              <SectionBadge title="About Us" className="mb-6" />
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+                We Build the AI Tech So You Can Build the Business
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                At Arbor AI Studio, we don&apos;t just deliver code; we deliver measurable business outcomes. Whether you need to automate internal costs or launch a revenue-generating product, our team aligns technology with your bottom line.
+              </p>
+            </div>
+          </FadeIn>
         </Container>
       </Wrapper>
 
       {/* Use Cases Section - New Addition */}
       <Wrapper id="use-cases" className="py-24 bg-muted/30">
         <Container>
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <SectionBadge title="Real World Impact" className="mb-6" />
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Solving Real Problems with AI
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              We don&apos;t just write code; we solve business bottlenecks.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <SectionBadge title="Real World Impact" className="mb-6" />
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+                Solving Real Problems with AI
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                We don&apos;t just write code; we solve business bottlenecks.
+              </p>
+            </div>
+          </FadeIn>
 
           <div className="flex flex-col gap-6 lg:gap-8">
             {[
@@ -177,8 +183,11 @@ export default function Home() {
                 fix: (<span><strong className="text-foreground">MCP Tools</strong>: Custom integrations that let your AI assistants safely read/write to your CRM, Calendar, and Inventory systems.</span>)
               }
             ].map((item, i) => (
-              <div key={i} className={`flex w-full ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                <div className="relative group w-full md:w-[95%] lg:w-[97%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md">
+              <FadeIn key={i} delay={i * 0.1} className={`flex w-full ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="relative group w-full md:w-[95%] lg:w-[97%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md"
+                >
                   <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center">
                     <div className="flex-1 text-center md:text-left">
                       <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">The Problem</span>
@@ -194,8 +203,8 @@ export default function Home() {
                       <p className="mt-2 text-muted-foreground leading-relaxed">{item.fix}</p>
                     </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </Container>
@@ -204,60 +213,68 @@ export default function Home() {
       {/* Services Section */}
       <Wrapper id="solutions" className="py-24">
         <Container>
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <SectionBadge title="Our Solutions" className="mb-6" />
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Solutions for Every Stage
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Whether you are an established enterprise or a fast-moving startup, we have the right tools for you.
-            </p>
-          </div>
+          <FadeIn>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <SectionBadge title="Our Solutions" className="mb-6" />
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+                Solutions for Every Stage
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Whether you are an established enterprise or a fast-moving startup, we have the right tools for you.
+              </p>
+            </div>
+          </FadeIn>
 
           <div className="grid grid-cols-1 gap-12">
             {/* Enterprise / Internal Tools Group */}
-            <div>
-              <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">1</span>
-                For Established Businesses
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.filter((s) => s.category === 'enterprise').map((service) => (
-                  <div
-                    key={service.title}
-                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300"
-                  >
-                    <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                    <p className="text-muted-foreground">{service.description}</p>
-                  </div>
-                ))}
+            <FadeIn delay={0.2}>
+              <div>
+                <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">1</span>
+                  For Established Businesses
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {services.filter((s) => s.category === 'enterprise').map((service) => (
+                    <motion.div
+                      whileHover={{ y: -5 }}
+                      key={service.title}
+                      className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300"
+                    >
+                      <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <service.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                      <p className="text-muted-foreground">{service.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </FadeIn>
 
             {/* Founders / Startups Group */}
-            <div>
-              <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">2</span>
-                For Founders & Startups
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.filter((s) => s.category === 'startup').map((service) => (
-                  <div
-                    key={service.title}
-                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300"
-                  >
-                    <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                    <p className="text-muted-foreground">{service.description}</p>
-                  </div>
-                ))}
+            <FadeIn delay={0.4}>
+              <div>
+                <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">2</span>
+                  For Founders & Startups
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {services.filter((s) => s.category === 'startup').map((service) => (
+                    <motion.div
+                      whileHover={{ y: -5 }}
+                      key={service.title}
+                      className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300"
+                    >
+                      <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <service.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                      <p className="text-muted-foreground">{service.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </Container>
       </Wrapper>
@@ -265,160 +282,167 @@ export default function Home() {
       {/* Reviews Section */}
       <Wrapper id="reviews" className="flex flex-col items-center justify-center py-24 relative">
         <Container>
-          <div className="max-w-md mx-auto text-center mb-12">
-            <SectionBadge title="Client Reviews" />
-            <h2 className="text-3xl lg:text-4xl font-semibold mt-6">
-              What Our Clients Say
-            </h2>
-            <p className="text-muted-foreground mt-6">
-              See how we&apos;ve helped businesses transform with AI
-            </p>
-          </div>
+          <FadeIn>
+            <div className="max-w-md mx-auto text-center mb-12">
+              <SectionBadge title="Client Reviews" />
+              <h2 className="text-3xl lg:text-4xl font-semibold mt-6">
+                What Our Clients Say
+              </h2>
+              <p className="text-muted-foreground mt-6">
+                See how we&apos;ve helped businesses transform with AI
+              </p>
+            </div>
+          </FadeIn>
         </Container>
         <Container>
-          <div className="w-full">
-            <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden py-10">
-              <Marquee pauseOnHover className="[--duration:20s] select-none">
-                {firstRow.map((review) => (
-                  <figure
-                    key={review.name}
-                    className={cn(
-                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                      "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
-                    )}
-                  >
-                    <div className="flex flex-row items-center gap-2">
-                      <User className="w-6 h-6" />
-                      <div className="flex flex-col">
-                        <figcaption className="text-sm font-medium">
-                          {review.name}
-                        </figcaption>
-                        <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
+          <FadeIn delay={0.2} className="w-full">
+            <div className="w-full">
+              <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden py-10">
+                <Marquee pauseOnHover className="[--duration:20s] select-none">
+                  {firstRow.map((review) => (
+                    <figure
+                      key={review.name}
+                      className={cn(
+                        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+                        "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
+                      )}
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <User className="w-6 h-6" />
+                        <div className="flex flex-col">
+                          <figcaption className="text-sm font-medium">
+                            {review.name}
+                          </figcaption>
+                          <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
+                        </div>
                       </div>
-                    </div>
-                    <blockquote className="mt-2 text-sm">{review.body}</blockquote>
-                  </figure>
-                ))}
-              </Marquee>
-              <Marquee reverse pauseOnHover className="[--duration:20s] select-none">
-                {secondRow.map((review) => (
-                  <figure
-                    key={review.name}
-                    className={cn(
-                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                      "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
-                    )}
-                  >
-                    <div className="flex flex-row items-center gap-2">
-                      <User className="w-6 h-6" />
-                      <div className="flex flex-col">
-                        <figcaption className="text-sm font-medium">
-                          {review.name}
-                        </figcaption>
-                        <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
+                      <blockquote className="mt-2 text-sm">{review.body}</blockquote>
+                    </figure>
+                  ))}
+                </Marquee>
+                <Marquee reverse pauseOnHover className="[--duration:20s] select-none">
+                  {secondRow.map((review) => (
+                    <figure
+                      key={review.name}
+                      className={cn(
+                        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+                        "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
+                      )}
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <User className="w-6 h-6" />
+                        <div className="flex flex-col">
+                          <figcaption className="text-sm font-medium">
+                            {review.name}
+                          </figcaption>
+                          <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
+                        </div>
                       </div>
-                    </div>
-                    <blockquote className="mt-2 text-sm">{review.body}</blockquote>
-                  </figure>
-                ))}
-              </Marquee>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
+                      <blockquote className="mt-2 text-sm">{review.body}</blockquote>
+                    </figure>
+                  ))}
+                </Marquee>
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
+              </div>
             </div>
-          </div>
+          </FadeIn>
         </Container>
       </Wrapper>
 
       {/* Contact/CTA Section */}
       <Wrapper id="contact" className="pt-12 pb-24">
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <SectionBadge title="Get In Touch" className="mb-6" />
-              <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Let&apos;s discuss how we can help you leverage AI to achieve your business goals
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Contact Form Placeholder */}
-              <div className="p-8 rounded-xl border border-border bg-card flex flex-col items-center justify-center text-center h-full">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                  <Calendar className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-semibold mb-4">Schedule a Consultation</h3>
-                <p className="text-muted-foreground mb-8">
-                  Book a time directly on our calendar to discuss your AI needs.
+          <FadeIn>
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <SectionBadge title="Get In Touch" className="mb-6" />
+                <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+                  Ready to Transform Your Business?
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Let&apos;s discuss how we can help you leverage AI to achieve your business goals
                 </p>
-                <Button size="lg" className="w-full sm:w-auto" asChild>
-                  <a href="https://calendar.app.google/SQuZ5t9RAyUtYhq7A" target="_blank" rel="noopener noreferrer">
-                    Book a Meeting
-                  </a>
-                </Button>
               </div>
 
-              {/* Contact Info */}
-              <div className="space-y-6">
-                <div className="p-8 rounded-xl border border-border bg-card">
-                  <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Mail className="w-5 h-5 text-primary" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Contact Form Placeholder */}
+                <div className="relative overflow-hidden p-8 rounded-xl border border-border bg-card flex flex-col items-center justify-center text-center h-full">
+                  <BorderBeam />
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 z-10">
+                    <Calendar className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-semibold mb-4 z-10">Schedule a Consultation</h3>
+                  <p className="text-muted-foreground mb-8 z-10">
+                    Book a time directly on our calendar to discuss your AI needs.
+                  </p>
+                  <Button size="lg" className="w-full sm:w-auto z-10" asChild>
+                    <a href="https://calendar.app.google/SQuZ5t9RAyUtYhq7A" target="_blank" rel="noopener noreferrer">
+                      Book a Meeting
+                    </a>
+                  </Button>
+                </div>
+
+                {/* Contact Info */}
+                <div className="space-y-6">
+                  <div className="p-8 rounded-xl border border-border bg-card">
+                    <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Mail className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">Email</p>
+                          <p className="text-muted-foreground">contact@arboraistudio.com</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-medium">Email</p>
-                        <p className="text-muted-foreground">contact@arboraistudio.com</p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Phone className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">Phone</p>
+                          <p className="text-muted-foreground">+880 131 666 1100</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Phone className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Phone</p>
-                        <p className="text-muted-foreground">+880 131 666 1100</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Location</p>
-                        <p className="text-muted-foreground">Dhaka, Bangladesh</p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <MapPin className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">Location</p>
+                          <p className="text-muted-foreground">Dhaka, Bangladesh</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="p-8 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/20">
-                  <h4 className="text-xl font-semibold mb-3">Why Choose Us?</h4>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Expert team with years of AI experience</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Tailored solutions for your specific needs</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Ongoing support and maintenance</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Proven track record of success</span>
-                    </li>
-                  </ul>
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/20">
+                    <h4 className="text-xl font-semibold mb-3">Why Choose Us?</h4>
+                    <ul className="space-y-2 text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>Expert team with years of AI experience</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>Tailored solutions for your specific needs</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>Ongoing support and maintenance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>Proven track record of success</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </Container>
       </Wrapper>
 

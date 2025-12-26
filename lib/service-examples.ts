@@ -17,16 +17,16 @@ export const serviceExamples: Record<string, ServiceDetail> = {
     coreValue: "24/7 instant resolution, not just deflection.",
     examples: [
       {
-        title: "E-commerce Order Agent",
-        description: "Connects to Shopify/WooCommerce to check order status, handle returns, and issue refunds automatically within policy limits."
+        title: "The Instant Refund Agent",
+        description: "Connects to Shopify. When a customer asks 'Where is my order?', it checks real-time tracking. If they need a refund, it processes it instantly within your policy limits."
       },
       {
-        title: "HR Internal Helpdesk",
-        description: "Ingests company handbooks and wikis to answer employee questions like 'What is the dental policy?' or 'How do I request PTO?' immediately."
+        title: "The HR Policy Bot",
+        description: "Instead of emailing HR, employees ask 'Is dental covered?'. The agent reads your 50-page handbook and gives the exact answer and form link instantly."
       },
       {
-        title: "Tech Support Diagnostics",
-        description: "Walks customers through complex troubleshooting steps (e.g., router reset) and escalates to human agents with full context if needed."
+        title: "Tech Support Copilot",
+        description: "It listens to your support calls in real-time. When a customer mentions 'Error 505', it instantly pops up the correct solution on your agent's screen."
       }
     ]
   },
@@ -35,34 +35,34 @@ export const serviceExamples: Record<string, ServiceDetail> = {
     coreValue: "From napkin sketch to production-ready scalable product.",
     examples: [
       {
-        title: "AI Legal Document Reviewer",
-        description: "A subscription-based SaaS where users upload contracts to get instant risk analysis and clause highlighting."
+        title: "The AI Compliance Officer",
+        description: "A RegTech app that scans global regulations (GDPR, HIPAA) 24/7 and alerts you instantly if your new company policy violates a rule."
       },
       {
-        title: "Generative Design Tool",
-        description: "For interior designers: Upload a room photo, describe a style, and get 3D rendered redesigns in seconds."
+        title: "The Instant Interior Designer",
+        description: "Users upload a photo of their living room, click 'Modern Style', and get a photorealistic 3D redesign in seconds."
       },
       {
-        title: "Voice-First CRM for Sales",
-        description: "Mobile-first app where field reps dictate meeting notes, and AI automatically updates Salesforce fields."
+        title: "The Hands-Free CRM",
+        description: "Field sales reps just speak: 'Met with John, he wants 50 units.' The app listens, understands, and updates Salesforce fields automatically."
       }
     ]
   },
   "Business Process Automation": {
     title: "Business Process Automation",
-    coreValue: "Connecting isolated tools to remove manual grunt work.",
+    coreValue: "Your 24/7 digital workforce for the boring stuff.",
     examples: [
       {
-        title: "Invoice Processing Pipeline",
-        description: "Watches email for invoices, extracts data (PDF to JSON), matches with ERP purchase orders, and drafts payments in QuickBooks."
+        title: "The Invoice Clerk",
+        description: "It watches your inbox for bills, reads the PDFs (even scanned ones), and enters the details into your accounting software. You just click 'Pay'."
       },
       {
-        title: "Smart Lead Qualification",
-        description: "Enriches new leads with LinkedIn data, scores them based on ICP match, and notifies sales teams of high-priority prospects via Slack."
+        title: "The Instant Sales Responder",
+        description: "When a customer fills your contact form at 2 AM, this agent researches them on LinkedIn, drafts a personalized reply, and alerts your sales team only if it's a big deal."
       },
       {
-        title: "Automated Content Repurposing",
-        description: "Takes a YouTube video URL and automatically generates a blog post, 5 tweets, and a LinkedIn article, drafting them in your CMS."
+        title: "The Social Media Manager",
+        description: "Paste a link to your latest video. The agent watches it, writes a blog post, creates 5 tweets, and schedules them all to post throughout the week."
       }
     ]
   },
@@ -71,16 +71,16 @@ export const serviceExamples: Record<string, ServiceDetail> = {
     coreValue: "Turning 'what happened' into 'what will happen'.",
     examples: [
       {
-        title: "Inventory Demand Forecasting",
-        description: "Predicts stockouts 2 weeks in advance based on seasonal trends and marketing spend to optimize supply chain."
+        title: "The Inventory Forecaster",
+        description: "Analyzes 3 years of sales history and warns you: 'Order more winter coats now or you'll run out by November 15th.'"
       },
       {
-        title: "Customer Churn Prediction",
-        description: "Analyzes usage patterns to flag at-risk accounts and triggers automatic retention campaigns before they leave."
+        title: "Churn Prevention Radar",
+        description: "Watches user activity patterns. If a VIP client stops logging in, it alerts your sales team: 'Call John Doe, he might cancel soon.'"
       },
       {
-        title: "Dynamic Pricing Model",
-        description: "Adjusts service or product pricing in real-time based on competitor rates, demand, and inventory levels."
+        title: "Dynamic Pricing Engine",
+        description: "Watches competitor prices 24/7. If they drop their price, it automatically adjusts yours to stay competitive (while keeping your margin safe)."
       }
     ]
   },
@@ -89,70 +89,70 @@ export const serviceExamples: Record<string, ServiceDetail> = {
     coreValue: "Solving unique problems that off-the-shelf tools can't.",
     examples: [
       {
-        title: "Quality Control Vision System",
-        description: "Computer vision on manufacturing lines that detects defects in real-time and automatically rejects faulty items."
+        title: "The Manufacturing Eye",
+        description: "A camera watches your assembly line. If a bottle cap is loose, the AI spots it (faster than a human) and ejects the bottle instantly."
       },
       {
-        title: "Resume Matching Engine",
-        description: "For recruiters: Scores candidate resumes against job descriptions using semantic understanding rather than simple keyword matching."
+        title: "The Bias-Free Recruiter",
+        description: "Instead of just keywords, this agent reads the whole resume. It tells you: 'Jane is perfect because she led a similar project in 2019.'"
       },
       {
-        title: "Sports Performance Analysis",
-        description: "Analyzes game footage to track player movement, speed, and positioning to suggest tactical improvements."
+        title: "The Virtual Coach",
+        description: "Analyzes game footage. It tells the coach: 'Player #10 is 5% slower when moving left—fix that training drill.'"
       }
     ]
   },
-  "Enterprise Security & Support": {
-    title: "Enterprise Security & Support",
-    coreValue: "Keeping AI safe, compliant, and operational.",
+  "AI Security & Management": {
+    title: "AI Security & Management",
+    coreValue: "Sleep soundly knowing your AI is safe.",
     examples: [
       {
-        title: "PII Redaction Proxy",
-        description: "Middleware that automatically strips names, credit cards, and SSNs from prompts before data helps leave your secure server."
+        title: "The Data Bodyguard",
+        description: "A secure filter that sits between your staff and the AI. It automatically blacks out credit card numbers and names before they leave your server."
       },
       {
-        title: "Model Monitoring Dashboard",
-        description: "Real-time alerts if your AI starts hallucinating, drifting from its training, or if user sentiment drops below a threshold."
+        title: "The 24/7 Watchdog",
+        description: "We set up an automated monitor that checks every AI answer. If the AI starts 'making things up' (hallucinating), it alerts us instantly."
       },
       {
-        title: "Role-Based Access Control (RBAC)",
-        description: "Ensures marketing staff can only query marketing data, while HR has exclusive access to sensitive personnel files."
+        title: "The Fraud Detective",
+        description: "Watches every transaction 24/7. If someone logs in from two countries at once, it freezes the account instantly to prevent theft."
       }
     ]
   },
   "Legacy System Modernization": {
     title: "Legacy System Modernization",
-    coreValue: "Bringing AI benefits to old infrastructure.",
+    coreValue: "Don't rewrite. Just reconnect.",
     examples: [
       {
-        title: "Talk to Your SQL Database",
-        description: "Natural language interface for legacy ERPs, allowing executives to ask 'Show sales by region' without knowing SQL."
+        title: "Chat with Your Old Database",
+        description: "We add a secure AI layer over your 20-year-old ERP. You type 'Show sales by region' and get a chart instantly, no SQL needed."
       },
       {
-        title: "Mainframe Log Anomaly Detection",
-        description: "AI that monitors noisy system logs from legacy servers to predict hardware failures before they cause downtime."
+        title: "Mainframe Crash Predictor",
+        description: "An AI agent watches your system logs 24/7. It spots weird patterns and alerts you: 'Hard drive failing in Server 3' before it crashes."
       },
       {
-        title: "Automated API Wrapper",
-        description: "Turns old SOAP services into modern REST APIs with AI-generated documentation for easier integration."
+        title: "Instant Modern API",
+        description: "Want to build a mobile app but your data is stuck in an old system? We use AI to wrap your old code so new apps can talk to it immediately."
       }
     ]
   },
-  "Data Warehousing & ETL": {
-    title: "Data Warehousing & ETL",
-    coreValue: "Cleaning the mess so AI can actually work.",
+  "Unified Business Intelligence": {
+    title: "Unified Business Intelligence",
+    coreValue: "Stop wrestling with spreadsheets. Let AI unify your data.",
     examples: [
       {
-        title: "Multi-Source Data Lake",
-        description: "Combines data from Facebook Ads, Google Analytics, and Shopify into a single BigQuery warehouse for unified reporting."
+        title: "Centralized Sales Dashboard",
+        description: "AI connects to Shopify, Google Ads, and Facebook. You simply ask, 'Which ad campaign gave the best ROI yesterday?' to get an instant answer."
       },
       {
-        title: "Unstructured Data Parsing",
-        description: "Scrapes and structures messy data from thousands of competitor websites to enable automated price comparison."
+        title: "Automated Market Research",
+        description: "An agent scrapes thousands of competitor sites daily. You ask, 'Show me who lowered prices on sneakers this week,' and get a summarized report."
       },
       {
-        title: "Real-Time Streaming Pipeline",
-        description: "Processes high-volume IoT sensor data instantly for live dashboard reporting and alert triggers."
+        title: "Live Operations Monitor",
+        description: "Connects to your IoT sensors or fleet GPS. You ask, 'Are any trucks delayed?' and the AI checks real-time locations to alert you."
       }
     ]
   },
@@ -161,16 +161,16 @@ export const serviceExamples: Record<string, ServiceDetail> = {
     coreValue: "Making mobile experiences smarter.",
     examples: [
       {
-        title: "On-Device Offline AI",
-        description: "Language translation or object detection models optimized to run locally on the phone without internet access."
+        title: "The App That Reads Minds",
+        description: "Netflix-style algorithms that don't just show 'popular items', but predict exactly what this specific user wants to buy right now based on their mood and time of day."
       },
       {
-        title: "Biometric Authentication",
-        description: "Secure, frictionless login implementation using modern face or voice recognition standards."
+        title: "Talk to Your App",
+        description: "Forget buttons. Users just say 'Order my usual coffee' or 'Show me blue sneakers in size 10', and the app navigates itself instantly."
       },
       {
-        title: "Personalized Feed Algorithm",
-        description: "Netflix-style recommendation engine running locally to suggest content users will love based on interaction history."
+        title: "The AR Shopping Assistant",
+        description: "Users point their phone camera at their feet to 'try on' shoes virtually, or at their wall to see how a new painting fits perfectly."
       }
     ]
   }

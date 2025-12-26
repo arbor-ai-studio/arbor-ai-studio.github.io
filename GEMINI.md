@@ -54,4 +54,26 @@ Arbor AI Studio specializes in **Agentic AI** and **Large Language Models (LLMs)
 The site is hosted on GitHub Pages. There are two ways to deploy:
 
 1.  **Automated (Preferred):** Push changes to the `main` branch. The GitHub Action defined in `.github/workflows/deploy.yml` will build and deploy the site.
-2.  **Manual:** Run `npm run deploy`. This script builds the project, prepares the `out` directory (copies CNAME, adds .nojekyll), and pushes to the `gh-pages` branch.
+
+## Tone & Style Guidelines (Service Examples)
+
+When editing or adding new examples to `lib/service-examples.ts`, adhere to the following guidelines to maintain a consistent voice for our non-technical business audience.
+
+**Core Principle:**
+Focus on the **result** and the **interaction**, not the underlying technology. Explain *what the AI does* as if it were a digital employee.
+
+**Guidelines:**
+1.  **Target Audience:** Non-technical business owners/executives.
+2.  **No Jargon:** Avoid words like "LLM," "Inference," "RAG," "ETL," "Vector Database."
+    *   *Bad:* "Uses a RAG pipeline to query vector embeddings of your documents."
+    *   *Good:* "Reads your 50-page handbook and gives the exact answer instantly."
+3.  **Action-Oriented Verbs:** Use verbs that describe tangible actions: "Ask," "Watch," "Spot," "Predict," "Alert."
+4.  **"Digital Employee" Metaphor:** Frame the AI agent as a helpful team member.
+    *   *Examples:* "The Invoice Clerk," "The Data Bodyguard," "The 24/7 Watchdog."
+5.  **Focus on the Interaction:** Describe how the user interacts with the tool.
+    *   *Example:* "You simply ask, 'How were sales?'..." or "Field reps just speak..."
+
+**Example Format:**
+*   **Title:** [Role] or [Benefit] (e.g., "The Instant Refund Agent")
+*   **Description:** [Trigger] + [AI Action] + [Result].
+    *   *Example:* "When a customer asks X, the agent checks Y, and instantly does Z."

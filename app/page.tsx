@@ -287,6 +287,53 @@ export default function Home() {
         </Container>
       </Wrapper>
 
+      {/* Infinite Potential Section (Apple Style) */}
+      <Wrapper className="py-24 overflow-hidden border-y border-border/50">
+        <div className="absolute inset-0 bg-primary/5 -z-10" />
+        <Container>
+          <div className="flex flex-col items-center justify-center text-center mb-16">
+            <SectionBadge title="Limitless Possibilities" className="mb-6" />
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
+              And much, much more.
+            </h2>
+            <p className="text-xl text-muted-foreground mt-6 max-w-2xl">
+              The possibilities are endless. If you have data, we can build an agent to understand it.
+            </p>
+          </div>
+        </Container>
+
+        <div className="relative flex flex-col gap-8 w-full overflow-hidden">
+          {/* Row 1: Industries */}
+          <Marquee pauseOnHover className="[--duration:40s] select-none py-2">
+            {[
+              "FinTech", "HealthTech", "EdTech", "Real Estate", "Logistics", 
+              "E-Commerce", "Manufacturing", "LegalTech", "HR & Recruiting", 
+              "Marketing Agencies", "GovTech", "Non-Profit"
+            ].map((item) => (
+              <div key={item} className="mx-4 px-6 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm text-lg font-medium text-foreground/80 whitespace-nowrap">
+                {item}
+              </div>
+            ))}
+          </Marquee>
+
+          {/* Row 2: Capabilities */}
+          <Marquee reverse pauseOnHover className="[--duration:45s] select-none py-2">
+            {[
+              "Fraud Detection", "Sentiment Analysis", "Document Parsing", "Route Optimization",
+              "Dynamic Pricing", "Churn Prediction", "Lead Scoring", "Automated Reporting",
+              "Visual Inspection", "Voice Synthesis", "Code Generation", "Predictive Maintenance"
+            ].map((item) => (
+              <div key={item} className="mx-4 px-6 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm text-lg font-medium text-foreground/80 whitespace-nowrap">
+                {item}
+              </div>
+            ))}
+          </Marquee>
+          
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent z-10"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent z-10"></div>
+        </div>
+      </Wrapper>
+
       {/* Process Section - Replaces Reviews */}
       <Wrapper id="process" className="py-24 bg-muted/30">
         <Container>
@@ -323,8 +370,11 @@ export default function Home() {
                 desc: "We deploy to production, train your team, and set up 24/7 monitoring to ensure everything runs smoothly."
               }
             ].map((item) => (
-              <div key={item.step} className="relative p-6 rounded-2xl bg-card border border-border flex flex-col items-start hover:shadow-md transition-all duration-300">
-                <div className="text-5xl font-bold text-primary/50 mb-4">{item.step}</div>
+              <div 
+                key={item.step} 
+                className="group relative p-6 rounded-2xl bg-card border border-border flex flex-col items-start transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30 hover:bg-primary/5"
+              >
+                <div className="text-5xl font-bold text-primary/50 mb-4 transition-colors duration-300 group-hover:text-primary">{item.step}</div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
               </div>

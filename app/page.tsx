@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
@@ -7,11 +8,15 @@ import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import Marquee from "@/components/ui/marquee"
 import { services, reviews, aiTechnologies } from "@/lib/constants"
+import { serviceExamples } from "@/lib/service-examples"
+import { ServiceModal } from "@/components/service-modal"
 import { ArrowRight, Mail, Phone, MapPin, User, Calendar } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 export default function Home() {
+  const [selectedServiceTitle, setSelectedServiceTitle] = useState<string | null>(null)
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
@@ -21,6 +26,15 @@ export default function Home() {
 
   const firstRow = reviews.slice(0, reviews.length / 2)
   const secondRow = reviews.slice(reviews.length / 2)
+
+  const handleServiceClick = (title: string) => {
+    if (serviceExamples[title]) {
+      setSelectedServiceTitle(title)
+    }
+  }
+
+  const selectedService = selectedServiceTitle ? serviceExamples[selectedServiceTitle] : null
+  const SelectedServiceIcon = selectedServiceTitle ? services.find(s => s.title === selectedServiceTitle)?.icon : undefined
 
   return (
     <div className="flex flex-col w-full">
@@ -228,12 +242,16 @@ export default function Home() {
                 {services.filter((s) => s.category === 'enterprise').map((service) => (
                   <div
                     key={service.title}
-                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300"
+                    onClick={() => handleServiceClick(service.title)}
+                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                       <service.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      {service.title}
+                      <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+                    </h3>
                     <p className="text-muted-foreground">{service.description}</p>
                   </div>
                 ))}
@@ -250,12 +268,16 @@ export default function Home() {
                 {services.filter((s) => s.category === 'startup').map((service) => (
                   <div
                     key={service.title}
-                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300"
+                    onClick={() => handleServiceClick(service.title)}
+                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/5 hover:shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                       <service.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                    <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                      {service.title}
+                      <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+                    </h3>
                     <p className="text-muted-foreground">{service.description}</p>
                   </div>
                 ))}
@@ -426,6 +448,13 @@ export default function Home() {
       </Wrapper>
 
       <Footer />
+
+      <ServiceModal
+        isOpen={!!selectedServiceTitle}
+        onOpenChange={(open) => !open && setSelectedServiceTitle(null)}
+        service={selectedService}
+        icon={SelectedServiceIcon}
+      />
     </div>
   )
 }

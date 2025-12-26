@@ -129,3 +129,5 @@ export const navLinks = [
   { href: "/career", label: "Career" },
   { href: "#contact", label: "Contact" },
 ];
+
+export const BOOKING_URL = "https://calendar.app.google/SQuZ5t9RAyUtYhq7A";

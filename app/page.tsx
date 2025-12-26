@@ -7,7 +7,7 @@ import { SectionBadge } from "@/components/ui/section-badge"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import Marquee from "@/components/ui/marquee"
-import { services, reviews, aiTechnologies } from "@/lib/constants"
+import { services, reviews, aiTechnologies, BOOKING_URL } from "@/lib/constants"
 import { serviceExamples } from "@/lib/service-examples"
 import { ServiceModal } from "@/components/service-modal"
 import { ArrowRight, Mail, Phone, MapPin, User, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
@@ -77,9 +77,11 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button size="lg" onClick={() => scrollToSection("#contact")} className="gap-2">
-                Start a Project
-                <ArrowRight className="w-4 h-4" />
+              <Button size="lg" asChild className="gap-2">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                  Book a Meeting
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </Button>
               <Button size="lg" variant="outline" onClick={() => scrollToSection("#solutions")}>
                 Explore Solutions
@@ -115,20 +117,6 @@ export default function Home() {
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
               </div>
             </motion.div>
-
-            {/* Placeholder for hero image */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-8 w-full max-w-5xl"
-            >
-              <div className="relative aspect-video rounded-xl bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/20 border border-border shadow-lg flex items-center justify-center">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-                <p className="text-muted-foreground z-10">Hero Image Placeholder</p>
-                <BorderBeam size={250} duration={12} delay={9} colorFrom="#86a447" colorTo="#31593a" />
-              </div>
-            </motion.div> */}
           </div>
         </Container>
       </Wrapper>
@@ -146,14 +134,17 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="flex flex-col items-center">
+                <Globe className="w-8 h-8 text-primary mb-4" />
                 <div className="text-4xl font-bold text-primary mb-2">Global</div>
                 <p className="text-muted-foreground">Remote-First Operation</p>
               </div>
               <div className="flex flex-col items-center">
+                <Clock className="w-8 h-8 text-primary mb-4" />
                 <div className="text-4xl font-bold text-primary mb-2">24/7</div>
                 <p className="text-muted-foreground">System Reliability</p>
               </div>
               <div className="flex flex-col items-center">
+                <ShieldCheck className="w-8 h-8 text-primary mb-4" />
                 <div className="text-4xl font-bold text-primary mb-2">100%</div>
                 <p className="text-muted-foreground">Code Ownership</p>
               </div>
@@ -162,7 +153,7 @@ export default function Home() {
         </Container>
       </Wrapper>
 
-      {/* Use Cases Section - New Addition */}
+      {/* Use Cases Section */}
       <Wrapper id="use-cases" className="py-24 bg-muted/30">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -232,7 +223,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-12">
-            {/* Enterprise / Internal Tools Group */}
             <div>
               <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">1</span>
@@ -258,7 +248,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Founders / Startups Group */}
             <div>
               <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
                 <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">2</span>
@@ -287,54 +276,29 @@ export default function Home() {
         </Container>
       </Wrapper>
 
-      {/* Infinite Potential Section (Apple Style) */}
-      <Wrapper className="py-24 overflow-hidden border-y border-border/50">
+      {/* Infinite Potential Section */}
+      <Wrapper className="py-32 md:py-48 min-h-[60vh] flex items-center justify-center overflow-hidden border-y border-border/50">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
         <Container>
-          <div className="flex flex-col items-center justify-center text-center mb-16">
+          <div className="flex flex-col items-center justify-center text-center">
             <SectionBadge title="Limitless Possibilities" className="mb-6" />
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
               And much, much more.
             </h2>
-            <p className="text-xl text-muted-foreground mt-6 max-w-2xl">
-              The possibilities are endless. If you have data, we can build an agent to understand it.
+            <p className="text-xl text-muted-foreground mt-6 max-w-2xl mb-10 leading-relaxed">
+              The possibilities are endless. If you have data, we can build an agent to understand it. No challenge is too specific for our team.
             </p>
+            <Button size="lg" asChild className="gap-2">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                Book a Meeting
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </Button>
           </div>
         </Container>
-
-        <div className="relative flex flex-col gap-8 w-full overflow-hidden">
-          {/* Row 1: Industries */}
-          <Marquee pauseOnHover className="[--duration:40s] select-none py-2">
-            {[
-              "FinTech", "HealthTech", "EdTech", "Real Estate", "Logistics", 
-              "E-Commerce", "Manufacturing", "LegalTech", "HR & Recruiting", 
-              "Marketing Agencies", "GovTech", "Non-Profit"
-            ].map((item) => (
-              <div key={item} className="mx-4 px-6 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm text-lg font-medium text-foreground/80 whitespace-nowrap">
-                {item}
-              </div>
-            ))}
-          </Marquee>
-
-          {/* Row 2: Capabilities */}
-          <Marquee reverse pauseOnHover className="[--duration:45s] select-none py-2">
-            {[
-              "Fraud Detection", "Sentiment Analysis", "Document Parsing", "Route Optimization",
-              "Dynamic Pricing", "Churn Prediction", "Lead Scoring", "Automated Reporting",
-              "Visual Inspection", "Voice Synthesis", "Code Generation", "Predictive Maintenance"
-            ].map((item) => (
-              <div key={item} className="mx-4 px-6 py-3 rounded-full border border-primary/20 bg-background/50 backdrop-blur-sm text-lg font-medium text-foreground/80 whitespace-nowrap">
-                {item}
-              </div>
-            ))}
-          </Marquee>
-          
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background to-transparent z-10"></div>
-        </div>
       </Wrapper>
 
-      {/* Process Section - Replaces Reviews */}
+      {/* Process Section */}
       <Wrapper id="process" className="py-24 bg-muted/30">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -383,7 +347,7 @@ export default function Home() {
         </Container>
       </Wrapper>
 
-      {/* Contact/CTA Section */}
+      {/* Contact Section */}
       <Wrapper id="contact" className="pt-12 pb-24">
         <Container>
           <div className="max-w-4xl mx-auto">
@@ -398,23 +362,22 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Contact Form Placeholder */}
               <div className="p-8 rounded-xl border border-border bg-card flex flex-col items-center justify-center text-center h-full">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
                   <Calendar className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-4">Schedule a Consultation</h3>
+                <h3 className="text-2xl font-semibold mb-4">Book a Meeting</h3>
                 <p className="text-muted-foreground mb-8">
-                  Book a time directly on our calendar to discuss your AI needs.
+                  Schedule a strategy session directly on our calendar.
                 </p>
-                <Button size="lg" className="w-full sm:w-auto" asChild>
-                  <a href="https://calendar.app.google/SQuZ5t9RAyUtYhq7A" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" asChild className="gap-2">
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                     Book a Meeting
+                    <ArrowRight className="w-4 h-4" />
                   </a>
                 </Button>
               </div>
 
-              {/* Contact Info */}
               <div className="space-y-6">
                 <div className="p-8 rounded-xl border border-border bg-card">
                   <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>

@@ -7,7 +7,7 @@ import { SectionBadge } from "@/components/ui/section-badge"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
 import Marquee from "@/components/ui/marquee"
-import { services, reviews, aiTechnologies, BOOKING_URL } from "@/lib/constants"
+import { services, aiTechnologies, BOOKING_URL } from "@/lib/constants"
 import { serviceExamples } from "@/lib/service-examples"
 import { ServiceModal } from "@/components/service-modal"
 import { ArrowRight, Mail, Phone, MapPin, User, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
@@ -23,9 +23,6 @@ export default function Home() {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
-
-  const firstRow = reviews.slice(0, reviews.length / 2)
-  const secondRow = reviews.slice(reviews.length / 2)
 
   const handleServiceClick = (title: string) => {
     if (serviceExamples[title]) {

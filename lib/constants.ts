@@ -58,6 +58,7 @@ export const services = [
   },
 ];
 
+/*
 export const reviews = [
   {
     name: "Sarah Johnson",
@@ -90,6 +91,7 @@ export const reviews = [
     body: "Security was our top concern. Arbor's team implemented enterprise-grade protection for all our AI models.",
   },
 ];
+*/
 
 export const aiTechnologies = [
   { name: "OpenAI", icon: "openai", color: "412991" },
@@ -123,9 +125,9 @@ export const aiTechnologies = [
 ];
 
 export const navLinks = [
-  { href: "#services", label: "Services" },
+  { href: "#solutions", label: "Solutions" },
   { href: "#about", label: "About" },
-  { href: "#reviews", label: "Reviews" },
+  // { href: "#reviews", label: "Reviews" },
   { href: "/career", label: "Career" },
   { href: "#contact", label: "Contact" },
 ];

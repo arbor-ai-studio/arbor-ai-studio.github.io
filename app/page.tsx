@@ -293,7 +293,7 @@ export default function Home() {
         <Container>
           <div className="flex flex-col items-center justify-center text-center mb-16">
             <SectionBadge title="Limitless Possibilities" className="mb-6" />
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
               And much, much more.
             </h2>
             <p className="text-xl text-muted-foreground mt-6 max-w-2xl">

@@ -154,10 +154,10 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <SectionBadge title="Real World Impact" className="mb-6" />
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Solving Real Problems with AI
+              Beyond Chatbots: Intelligent Digital Workers for Your Business
             </h2>
             <p className="text-lg text-muted-foreground">
-              We don&apos;t just write code; we solve business bottlenecks.
+              We build autonomous agents that execute complex workflows, not just answer questions.
             </p>
           </div>
 
@@ -168,7 +168,7 @@ export default function Home() {
                 fix: "24/7 Intelligent Support Agents that resolve 80% of queries instantly, letting your team focus on complex issues."
               },
               {
-                problem: "Great idea but no devs?",
+                problem: "Great idea but no engineering team?",
                 fix: "Full-cycle SaaS building. We take you from napkin sketch to MVP with final quality checks and production deployment."
               },
               {
@@ -266,7 +266,7 @@ export default function Home() {
       </Wrapper>
 
       {/* Reviews Section */}
-      <Wrapper id="reviews" className="flex flex-col items-center justify-center py-24 relative">
+      {/* <Wrapper id="reviews" className="flex flex-col items-center justify-center py-24 relative">
         <Container>
           <div className="max-w-md mx-auto text-center mb-12">
             <SectionBadge title="Client Reviews" />
@@ -330,7 +330,7 @@ export default function Home() {
             </div>
           </div>
         </Container>
-      </Wrapper>
+      </Wrapper> */}
 
       {/* Contact/CTA Section */}
       <Wrapper id="contact" className="pt-12 pb-24">
@@ -392,7 +392,7 @@ export default function Home() {
                       </div>
                       <div>
                         <p className="font-medium">Location</p>
-                        <p className="text-muted-foreground">Dhaka, Bangladesh</p>
+                        <p className="text-muted-foreground">Dhaka, Bangladesh (Operating Globally)</p>
                       </div>
                     </div>
                   </div>

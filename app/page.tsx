@@ -10,7 +10,7 @@ import Marquee from "@/components/ui/marquee"
 import { services, reviews, aiTechnologies } from "@/lib/constants"
 import { serviceExamples } from "@/lib/service-examples"
 import { ServiceModal } from "@/components/service-modal"
-import { ArrowRight, Mail, Phone, MapPin, User, Calendar } from "lucide-react"
+import { ArrowRight, Mail, Phone, MapPin, User, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -146,16 +146,16 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                <p className="text-muted-foreground">Projects Completed</p>
+                <div className="text-4xl font-bold text-primary mb-2">Global</div>
+                <p className="text-muted-foreground">Remote-First Operation</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">30+</div>
-                <p className="text-muted-foreground">Happy Clients</p>
+                <div className="text-4xl font-bold text-primary mb-2">24/7</div>
+                <p className="text-muted-foreground">System Reliability</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">98%</div>
-                <p className="text-muted-foreground">Client Satisfaction</p>
+                <div className="text-4xl font-bold text-primary mb-2">100%</div>
+                <p className="text-muted-foreground">Code Ownership</p>
               </div>
             </div>
           </div>
@@ -287,72 +287,51 @@ export default function Home() {
         </Container>
       </Wrapper>
 
-      {/* Reviews Section */}
-      {/* <Wrapper id="reviews" className="flex flex-col items-center justify-center py-24 relative">
+      {/* Process Section - Replaces Reviews */}
+      <Wrapper id="process" className="py-24 bg-muted/30">
         <Container>
-          <div className="max-w-md mx-auto text-center mb-12">
-            <SectionBadge title="Client Reviews" />
-            <h2 className="text-3xl lg:text-4xl font-semibold mt-6">
-              What Our Clients Say
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <SectionBadge title="Our Process" className="mb-6" />
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+              From Concept to Launch in 4 Steps
             </h2>
-            <p className="text-muted-foreground mt-6">
-              See how we&apos;ve helped businesses transform with AI
+            <p className="text-lg text-muted-foreground">
+              We don&apos;t just guess. We follow a proven framework to ensure your AI solution delivers real value from day one.
             </p>
           </div>
-        </Container>
-        <Container>
-          <div className="w-full">
-            <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden py-10">
-              <Marquee pauseOnHover className="[--duration:20s] select-none">
-                {firstRow.map((review) => (
-                  <figure
-                    key={review.name}
-                    className={cn(
-                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                      "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
-                    )}
-                  >
-                    <div className="flex flex-row items-center gap-2">
-                      <User className="w-6 h-6" />
-                      <div className="flex flex-col">
-                        <figcaption className="text-sm font-medium">
-                          {review.name}
-                        </figcaption>
-                        <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
-                      </div>
-                    </div>
-                    <blockquote className="mt-2 text-sm">{review.body}</blockquote>
-                  </figure>
-                ))}
-              </Marquee>
-              <Marquee reverse pauseOnHover className="[--duration:20s] select-none">
-                {secondRow.map((review) => (
-                  <figure
-                    key={review.name}
-                    className={cn(
-                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                      "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
-                    )}
-                  >
-                    <div className="flex flex-row items-center gap-2">
-                      <User className="w-6 h-6" />
-                      <div className="flex flex-col">
-                        <figcaption className="text-sm font-medium">
-                          {review.name}
-                        </figcaption>
-                        <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
-                      </div>
-                    </div>
-                    <blockquote className="mt-2 text-sm">{review.body}</blockquote>
-                  </figure>
-                ))}
-              </Marquee>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Discovery",
+                desc: "We audit your current workflows to identify high-ROI opportunities where AI can save time or money."
+              },
+              {
+                step: "02",
+                title: "Strategy",
+                desc: "We design the agent architecture, selecting the right models (LLMs) and tools for your specific needs."
+              },
+              {
+                step: "03",
+                title: "Build",
+                desc: "Our engineers develop your custom solution, connecting it securely to your existing data and software."
+              },
+              {
+                step: "04",
+                title: "Launch",
+                desc: "We deploy to production, train your team, and set up 24/7 monitoring to ensure everything runs smoothly."
+              }
+            ].map((item) => (
+              <div key={item.step} className="relative p-6 rounded-2xl bg-card border border-border flex flex-col items-start hover:shadow-md transition-all duration-300">
+                <div className="text-5xl font-bold text-primary/50 mb-4">{item.step}</div>
+                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </Container>
-      </Wrapper> */}
+      </Wrapper>
 
       {/* Contact/CTA Section */}
       <Wrapper id="contact" className="pt-12 pb-24">

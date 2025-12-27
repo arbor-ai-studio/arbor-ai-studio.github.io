@@ -90,8 +90,8 @@ document.head.appendChild(o)}initApollo();`,
         </noscript>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
           <BookingWidget />

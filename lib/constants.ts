@@ -125,14 +125,6 @@ export const aiTechnologies = [
 ];
 
 export const navLinks = [
-<<<<<<< HEAD
-  { label: "Home", href: "/" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Projects", href: "projects" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-  { label: "Career", href: "career" },
-=======
   { href: "/", label: "Home" },
   { href: "#solutions", label: "Solutions" },
   { href: "#about", label: "About" },
@@ -140,7 +132,6 @@ export const navLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/career", label: "Career" },
   { href: "#contact", label: "Contact" },
->>>>>>> content-overhaul
 ];
 
 export const BOOKING_URL = "https://calendar.app.google/SQuZ5t9RAyUtYhq7A";

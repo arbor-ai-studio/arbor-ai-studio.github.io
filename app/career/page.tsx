@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
 import { CareerList } from "@/components/career-list"
-import { Zap, Globe, Users, Mail, Laptop, Sparkles, Cpu, TrendingUp } from "lucide-react"
+import { Zap, Globe, Users, Mail, Laptop, Cpu, TrendingUp } from "lucide-react"
 
 interface ApiJob {
   id: string;
@@ -21,7 +21,7 @@ async function getJobs(): Promise<{ jobs: ApiJob[]; error: string | null }> {
     }
     const data = await response.json();
     return { jobs: Array.isArray(data?.results) ? data.results : [], error: null };
-  } catch (err) {
+  } catch {
     return { jobs: [], error: "Unable to load open roles right now. Please try again shortly." };
   }
 }
@@ -38,7 +38,7 @@ export default async function CareerPage() {
         <Container>
           <div className="flex flex-col items-center justify-center text-center">
             <SectionBadge title="Careers" className="mb-8" />
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-snug">
               Join Arbor AI Studio
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">

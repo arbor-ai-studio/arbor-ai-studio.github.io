@@ -1,5 +1,3 @@
-import { LucideIcon } from "lucide-react";
-
 export interface ServiceExampleItem {
   title: string;
   description: string;

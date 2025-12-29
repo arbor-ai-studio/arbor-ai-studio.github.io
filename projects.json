@@ -1,0 +1,23 @@
+[
+  {
+    "name": "BetterSales",
+    "website": "https://bettersalesai.com",
+    "description": "An AI powered cold call sales coach that analyzes sales calls to provide feedback, assign training, and track progress for sales teams.",
+    "image": "/bettersales.png",
+    "tags": ["Sales", "Analytics", "Enterprise"]
+  },
+  {
+    "name": "Covergen AI",
+    "website": "https://covergen.io/",
+    "description": "An AI powered tool that helps Upwork freelancers generate personalized cover letters in seconds by analyzing job postings and profiles.",
+    "image": "/covergen.png",
+    "tags": ["AI", "Generative", "Productivity"]
+  },
+  {
+    "name": "XopsLab",
+    "website": "https://xopslab.org/",
+    "description": "A global open source community empowering AI and Cloud Native enthusiasts to connect, learn, build, and grow together.",
+    "image": "/xops.png",
+    "tags": ["DevOps", "Cloud", "Monitoring"]
+  }
+]

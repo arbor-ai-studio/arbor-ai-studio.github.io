@@ -12,7 +12,6 @@ import { ServiceModal } from "@/components/service-modal"
 import { ArrowRight, Mail, Phone, MapPin, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import Marquee from "@/components/ui/marquee" // Keep Marquee for technologies
-import { NeuralNetwork3D } from "@/components/ui/neural-network-3d"
 import { MagicCard } from "@/components/ui/magic-card"
 import { FadeIn } from "@/components/ui/fade-in"
 
@@ -40,8 +39,6 @@ export default function Home() {
 
       {/* Hero Section */}
       <Wrapper>
-        <NeuralNetwork3D />
-        
         <Container className="py-24 lg:py-32 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
             <motion.div

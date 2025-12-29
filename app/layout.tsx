@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BookingWidget } from "@/components/booking-widget";
+import { FluidSimulationClient } from "@/components/fluid-simulation-client";
 
 import { Navbar } from "@/components/navbar";
 
@@ -107,6 +108,7 @@ document.head.appendChild(o)}initApollo();`,
           enableSystem
           disableTransitionOnChange
         >
+          <FluidSimulationClient />
           <BookingWidget />
           <Navbar />
           {children}

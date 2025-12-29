@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
@@ -18,24 +18,46 @@ interface Project {
 
 export function ProjectCarousel({ projects }: { projects: Project[] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % projects.length)
-  }
+  }, [projects.length])
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
   }
+
+  useEffect(() => {
+    if (isHovered) return
+
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [nextSlide, isHovered])
 
   if (!projects.length) return null
 
   const currentProject = projects[currentIndex]
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4">
+    <div 
+      className="w-full max-w-5xl mx-auto px-4"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold">Featured Projects</h2>
+        <div className="flex items-center gap-4">
+          <h2 className="text-2xl md:text-3xl font-bold">Featured Projects</h2>
+          <Button asChild variant="outline" size="sm" className="hidden md:flex rounded-full gap-2 text-xs">
+            <Link href="/projects">
+              View All <ArrowRight className="w-3 h-3" />
+            </Link>
+          </Button>
+        </div>
         <div className="flex gap-2">
           <Button variant="outline" size="icon" onClick={prevSlide} className="rounded-full w-10 h-10 border-border bg-background hover:bg-muted">
             <ArrowLeft className="w-4 h-4" />
@@ -108,6 +130,15 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 }`}
             />
         ))}
+       </div>
+
+       {/* Mobile View All Button */}
+       <div className="flex md:hidden justify-center mt-8">
+          <Button asChild variant="outline" size="sm" className="rounded-full gap-2">
+            <Link href="/projects">
+              View All Projects <ArrowRight className="w-3 h-3" />
+            </Link>
+          </Button>
        </div>
     </div>
   )

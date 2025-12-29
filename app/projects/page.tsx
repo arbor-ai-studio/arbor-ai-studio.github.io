@@ -72,36 +72,36 @@ export default function ProjectsPage() {
                 <div 
                   key={project.name} 
                   onClick={() => handleProjectClick(project)}
-                  className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                  className="group flex flex-col rounded-3xl border border-border bg-card overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 >
-                  <div className="relative w-full aspect-video overflow-hidden bg-muted">
-                    <Image
-                      src={project.image}
-                      alt={project.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-bold">{project.name}</h3>
+                  <div className="p-3 pb-0">
+                    <div className="relative w-full aspect-video overflow-hidden bg-muted rounded-2xl">
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 right-3 z-20">
+                          <div className="bg-background/80 backdrop-blur-md text-foreground text-xs font-medium px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                            View Details <ArrowRight className="w-3 h-3" />
+                          </div>
+                      </div>
                     </div>
-                    <p className="text-muted-foreground mb-6 flex-1">
+                  </div>
+                  <div className="flex flex-col flex-1 p-6 items-center text-center">
+                    <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{project.name}</h3>
+                    <p className="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed max-w-sm">
                       {project.description}
                     </p>
                     
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap justify-center gap-2">
                       {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" className="font-normal">
+                        <Badge key={tag} variant="secondary" className="px-3 py-1 text-xs rounded-full bg-secondary/50 group-hover:bg-secondary transition-colors border-none">
                           {tag}
                         </Badge>
                       ))}
                     </div>
-
-                    <Button variant="outline" className="w-full group/btn">
-                      View Project
-                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
-                    </Button>
                   </div>
                 </div>
               ))}

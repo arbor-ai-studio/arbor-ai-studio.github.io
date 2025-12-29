@@ -126,6 +126,23 @@ function Connections({ count = 100 }) {
     );
 }
 
+function CameraRig() {
+    useFrame((state) => {
+        // Fly through effect
+        // Base Z is 15. As we scroll, we move closer (decrease Z).
+        // Max scroll typically ~3000-5000px. 
+        // 5000 * 0.002 = 10 units. 15 -> 5. Safe distance from 0.
+        const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+        
+        // Smooth interpolation could be used, but direct mapping feels responsive for a background
+        state.camera.position.z = 15 - scrollY * 0.002;
+        
+        // Subtle corkscrew rotation
+        state.camera.rotation.z = -scrollY * 0.0001;
+    });
+    return null;
+}
+
 export function NeuralNetwork3D() {
   const { theme, systemTheme } = useTheme();
   const currentTheme = theme === 'system' ? systemTheme : theme;
@@ -139,6 +156,7 @@ export function NeuralNetwork3D() {
             dpr={[1, 2]}
             gl={{ alpha: true, antialias: true }}
         >
+            <CameraRig />
             <fog attach="fog" args={[fogColor, 10, 25]} />
             <ambientLight intensity={0.5} />
             

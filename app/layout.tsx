@@ -90,7 +90,7 @@ document.head.appendChild(o)}initApollo();`,
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <noscript>
@@ -103,8 +103,8 @@ document.head.appendChild(o)}initApollo();`,
         </noscript>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
           <BookingWidget />

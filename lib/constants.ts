@@ -17,7 +17,7 @@ export const services = [
   {
     icon: Cog,
     title: "Business Process Automation",
-    description: "Connect AI to your existing tools (CRM, Email, Slack) to automate manual workflows and save hours daily.",
+    description: "Stop doing busywork. Let AI handle data entry, email sorting, and scheduling so you can focus on growing.",
     category: "enterprise",
   },
   {
@@ -34,20 +34,20 @@ export const services = [
   },
   {
     icon: Shield,
-    title: "Enterprise Security & Support",
-    description: "Bank-grade security implementation with ongoing maintenance to keep your AI infrastructure running smoothly.",
+    title: "AI Security & Management",
+    description: "Sleep soundly knowing your AI is secure. We build the guardrails that keep your data private and your models accurate.",
     category: "enterprise",
   },
   {
     icon: Database,
     title: "Legacy System Modernization",
-    description: "Upgrade your outdated software infrastructure with modern AI capabilities without a complete rewrite.",
+    description: "Don't rebuild your old software. Add an intelligent layer that lets you talk to your data and spot issues before they crash your system.",
     category: "enterprise",
   },
   {
     icon: Layout,
-    title: "Data Warehousing & ETL",
-    description: "Centralize your fragmented business data into a single source of truth ready for AI analysis.",
+    title: "Unified Business Intelligence",
+    description: "Stop wrestling with spreadsheets. Just ask 'How were sales yesterday?' and let AI analyze your unified data.",
     category: "enterprise",
   },
   {
@@ -58,6 +58,7 @@ export const services = [
   },
 ];
 
+/*
 export const reviews = [
   {
     name: "Sarah Johnson",
@@ -90,6 +91,7 @@ export const reviews = [
     body: "Security was our top concern. Arbor's team implemented enterprise-grade protection for all our AI models.",
   },
 ];
+*/
 
 export const aiTechnologies = [
   { name: "OpenAI", icon: "openai", color: "412991" },
@@ -123,10 +125,22 @@ export const aiTechnologies = [
 ];
 
 export const navLinks = [
+<<<<<<< HEAD
   { label: "Home", href: "/" },
   { label: "Solutions", href: "#solutions" },
   { label: "Projects", href: "projects" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
   { label: "Career", href: "career" },
+=======
+  { href: "/", label: "Home" },
+  { href: "#solutions", label: "Solutions" },
+  { href: "#about", label: "About" },
+  // { href: "#reviews", label: "Reviews" },
+  { href: "/projects", label: "Projects" },
+  { href: "/career", label: "Career" },
+  { href: "#contact", label: "Contact" },
+>>>>>>> content-overhaul
 ];
+
+export const BOOKING_URL = "https://calendar.app.google/SQuZ5t9RAyUtYhq7A";

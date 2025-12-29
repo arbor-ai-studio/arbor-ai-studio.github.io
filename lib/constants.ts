@@ -125,9 +125,11 @@ export const aiTechnologies = [
 ];
 
 export const navLinks = [
+  { href: "/", label: "Home" },
   { href: "#solutions", label: "Solutions" },
   { href: "#about", label: "About" },
   // { href: "#reviews", label: "Reviews" },
+  { href: "/projects", label: "Projects" },
   { href: "/career", label: "Career" },
   { href: "#contact", label: "Contact" },
 ];

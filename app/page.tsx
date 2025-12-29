@@ -1,21 +1,46 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/components/footer"
-import Marquee from "@/components/ui/marquee"
 import { services, aiTechnologies, BOOKING_URL } from "@/lib/constants"
 import { serviceExamples } from "@/lib/service-examples"
 import { ServiceModal } from "@/components/service-modal"
-import { ArrowRight, Mail, Phone, MapPin, User, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
+import { ArrowRight, Mail, Phone, MapPin, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import Marquee from "@/components/ui/marquee" // Keep Marquee for technologies
+import { ProjectCarousel } from "@/components/project-carousel"
+
+interface Project {
+  name: string;
+  website: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
 
 export default function Home() {
   const [selectedServiceTitle, setSelectedServiceTitle] = useState<string | null>(null)
+  const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/projects.json', { cache: 'no-store' })
+        if (response.ok) {
+          const data = await response.json()
+          setProjects(data)
+        }
+      } catch (error) {
+        console.error("Failed to fetch projects:", error)
+      }
+    }
+    fetchProjects()
+  }, [])
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
@@ -72,7 +97,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 mb-24"
             >
               <Button size="lg" asChild className="gap-2">
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
@@ -85,12 +110,24 @@ export default function Home() {
               </Button>
             </motion.div>
 
+            {/* Projects Carousel */}
+             {projects.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="w-full mb-20"
+              >
+                <ProjectCarousel projects={projects} />
+              </motion.div>
+            )}
+
             {/* AI Technologies Marquee */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-12 mb-0 w-full"
+              className="mt-0 w-full"
             >
               <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4">
                 <Marquee pauseOnHover className="[--duration:40s] select-none">

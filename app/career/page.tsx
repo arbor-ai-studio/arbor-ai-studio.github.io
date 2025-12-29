@@ -71,7 +71,7 @@ export default async function CareerPage() {
               <div className="flex flex-col items-center">
                 <Zap className="w-8 h-8 text-primary mb-4" />
                 <div className="text-xl font-bold text-foreground mb-2">High Impact</div>
-                <p className="text-muted-foreground text-sm max-w-[250px]">Don't be a cog. Build core features that real businesses rely on.</p>
+                <p className="text-muted-foreground text-sm max-w-[250px]">Don&apos;t be a cog. Build core features that real businesses rely on.</p>
               </div>
               <div className="flex flex-col items-center">
                 <Users className="w-8 h-8 text-primary mb-4" />

@@ -6,7 +6,7 @@ import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
 
-function FloatingParticles({ count = 200 }) {
+function FloatingParticles({ count = 400 }) {
   const points = useRef<THREE.Points>(null);
   const { theme, systemTheme } = useTheme();
 
@@ -14,7 +14,7 @@ function FloatingParticles({ count = 200 }) {
   const particles = useMemo(() => {
     const p = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const x = (Math.random() - 0.5) * 60; // Increased volume
+      const x = (Math.random() - 0.5) * 60;
       const y = (Math.random() - 0.5) * 60;
       const z = (Math.random() - 0.5) * 60;
       p[i * 3] = x;
@@ -26,45 +26,39 @@ function FloatingParticles({ count = 200 }) {
 
   useFrame((state) => {
     if (!points.current) return;
-    
-    // Gentle rotation
-    points.current.rotation.x = state.clock.getElapsedTime() * 0.05;
-    points.current.rotation.y = state.clock.getElapsedTime() * 0.03;
-
-    // Mouse interaction parallax
-    const { mouse } = state;
-    points.current.position.x = THREE.MathUtils.lerp(points.current.position.x, mouse.x * 2, 0.1);
-    points.current.position.y = THREE.MathUtils.lerp(points.current.position.y, mouse.y * 2, 0.1);
+    points.current.rotation.x = state.clock.getElapsedTime() * 0.02;
+    points.current.rotation.y = state.clock.getElapsedTime() * 0.01;
   });
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const isDark = currentTheme === "dark";
-  const color = isDark ? "#86a447" : "#3f522b"; // Darker green for light mode visibility
-  const opacity = isDark ? 0.6 : 0.8; // Higher opacity for light mode
+  const color = isDark ? "#86a447" : "#3f522b";
 
   return (
     <Points ref={points} positions={particles} stride={3} frustumCulled={false}>
       <PointMaterial
         transparent
         color={color}
-        size={0.1}
+        size={0.05} // Smaller background dots
         sizeAttenuation={true}
         depthWrite={false}
-        opacity={opacity}
+        opacity={0.4}
       />
     </Points>
   );
 }
 
-function Connections({ count = 100 }) {
+function Connections({ count = 120 }) {
     const lines = useRef<THREE.LineSegments>(null);
+    const dots = useRef<THREE.Points>(null);
     const { theme, systemTheme } = useTheme();
 
+    // Node positions and velocities
     const [positions, velocities] = useMemo(() => {
         const positions = new Float32Array(count * 3);
         const velocities = [];
         for (let i = 0; i < count; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 40; // Increased volume
+            positions[i * 3] = (Math.random() - 0.5) * 40;
             positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
             positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
             velocities.push({
@@ -79,7 +73,7 @@ function Connections({ count = 100 }) {
     const lineGeo = useMemo(() => new THREE.BufferGeometry(), []);
     
     useFrame(() => {
-        if (!lines.current) return;
+        if (!lines.current || !dots.current) return;
 
         // Update positions
         for (let i = 0; i < count; i++) {
@@ -87,15 +81,14 @@ function Connections({ count = 100 }) {
             positions[i * 3 + 1] += velocities[i].y;
             positions[i * 3 + 2] += velocities[i].z;
 
-            // Bounce within volume
             if (Math.abs(positions[i*3]) > 20) velocities[i].x *= -1;
             if (Math.abs(positions[i*3+1]) > 20) velocities[i].y *= -1;
             if (Math.abs(positions[i*3+2]) > 20) velocities[i].z *= -1;
         }
 
         // Create connections
-        const connections = [];
-        const connectionDist = 6; // Distance threshold
+        const lineConnections = [];
+        const connectionDist = 7;
 
         for (let i = 0; i < count; i++) {
             for (let j = i + 1; j < count; j++) {
@@ -105,7 +98,7 @@ function Connections({ count = 100 }) {
                 const distSq = dx*dx + dy*dy + dz*dz;
 
                 if (distSq < connectionDist * connectionDist) {
-                    connections.push(
+                    lineConnections.push(
                         positions[i*3], positions[i*3+1], positions[i*3+2],
                         positions[j*3], positions[j*3+1], positions[j*3+2]
                     );
@@ -113,18 +106,32 @@ function Connections({ count = 100 }) {
             }
         }
 
-        lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(connections, 3));
+        lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(lineConnections, 3));
+        dots.current.geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
     });
 
     const currentTheme = theme === 'system' ? systemTheme : theme;
     const isDark = currentTheme === "dark";
-    const color = isDark ? "#86a447" : "#3f522b"; // Darker green for light mode
-    const opacity = isDark ? 0.15 : 0.3; // Higher opacity for light mode
+    const color = isDark ? "#86a447" : "#3f522b";
 
     return (
-        <lineSegments ref={lines} geometry={lineGeo}>
-            <lineBasicMaterial color={color} transparent opacity={opacity} />
-        </lineSegments>
+        <group>
+            {/* The Dots at every intersection */}
+            <Points ref={dots}>
+                <PointMaterial
+                    transparent
+                    color={color}
+                    size={0.15}
+                    sizeAttenuation={true}
+                    depthWrite={false}
+                    opacity={isDark ? 0.8 : 1.0}
+                />
+            </Points>
+            {/* The Lines connecting them */}
+            <lineSegments ref={lines} geometry={lineGeo}>
+                <lineBasicMaterial color={color} transparent opacity={isDark ? 0.2 : 0.4} />
+            </lineSegments>
+        </group>
     );
 }
 

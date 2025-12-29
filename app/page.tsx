@@ -12,8 +12,7 @@ import { ServiceModal } from "@/components/service-modal"
 import { ArrowRight, Mail, Phone, MapPin, Calendar, Globe, Clock, ShieldCheck } from "lucide-react"
 import { motion } from "framer-motion"
 import Marquee from "@/components/ui/marquee" // Keep Marquee for technologies
-import AnimatedGridPattern from "@/components/ui/animated-grid-pattern"
-import { cn } from "@/lib/utils"
+import { NeuralNetworkBackground } from "@/components/ui/neural-network"
 import { MagicCard } from "@/components/ui/magic-card"
 import { FadeIn } from "@/components/ui/fade-in"
 
@@ -41,15 +40,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <Wrapper>
-        <AnimatedGridPattern
-          numSquares={30}
-          maxOpacity={0.1}
-          duration={3}
-          className={cn(
-            "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
-            "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
-          )}
-        />
+        <NeuralNetworkBackground />
         
         <Container className="py-24 lg:py-32 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">

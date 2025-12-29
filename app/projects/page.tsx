@@ -11,6 +11,7 @@ import { ProjectModal } from "@/components/project-modal"
 import { ProjectCarousel } from "@/components/project-carousel"
 import { FadeIn } from "@/components/ui/fade-in"
 import { MagicCard } from "@/components/ui/magic-card"
+import { NeuralNetworkBackground } from "@/components/ui/neural-network"
 
 interface Project {
   name: string;
@@ -51,8 +52,9 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="flex flex-col w-full min-h-screen">
-      <Wrapper className="py-24 lg:py-32">
+    <div className="flex flex-col w-full min-h-screen relative">
+      <NeuralNetworkBackground />
+      <Wrapper className="py-24 lg:py-32 z-10">
         <Container>
           <FadeIn className="flex flex-col items-center justify-center text-center mb-16">
             <SectionBadge title="Case Studies" className="mb-8" />

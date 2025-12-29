@@ -5,6 +5,7 @@ import { CareerList } from "@/components/career-list"
 import { Zap, Globe, Users, Mail, Laptop, Cpu, TrendingUp } from "lucide-react"
 import { FadeIn } from "@/components/ui/fade-in"
 import { MagicCard } from "@/components/ui/magic-card"
+import { NeuralNetworkBackground } from "@/components/ui/neural-network"
 
 interface ApiJob {
   id: string;
@@ -33,10 +34,11 @@ export default async function CareerPage() {
   const hasJobs = jobs.length > 0;
 
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <div className="flex flex-col w-full min-h-screen relative">
+      <NeuralNetworkBackground />
       
       {/* Hero Section */}
-      <Wrapper className="py-24 lg:py-32">
+      <Wrapper className="py-24 lg:py-32 z-10">
         <Container>
           <div className="flex flex-col items-center justify-center text-center">
             <FadeIn>

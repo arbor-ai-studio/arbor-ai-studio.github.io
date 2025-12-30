@@ -314,15 +314,105 @@ const LineMaterial = shaderMaterial(
   `
 );
 
-extend({ LineMaterial });
+// --------------------------------------------------------
+// NEURAL NODES SHADER (Glowing Points)
+// --------------------------------------------------------
+
+const NodeMaterial = shaderMaterial(
+  {
+    uTime: 0,
+    uColorCold: new THREE.Color(0.0, 0.5, 0.5),
+    uColorHot: new THREE.Color(0.0, 1.0, 0.8),
+    uScroll: 0,
+    uActiveTime: 0,
+    uLineDuration: 1.0,
+    uSpreadDuration: 100.0,
+  },
+  // Vertex Shader
+  `
+    uniform float uTime;
+    uniform float uScroll;
+    uniform float uActiveTime;
+    uniform float uLineDuration;
+    uniform float uSpreadDuration;
+
+    attribute float aRandom;
+    attribute float aProgress; // 0.0 (Start Node) or 1.0 (End Node)
+
+    varying float vOpacity;
+    varying float vIsEnd;
+
+    void main() {
+      vec3 pos = position;
+      
+      // Timing Logic
+      float myStartTime = aRandom * uSpreadDuration;
+      float timeSinceStart = uActiveTime - myStartTime;
+      
+      // Start Node appears immediately at start
+      // End Node appears after line duration
+      float appearanceTime = (aProgress > 0.5) ? uLineDuration : 0.0;
+      
+      float isVisible = step(appearanceTime, timeSinceStart);
+      
+      // Visibility Fade
+      float phaseFade = smoothstep(0.85, 0.95, uScroll);
+      
+      vOpacity = phaseFade * isVisible;
+      vIsEnd = aProgress;
+
+      vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+      
+      // Size attenuation
+      gl_PointSize = (80.0 / -mvPosition.z) * phaseFade; 
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `,
+  // Fragment Shader
+  `
+    uniform vec3 uColorCold;
+    uniform vec3 uColorHot;
+    varying float vOpacity;
+    varying float vIsEnd;
+
+    void main() {
+      if (vOpacity < 0.01) discard;
+
+      // Circular Glow
+      vec2 coord = gl_PointCoord - vec2(0.5);
+      float dist = length(coord);
+      if (dist > 0.5) discard;
+      
+      // Soft edge
+      float glow = 1.0 - smoothstep(0.1, 0.5, dist);
+      glow = pow(glow, 2.0); // Sharpen core
+      
+      // Color
+      // Start nodes = Cold, End nodes = Hot? Or same transition?
+      // Let's make them match the line endpoints.
+      // Start (0.0) is Cold, End (1.0) is Hot.
+      vec3 finalColor = mix(uColorCold, uColorHot, vIsEnd);
+      
+      // Extra pop for nodes
+      finalColor += 0.2;
+
+      gl_FragColor = vec4(finalColor, vOpacity * glow);
+    }
+  `
+);
+
+extend({ LineMaterial, NodeMaterial });
 
 // --------------------------------------------------------
 // COMPONENTS
 // --------------------------------------------------------
 
-function NeuralLines({ count = 500 }) {
+function NeuralNetwork({ count = 500 }) {
   const lines = useRef<THREE.LineSegments>(null);
-  const material = useRef<THREE.ShaderMaterial>(null);
+  const points = useRef<THREE.Points>(null);
+  const lineMat = useRef<THREE.ShaderMaterial>(null);
+  const nodeMat = useRef<THREE.ShaderMaterial>(null);
+  
   const { theme, systemTheme } = useTheme();
   
   // Track accumulated active time
@@ -382,37 +472,41 @@ function NeuralLines({ count = 500 }) {
   }, [count]);
 
   useFrame((state, delta) => {
-    if (!material.current) return;
-    
-    material.current.uniforms.uTime.value = state.clock.getElapsedTime();
-    
+    const time = state.clock.getElapsedTime();
     const scroller = document.documentElement;
     const scrollPct = scroller.scrollTop / (scroller.scrollHeight - scroller.clientHeight) || 0;
     
-    material.current.uniforms.uScroll.value = THREE.MathUtils.lerp(
-        material.current.uniforms.uScroll.value,
-        scrollPct,
-        0.05
-    );
+    // Update Uniforms for Lines
+    if (lineMat.current) {
+        lineMat.current.uniforms.uTime.value = time;
+        lineMat.current.uniforms.uScroll.value = THREE.MathUtils.lerp(
+            lineMat.current.uniforms.uScroll.value,
+            scrollPct,
+            0.05
+        );
+    }
+    
+    // Update Uniforms for Nodes
+    if (nodeMat.current && lineMat.current) {
+        nodeMat.current.uniforms.uTime.value = time;
+        nodeMat.current.uniforms.uScroll.value = lineMat.current.uniforms.uScroll.value;
+    }
 
     // Hysteresis Logic:
-    // Trigger activation at 90% scroll
     if (scrollPct > 0.9) {
       isDeepRef.current = true;
-    } 
-    // Deactivate as soon as it fades out (below 85%)
-    else if (scrollPct < 0.85) {
+    } else if (scrollPct < 0.85) {
       isDeepRef.current = false;
     }
 
     if (isDeepRef.current) {
         activeTimeRef.current += delta;
     } else {
-        // Instant reset when not active, so it replays fresh
         activeTimeRef.current = 0;
     }
     
-    material.current.uniforms.uActiveTime.value = activeTimeRef.current;
+    if (lineMat.current) lineMat.current.uniforms.uActiveTime.value = activeTimeRef.current;
+    if (nodeMat.current) nodeMat.current.uniforms.uActiveTime.value = activeTimeRef.current;
   });
 
   // Theme-aware colors
@@ -423,53 +517,91 @@ function NeuralLines({ count = 500 }) {
   const colorHot = new THREE.Color(isDark ? "#22d3ee" : "#06b6d4"); // Cyan 400/500
 
   // Calculate spread duration: we want 5 lines per second (Slower pace).
-  // Count / 5 = Seconds to finish all.
   const spreadDuration = count / 5.0;
 
   return (
-    <lineSegments ref={lines}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-          args={[positions, 3]} 
+    <group>
+        <lineSegments ref={lines}>
+        <bufferGeometry>
+            <bufferAttribute
+            attach="attributes-position"
+            count={positions.length / 3}
+            array={positions}
+            itemSize={3}
+            args={[positions, 3]} 
+            />
+            <bufferAttribute
+            attach="attributes-aPartner"
+            count={partners.length / 3}
+            array={partners}
+            itemSize={3}
+            args={[partners, 3]}
+            />
+            <bufferAttribute
+            attach="attributes-aRandom"
+            count={randoms.length}
+            array={randoms}
+            itemSize={1}
+            args={[randoms, 1]}
+            />
+            <bufferAttribute
+            attach="attributes-aProgress"
+            count={progress.length}
+            array={progress}
+            itemSize={1}
+            args={[progress, 1]}
+            />
+        </bufferGeometry>
+        {/* @ts-expect-error - Custom shader material */}
+        <lineMaterial
+            ref={lineMat}
+            transparent
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+            uColorCold={colorCold}
+            uColorHot={colorHot}
+            uLineDuration={2.0}
+            uSpreadDuration={spreadDuration}
         />
-        <bufferAttribute
-          attach="attributes-aPartner"
-          count={partners.length / 3}
-          array={partners}
-          itemSize={3}
-          args={[partners, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-aRandom"
-          count={randoms.length}
-          array={randoms}
-          itemSize={1}
-          args={[randoms, 1]}
-        />
-        <bufferAttribute
-          attach="attributes-aProgress"
-          count={progress.length}
-          array={progress}
-          itemSize={1}
-          args={[progress, 1]}
-        />
-      </bufferGeometry>
-      {/* @ts-expect-error - Custom shader material */}
-      <lineMaterial
-        ref={material}
-        transparent
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        uColorCold={colorCold}
-        uColorHot={colorHot}
-        uLineDuration={2.0}
-        uSpreadDuration={spreadDuration}
-      />
-    </lineSegments>
+        </lineSegments>
+        
+        <points ref={points}>
+            <bufferGeometry>
+                <bufferAttribute
+                attach="attributes-position"
+                count={positions.length / 3}
+                array={positions}
+                itemSize={3}
+                args={[positions, 3]} 
+                />
+                 <bufferAttribute
+                attach="attributes-aRandom"
+                count={randoms.length}
+                array={randoms}
+                itemSize={1}
+                args={[randoms, 1]}
+                />
+                <bufferAttribute
+                attach="attributes-aProgress"
+                count={progress.length}
+                array={progress}
+                itemSize={1}
+                args={[progress, 1]}
+                />
+            </bufferGeometry>
+            {/* @ts-expect-error - Custom shader material */}
+            <nodeMaterial
+                ref={nodeMat}
+                transparent
+                depthWrite={false}
+                blending={THREE.AdditiveBlending}
+                uColorCold={colorCold}
+                uColorHot={colorHot}
+                uLineDuration={2.0}
+                uSpreadDuration={spreadDuration}
+            />
+        </points>
+    </group>
   );
 }
 
@@ -560,7 +692,7 @@ export function FluidSimulation() {
         dpr={[1, 2]}
       >
         <Particles count={10000} />
-        <NeuralLines count={1000} />
+        <NeuralNetwork count={1000} />
       </Canvas>
     </div>
   );

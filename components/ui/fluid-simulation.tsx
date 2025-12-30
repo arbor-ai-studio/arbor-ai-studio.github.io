@@ -281,7 +281,7 @@ const LineMaterial = shaderMaterial(
       vDrawProgress = drawProgress;
 
       // --- VISIBILITY LOGIC ---
-      float phaseFade = smoothstep(0.85, 0.95, uScroll);
+      float phaseFade = smoothstep(0.88, 0.98, uScroll);
       
       // Visibility:
       // 1. Must be in sphere phase (phaseFade)
@@ -356,7 +356,7 @@ const NodeMaterial = shaderMaterial(
       float isVisible = step(appearanceTime, timeSinceStart);
       
       // Visibility Fade
-      float phaseFade = smoothstep(0.85, 0.95, uScroll);
+      float phaseFade = smoothstep(0.88, 0.98, uScroll);
       
       vOpacity = phaseFade * isVisible;
       vIsEnd = aProgress;
@@ -493,9 +493,12 @@ function NeuralNetwork({ count = 500 }) {
     }
 
     // Hysteresis Logic:
+    // Trigger activation at 90% scroll
     if (scrollPct > 0.9) {
       isDeepRef.current = true;
-    } else if (scrollPct < 0.85) {
+    } 
+    // Deactivate as soon as it fades out (below 88%)
+    else if (scrollPct < 0.88) {
       isDeepRef.current = false;
     }
 

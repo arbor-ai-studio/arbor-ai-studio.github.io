@@ -287,7 +287,8 @@ const LineMaterial = shaderMaterial(
       if (drawProgress >= 1.0) {
          float pulseSpeed = 2.0;
          float t = uTime * pulseSpeed + aRandom * 10.0;
-         pulse = smoothstep(0.9, 1.0, sin(t));
+         // Soften the pulse so it's not a sharp flash
+         pulse = 0.5 + 0.5 * sin(t); 
       }
       
       vPulse = pulse;
@@ -316,17 +317,17 @@ const LineMaterial = shaderMaterial(
       vec3 finalColor = uColorCold;
       
       // Mix to Hot color on Pulse
-      finalColor = mix(finalColor, uColorHot, vPulse);
+      finalColor = mix(finalColor, uColorHot, vPulse * 0.7);
       
-      // Brighten core on pulse
-      if (vPulse > 0.5) {
-         finalColor += 0.2;
+      // Brighten core on pulse (less intense)
+      if (vPulse > 0.8) {
+         finalColor += 0.1;
       }
       
       // Opacity logic
-      // Base line is faint (0.4)
-      // Pulse makes it solid (1.0)
-      float alpha = vOpacity * (0.4 + vPulse * 0.6);
+      // Base line is solid (0.8)
+      // Pulse makes it slightly brighter/more solid
+      float alpha = vOpacity * (0.8 + vPulse * 0.2);
 
       gl_FragColor = vec4(finalColor, alpha);
     }
@@ -367,8 +368,9 @@ function NeuralLines({ count = 500 }) {
         const z1 = r * Math.cos(phi);
         
         // Point 2 Generation (Nearby)
-        const theta2 = theta + (Math.random() - 0.5) * 0.8; 
-        const phi2 = phi + (Math.random() - 0.5) * 0.8;
+        // Shorter lines: 0.4 instead of 0.8
+        const theta2 = theta + (Math.random() - 0.5) * 0.4; 
+        const phi2 = phi + (Math.random() - 0.5) * 0.4;
         const x2 = r * Math.sin(phi2) * Math.cos(theta2);
         const y2 = r * Math.sin(phi2) * Math.sin(theta2);
         const z2 = r * Math.cos(phi2);

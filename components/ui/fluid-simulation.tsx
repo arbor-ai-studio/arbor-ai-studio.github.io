@@ -698,6 +698,8 @@ export function FluidSimulation() {
         camera={{ position: [0, 0, 20], fov: 60 }}
         gl={{ alpha: true, antialias: true }}
         dpr={[1, 2]}
+        style={{ pointerEvents: "none" }}
+        eventSource={document.body}
       >
         <Particles count={10000} />
         <NeuralNetwork count={300} />

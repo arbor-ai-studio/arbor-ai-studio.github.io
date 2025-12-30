@@ -172,31 +172,35 @@ const SimulationMaterial = shaderMaterial(
 extend({ SimulationMaterial });
 
 // --------------------------------------------------------
-// NEURAL LINES SHADER (Duplicates Noise for Sync)
+// NEURAL LINES SHADER (Point A to Point B Animation)
 // --------------------------------------------------------
 
 const LineMaterial = shaderMaterial(
   {
     uTime: 0,
-    uMouse: new THREE.Vector3(0, 0, 0),
     uColorCold: new THREE.Color(0.0, 0.5, 0.5), // Faint Teal
     uColorHot: new THREE.Color(0.0, 1.0, 0.8),  // Bright Cyan
     uScroll: 0,
-    uOpacity: 0.0,
-    uConnectProgress: 0,
+    uActiveTime: 0,
+    uLineDuration: 1.0,
+    uSpreadDuration: 100.0, // Defaults, updated by prop
   },
   // Vertex Shader
   `
     uniform float uTime;
-    uniform vec3 uMouse;
     uniform float uScroll;
-    uniform float uConnectProgress;
+    uniform float uActiveTime;
+    uniform float uLineDuration;
+    uniform float uSpreadDuration;
+    
     attribute float aRandom;
+    attribute float aProgress; // 0.0 (Start) or 1.0 (End)
+    attribute vec3 aPartner;   // Position of the other end
     
     varying float vOpacity;
     varying float vPulse;
 
-    // Simplex Noise (Standard) - Copied for sync
+    // Simplex Noise (Standard)
     vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
     vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
     vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
@@ -249,62 +253,53 @@ const LineMaterial = shaderMaterial(
     }
 
     void main() {
+      // Base positions
       vec3 pos = position;
-      
-      // PHASE 1: FLOW
-      float noiseFreq = 0.15; 
-      vec3 noisePos = vec3(pos.x * noiseFreq + uTime * 0.05, pos.y * noiseFreq + uTime * 0.05, pos.z);
-      vec3 flowPos = pos;
-      flowPos.x += snoise(noisePos) * 3.0;
-      flowPos.y += snoise(noisePos + 100.0) * 3.0;
-      flowPos.z += snoise(noisePos + 200.0) * 3.0;
+      vec3 partner = aPartner;
 
-      // PHASE 2: VORTEX
-      float angle = uTime * 0.5 + pos.y * 0.1;
-      float radius = length(pos.xz);
-      vec3 vortexPos = vec3(cos(angle) * radius, pos.y, sin(angle) * radius);
+      // --- ANIMATION LOGIC ---
+      // Determine when this line should start drawing
+      // We spread the start times over uSpreadDuration based on aRandom
+      float myStartTime = aRandom * uSpreadDuration;
       
-      // PHASE 3: SPHERE
-      vec3 spherePos = normalize(pos) * 12.0;
-
-      // BLEND
-      vec3 finalPos = flowPos;
-      float mix1 = smoothstep(0.0, 0.5, uScroll);
-      finalPos = mix(finalPos, vortexPos, mix1);
-      float mix2 = smoothstep(0.5, 1.0, uScroll);
-      finalPos = mix(finalPos, spherePos, mix2);
+      // Calculate how far into the animation we are for this specific line
+      float timeSinceStart = uActiveTime - myStartTime;
+      
+      // Normalized progress for this line (0.0 to 1.0) over uLineDuration
+      float drawProgress = clamp(timeSinceStart / uLineDuration, 0.0, 1.0);
+      
+      // Ease out cubic for smoother end
+      drawProgress = 1.0 - pow(1.0 - drawProgress, 3.0);
+      
+      // Interpolate Geometry
+      // If I am the End Point (aProgress == 1.0), I slide from Partner to MyPos
+      // If I am the Start Point (aProgress == 0.0), I stay at MyPos
+      if (aProgress > 0.5) {
+         pos = mix(partner, pos, drawProgress);
+      }
 
       // --- VISIBILITY LOGIC ---
       float phaseFade = smoothstep(0.85, 0.95, uScroll);
       
-      // Travelling Pulse Logic (Data moving through lines)
-      // Use aRandom to offset the timing for each line so they don't flash in unison
-      float speed = 2.0;
-      float t = uTime * speed + aRandom * 10.0;
-      
-      // Create a sharp, short pulse
-      float pulseWave = sin(t);
-      // Remap -1..1 to tightly peaked 0..1
-      pulseWave = smoothstep(0.8, 1.0, pulseWave); 
-      
-      vPulse = pulseWave;
-      
-      // Basic visibility based on connection progress
-      float reveal = smoothstep(0.0, 1.0, uConnectProgress);
-      
-      // Electric Jitter (High frequency noise)
-      // Only apply when visible
-      if (vOpacity > 0.01) {
-        float jitterSpeed = uTime * 20.0;
-        float jitterAmt = 0.05 * reveal; // Grow jitter as it reveals
-        finalPos.x += (snoise(vec3(pos.x, uTime, 0.0)) - 0.5) * jitterAmt;
-        finalPos.y += (snoise(vec3(pos.y, uTime, 1.0)) - 0.5) * jitterAmt;
-        finalPos.z += (snoise(vec3(pos.z, uTime, 2.0)) - 0.5) * jitterAmt;
+      // Subtle Pulse (Data Flow) - Occurs AFTER line is drawn
+      // Only starts pulsing after line is fully drawn
+      float pulse = 0.0;
+      if (drawProgress >= 1.0) {
+         float pulseSpeed = 2.0;
+         float t = uTime * pulseSpeed + aRandom * 10.0;
+         pulse = smoothstep(0.9, 1.0, sin(t));
       }
       
-      vOpacity = phaseFade * reveal;
+      vPulse = pulse;
+      
+      // Visibility:
+      // 1. Must be in sphere phase (phaseFade)
+      // 2. Must be active (timeSinceStart > 0)
+      float isStarted = step(0.0, timeSinceStart);
+      
+      vOpacity = phaseFade * isStarted;
 
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(finalPos, 1.0);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
     }
   `,
   // Fragment Shader
@@ -317,17 +312,21 @@ const LineMaterial = shaderMaterial(
     void main() {
       if (vOpacity < 0.01) discard;
       
-      // Mix cold (faint) and hot (bright) based on pulse
-      // Pulse 0 -> Cold, Pulse 1 -> Hot
-      vec3 finalColor = mix(uColorCold, uColorHot, vPulse * 0.8 + 0.2);
+      // Default to Cold color
+      vec3 finalColor = uColorCold;
       
-      // Add extra brightness for the "core" of the pulse
-      if (vPulse > 0.9) {
-        finalColor += 0.5; // White hot
+      // Mix to Hot color on Pulse
+      finalColor = mix(finalColor, uColorHot, vPulse);
+      
+      // Brighten core on pulse
+      if (vPulse > 0.5) {
+         finalColor += 0.2;
       }
       
-      // Base opacity + Pulse opacity boost
-      float alpha = vOpacity * (0.3 + vPulse * 0.7);
+      // Opacity logic
+      // Base line is faint (0.4)
+      // Pulse makes it solid (1.0)
+      float alpha = vOpacity * (0.4 + vPulse * 0.6);
 
       gl_FragColor = vec4(finalColor, alpha);
     }
@@ -344,17 +343,21 @@ function NeuralLines({ count = 500 }) {
   const lines = useRef<THREE.LineSegments>(null);
   const material = useRef<THREE.ShaderMaterial>(null);
   const { theme, systemTheme } = useTheme();
-  // Ref to track accumulated progress for "drawing" the lines
-  const connectProgressRef = useRef(0);
+  
+  // Track accumulated active time
+  const activeTimeRef = useRef(0);
 
-  const [positions, randoms] = useMemo(() => {
-    const pts = [];
-    const rnd = [];
+  const [positions, randoms, partners, progress] = useMemo(() => {
+    const pts = []; // Positions
+    const rnd = []; // Random offset
+    const prt = []; // Partner positions
+    const prg = []; // 0 or 1 progress
+    
     const r = 12.0;
     
     // Create random line segments on sphere surface
     for (let i = 0; i < count; i++) {
-        // Point 1
+        // Point 1 Generation
         const u = Math.random();
         const v = Math.random();
         const theta = 2 * Math.PI * u;
@@ -363,23 +366,35 @@ function NeuralLines({ count = 500 }) {
         const y1 = r * Math.sin(phi) * Math.sin(theta);
         const z1 = r * Math.cos(phi);
         
-        // Point 2 (Nearby)
-        // Perturb spherical coordinates slightly more for "organic" look
+        // Point 2 Generation (Nearby)
         const theta2 = theta + (Math.random() - 0.5) * 0.8; 
         const phi2 = phi + (Math.random() - 0.5) * 0.8;
-        
         const x2 = r * Math.sin(phi2) * Math.cos(theta2);
         const y2 = r * Math.sin(phi2) * Math.sin(theta2);
         const z2 = r * Math.cos(phi2);
         
-        pts.push(x1, y1, z1);
-        pts.push(x2, y2, z2);
+        // --- PUSH DATA ---
         
-        // Random attribute for sync offset (same for both vertices in line)
+        // Vertex 1: Start of line
+        pts.push(x1, y1, z1);
+        prt.push(x2, y2, z2); // Partner is End
+        prg.push(0.0);        // Progress 0
+        
+        // Vertex 2: End of line
+        pts.push(x2, y2, z2);
+        prt.push(x1, y1, z1); // Partner is Start
+        prg.push(1.0);        // Progress 1
+        
+        // Shared Random (Same for both vertices)
         const randomVal = Math.random();
         rnd.push(randomVal, randomVal);
     }
-    return [new Float32Array(pts), new Float32Array(rnd)];
+    return [
+        new Float32Array(pts), 
+        new Float32Array(rnd),
+        new Float32Array(prt),
+        new Float32Array(prg)
+    ];
   }, [count]);
 
   useFrame((state, delta) => {
@@ -396,16 +411,16 @@ function NeuralLines({ count = 500 }) {
         0.05
     );
 
-    // Logic: If user is at the bottom (scroll > 0.9), start filling the progress bar
+    // Logic: If user is at the bottom (scroll > 0.9), increment active time
     if (scrollPct > 0.9) {
-        // Speed of connection: 0.5 means it takes 2 seconds to fully connect
-        connectProgressRef.current = Math.min(connectProgressRef.current + delta * 0.5, 1.2);
+        activeTimeRef.current += delta;
     } else {
-        // If they scroll away, slowly fade them out or reset
-        connectProgressRef.current = Math.max(connectProgressRef.current - delta * 2.0, 0);
+        // Optional: Reset or pause? 
+        // Let's pause/slowly rewind so it replays if they scroll back
+        activeTimeRef.current = Math.max(0, activeTimeRef.current - delta * 5.0);
     }
     
-    material.current.uniforms.uConnectProgress.value = connectProgressRef.current;
+    material.current.uniforms.uActiveTime.value = activeTimeRef.current;
   });
 
   // Theme-aware colors
@@ -414,6 +429,10 @@ function NeuralLines({ count = 500 }) {
   
   const colorCold = new THREE.Color(isDark ? "#0f766e" : "#0d9488"); // Teal 700/600
   const colorHot = new THREE.Color(isDark ? "#22d3ee" : "#06b6d4"); // Cyan 400/500
+
+  // Calculate spread duration: we want 10 lines per second.
+  // Count / 10 = Seconds to finish all.
+  const spreadDuration = count / 10.0;
 
   return (
     <lineSegments ref={lines}>
@@ -426,11 +445,25 @@ function NeuralLines({ count = 500 }) {
           args={[positions, 3]} 
         />
         <bufferAttribute
+          attach="attributes-aPartner"
+          count={partners.length / 3}
+          array={partners}
+          itemSize={3}
+          args={[partners, 3]}
+        />
+        <bufferAttribute
           attach="attributes-aRandom"
           count={randoms.length}
           array={randoms}
           itemSize={1}
           args={[randoms, 1]}
+        />
+        <bufferAttribute
+          attach="attributes-aProgress"
+          count={progress.length}
+          array={progress}
+          itemSize={1}
+          args={[progress, 1]}
         />
       </bufferGeometry>
       {/* @ts-expect-error - Custom shader material */}
@@ -441,6 +474,8 @@ function NeuralLines({ count = 500 }) {
         blending={THREE.AdditiveBlending}
         uColorCold={colorCold}
         uColorHot={colorHot}
+        uLineDuration={1.0}
+        uSpreadDuration={spreadDuration}
       />
     </lineSegments>
   );

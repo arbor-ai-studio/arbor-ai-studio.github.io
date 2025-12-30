@@ -505,8 +505,12 @@ function NeuralNetwork({ count = 500 }) {
         activeTimeRef.current = 0;
     }
     
-    if (lineMat.current) lineMat.current.uniforms.uActiveTime.value = activeTimeRef.current;
-    if (nodeMat.current) nodeMat.current.uniforms.uActiveTime.value = activeTimeRef.current;
+    // Apply 2-second delay before animation starts visually
+    // The counter runs, but the shader sees 0 until 2 seconds have passed
+    const delayedActiveTime = Math.max(0, activeTimeRef.current - 2.0);
+    
+    if (lineMat.current) lineMat.current.uniforms.uActiveTime.value = delayedActiveTime;
+    if (nodeMat.current) nodeMat.current.uniforms.uActiveTime.value = delayedActiveTime;
   });
 
   // Theme-aware colors

@@ -517,8 +517,9 @@ function NeuralNetwork({ count = 500 }) {
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const isDark = currentTheme === "dark";
   
-  const colorCold = new THREE.Color(isDark ? "#0f766e" : "#0d9488"); // Teal 700/600
-  const colorHot = new THREE.Color(isDark ? "#22d3ee" : "#06b6d4"); // Cyan 400/500
+  // Emerald Palette to match Particles/Brand
+  const colorCold = new THREE.Color(isDark ? "#065f46" : "#047857"); // Emerald 800 / 700
+  const colorHot = new THREE.Color(isDark ? "#34d399" : "#10b981");  // Emerald 400 / 500
 
   // Calculate spread duration: we want 5 lines per second (Slower pace).
   const spreadDuration = count / 5.0;

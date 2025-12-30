@@ -198,7 +198,7 @@ const LineMaterial = shaderMaterial(
     attribute vec3 aPartner;   // Position of the other end
     
     varying float vOpacity;
-    varying float vPulse;
+    varying float vDrawProgress;
 
     // Simplex Noise (Standard)
     vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -277,21 +277,11 @@ const LineMaterial = shaderMaterial(
       if (aProgress > 0.5) {
          pos = mix(partner, pos, drawProgress);
       }
+      
+      vDrawProgress = drawProgress;
 
       // --- VISIBILITY LOGIC ---
       float phaseFade = smoothstep(0.85, 0.95, uScroll);
-      
-      // Subtle Pulse (Data Flow) - Occurs AFTER line is drawn
-      // Only starts pulsing after line is fully drawn
-      float pulse = 0.0;
-      if (drawProgress >= 1.0) {
-         float pulseSpeed = 2.0;
-         float t = uTime * pulseSpeed + aRandom * 10.0;
-         // Soften the pulse so it's not a sharp flash
-         pulse = 0.5 + 0.5 * sin(t); 
-      }
-      
-      vPulse = pulse;
       
       // Visibility:
       // 1. Must be in sphere phase (phaseFade)
@@ -308,26 +298,16 @@ const LineMaterial = shaderMaterial(
     uniform vec3 uColorCold;
     uniform vec3 uColorHot;
     varying float vOpacity;
-    varying float vPulse;
+    varying float vDrawProgress;
 
     void main() {
       if (vOpacity < 0.01) discard;
       
-      // Default to Cold color
-      vec3 finalColor = uColorCold;
+      // Color transition from Cold (Start) to Hot (Finished)
+      vec3 finalColor = mix(uColorCold, uColorHot, vDrawProgress);
       
-      // Mix to Hot color on Pulse
-      finalColor = mix(finalColor, uColorHot, vPulse * 0.7);
-      
-      // Brighten core on pulse (less intense)
-      if (vPulse > 0.8) {
-         finalColor += 0.1;
-      }
-      
-      // Opacity logic
-      // Base line is solid (0.8)
-      // Pulse makes it slightly brighter/more solid
-      float alpha = vOpacity * (0.8 + vPulse * 0.2);
+      // Opacity: Solid, no pulsing
+      float alpha = vOpacity; 
 
       gl_FragColor = vec4(finalColor, alpha);
     }

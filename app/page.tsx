@@ -443,23 +443,23 @@ export default function Home() {
                 </FadeIn>
 
                 <FadeIn direction="left" delay={0.4}>
-                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/20">
-                    <h4 className="text-xl font-semibold mb-3">Why Choose Us?</h4>
-                    <ul className="space-y-2 text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/10 via-background to-secondary/10 border border-primary/20 shadow-lg dark:shadow-none">
+                    <h4 className="text-xl font-bold mb-4 text-foreground">Why Choose Us?</h4>
+                    <ul className="space-y-3 text-foreground/80 font-medium">
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                         <span>Expert team with years of AI experience</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                         <span>Tailored solutions for your specific needs</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                         <span>Ongoing support and maintenance</span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary mt-1">•</span>
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                         <span>Proven track record of success</span>
                       </li>
                     </ul>

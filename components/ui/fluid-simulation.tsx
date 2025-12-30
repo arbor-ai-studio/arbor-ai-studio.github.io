@@ -220,12 +220,12 @@ function Particles({ count = 10000 }) {
   const isDark = currentTheme === "dark";
   
   // Premium Emerald & Gold for Dark Mode, Rich Amber & Emerald for Light
-  const color1 = new THREE.Color(isDark ? "#eab308" : "#d97706"); // Yellow-500 (Muted Gold) / Amber-600
+  const color1 = new THREE.Color(isDark ? "#ca8a04" : "#d97706"); // Yellow-600 (Darker Gold) / Amber-600
   const color2 = new THREE.Color(isDark ? "#10b981" : "#059669"); // Emerald / Emerald-600
 
   // Use NormalBlending for light mode to make particles visible against white
   const blending = isDark ? THREE.AdditiveBlending : THREE.NormalBlending;
-  const opacity = isDark ? 0.8 : 0.6;
+  const opacity = isDark ? 0.5 : 0.6;
 
   return (
     <points ref={points}>

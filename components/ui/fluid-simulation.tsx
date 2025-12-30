@@ -122,15 +122,6 @@ const SimulationMaterial = shaderMaterial(
       float mix2 = smoothstep(0.5, 1.0, uScroll);
       finalPos = mix(finalPos, spherePos, mix2);
 
-      // --- MOUSE INTERACTION ---
-      float d = distance(finalPos, uMouse);
-      vDistance = d;
-      
-      if (d < 8.0) {
-        vec3 dir = normalize(finalPos - uMouse);
-        finalPos += dir * (8.0 - d) * 0.8;
-      }
-
       vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0);
       gl_PointSize = (60.0 / -mvPosition.z); 
       gl_Position = projectionMatrix * mvPosition;
@@ -159,10 +150,6 @@ const SimulationMaterial = shaderMaterial(
       vec3 c2 = uColor2; // Blueish
       
       vec3 finalColor = mix(c1, c2, vScrollState); // Shift hue as we scroll
-
-      if (vDistance < 5.0) {
-        finalColor += 0.5; // Bright white highlight near mouse
-      }
 
       gl_FragColor = vec4(finalColor, alpha * uOpacity);
     }

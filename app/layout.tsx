@@ -7,6 +7,7 @@ import { BookingWidget } from "@/components/booking-widget";
 import { FluidSimulationClient } from "@/components/fluid-simulation-client";
 
 import { Navbar } from "@/components/navbar";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -108,10 +109,12 @@ document.head.appendChild(o)}initApollo();`,
           enableSystem
           disableTransitionOnChange
         >
-          <FluidSimulationClient />
-          <BookingWidget />
-          <Navbar />
-          {children}
+          <SmoothScroll>
+            <FluidSimulationClient />
+            <BookingWidget />
+            <Navbar />
+            {children}
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

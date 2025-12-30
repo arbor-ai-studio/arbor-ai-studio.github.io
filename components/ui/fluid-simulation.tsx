@@ -17,6 +17,7 @@ const SimulationMaterial = shaderMaterial(
     uColor1: new THREE.Color(0.2, 0.8, 0.2),
     uColor2: new THREE.Color(0.2, 0.5, 1.0),
     uScroll: 0, // 0.0 to 1.0 representing page progress
+    uOpacity: 0.8,
   },
   // Vertex Shader
   `
@@ -84,15 +85,15 @@ const SimulationMaterial = shaderMaterial(
       vec3 pos = position;
       
       // --- PHASE 1: FLOW (Top of page) ---
-      // Gentle sine wave drift
-      float noiseFreq = 0.3;
-      float noiseAmp = 0.5;
-      vec3 noisePos = vec3(pos.x * noiseFreq + uTime * 0.1, pos.y * noiseFreq + uTime * 0.1, pos.z);
+      // Gentle sine wave drift - Slower, larger waves for premium feel
+      float noiseFreq = 0.15; 
+      float noiseAmp = 0.3;
+      vec3 noisePos = vec3(pos.x * noiseFreq + uTime * 0.05, pos.y * noiseFreq + uTime * 0.05, pos.z);
       
       vec3 flowPos = pos;
-      flowPos.x += snoise(noisePos) * 2.0;
-      flowPos.y += snoise(noisePos + 100.0) * 2.0;
-      flowPos.z += snoise(noisePos + 200.0) * 2.0;
+      flowPos.x += snoise(noisePos) * 3.0;
+      flowPos.y += snoise(noisePos + 100.0) * 3.0;
+      flowPos.z += snoise(noisePos + 200.0) * 3.0;
 
       // --- PHASE 2: VORTEX (Middle of page) ---
       // Spin around Y axis
@@ -131,7 +132,7 @@ const SimulationMaterial = shaderMaterial(
       }
 
       vec4 mvPosition = modelViewMatrix * vec4(finalPos, 1.0);
-      gl_PointSize = (150.0 / -mvPosition.z); 
+      gl_PointSize = (60.0 / -mvPosition.z); 
       gl_Position = projectionMatrix * mvPosition;
     }
   `,
@@ -139,6 +140,7 @@ const SimulationMaterial = shaderMaterial(
   `
     uniform vec3 uColor1;
     uniform vec3 uColor2;
+    uniform float uOpacity;
     varying float vDistance;
     varying float vScrollState;
 
@@ -146,8 +148,8 @@ const SimulationMaterial = shaderMaterial(
       float r = distance(gl_PointCoord, vec2(0.5));
       if (r > 0.5) discard;
 
-      float alpha = 1.0 - (r * 2.0);
-      alpha = pow(alpha, 2.0);
+      // Make dots sharper: Harder edge with slight anti-aliasing
+      float alpha = 1.0 - smoothstep(0.4, 0.5, r);
 
       // Color Shift based on Scroll
       // Top: Green/Blue
@@ -162,14 +164,14 @@ const SimulationMaterial = shaderMaterial(
         finalColor += 0.5; // Bright white highlight near mouse
       }
 
-      gl_FragColor = vec4(finalColor, alpha * 0.8);
+      gl_FragColor = vec4(finalColor, alpha * uOpacity);
     }
   `
 );
 
 extend({ SimulationMaterial });
 
-function Particles({ count = 6000 }) {
+function Particles({ count = 10000 }) {
   const points = useRef<THREE.Points>(null);
   const material = useRef<THREE.ShaderMaterial>(null);
   const { theme, systemTheme } = useTheme();
@@ -213,13 +215,17 @@ function Particles({ count = 6000 }) {
     );
   });
 
-  // Colors
+  // Theme-aware colors - Premium Palette
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const isDark = currentTheme === "dark";
   
-  // Theme-aware colors
-  const color1 = new THREE.Color(isDark ? "#86a447" : "#2d3e15"); // Brand Green
-  const color2 = new THREE.Color(isDark ? "#4ecdc4" : "#1a5e5a"); // Cyan/Teal accent
+  // Premium Emerald & Gold for Dark Mode, Rich Amber & Emerald for Light
+  const color1 = new THREE.Color(isDark ? "#fbbf24" : "#d97706"); // Warm Gold / Amber-600
+  const color2 = new THREE.Color(isDark ? "#10b981" : "#059669"); // Emerald / Emerald-600
+
+  // Use NormalBlending for light mode to make particles visible against white
+  const blending = isDark ? THREE.AdditiveBlending : THREE.NormalBlending;
+  const opacity = isDark ? 0.8 : 0.6;
 
   return (
     <points ref={points}>
@@ -237,9 +243,10 @@ function Particles({ count = 6000 }) {
         ref={material}
         transparent
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={blending}
         uColor1={color1}
         uColor2={color2}
+        uOpacity={opacity}
       />
     </points>
   );
@@ -253,7 +260,7 @@ export function FluidSimulation() {
         gl={{ alpha: true, antialias: true }}
         dpr={[1, 2]}
       >
-        <Particles count={8000} />
+        <Particles count={10000} />
       </Canvas>
     </div>
   );

@@ -14,6 +14,9 @@ import { motion } from "framer-motion"
 import Marquee from "@/components/ui/marquee" // Keep Marquee for technologies
 import { MagicCard } from "@/components/ui/magic-card"
 import { FadeIn } from "@/components/ui/fade-in"
+import Magnetic from "@/components/ui/magnetic"
+import { TextReveal } from "@/components/ui/text-reveal"
+import Image from "next/image"
 
 export default function Home() {
   const [selectedServiceTitle, setSelectedServiceTitle] = useState<string | null>(null)
@@ -49,39 +52,50 @@ export default function Home() {
               <SectionBadge title="AI Solutions Provider" className="mb-8" />
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            <TextReveal
+              text="Turn Agentic AI Potential into Real Business Impact"
               className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 mb-6 leading-tight"
-            >
-              Turn Agentic AI Potential into Real Business Impact
-            </motion.h1>
+            />
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8"
+              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
             >
-              From custom internal business tools that save you money, to launching your own SaaS product. We bridge the gap between technology and value.
-            </motion.p>
+              <p className="mb-4">
+                From <span className="text-foreground font-semibold border-b border-primary/20">internal tools</span> that cut costs,
+                <br className="hidden sm:block" />
+                to launching your own <span className="text-foreground font-semibold border-b border-primary/20">SaaS product</span>.
+              </p>
+              
+              <div className="flex items-center justify-center gap-3 text-sm font-medium tracking-wide opacity-80">
+                 <span className="h-px w-6 md:w-12 bg-gradient-to-r from-transparent to-primary/50"></span>
+                 <span className="text-foreground/80">We bridge Technology & Value</span>
+                 <span className="h-px w-6 md:w-12 bg-gradient-to-l from-transparent to-primary/50"></span>
+              </div>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 mb-24"
+              className="flex flex-col sm:flex-row gap-4 mb-24 items-center justify-center"
             >
-              <Button size="lg" asChild className="gap-2">
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-                  Book a Meeting
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToSection("#solutions")}>
-                Explore Solutions
-              </Button>
+              <Magnetic>
+                <Button size="lg" asChild className="gap-2 h-14 px-8 rounded-full text-base">
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                    Book a Meeting
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </Button>
+              </Magnetic>
+              
+              <Magnetic>
+                <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-base backdrop-blur-sm bg-background/50" onClick={() => scrollToSection("#solutions")}>
+                  Explore Solutions
+                </Button>
+              </Magnetic>
             </motion.div>
             
             {/* AI Technologies Marquee */}
@@ -99,12 +113,13 @@ export default function Home() {
                       className="mx-6 flex items-center justify-center p-4 rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card transition-colors"
                       title={tech.name}
                     >
-                      <img
+                      <Image
                         src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color}`}
                         alt={tech.name}
                         className="w-10 h-10 dark:invert dark:brightness-0 dark:contrast-200"
-                        loading="lazy"
-                        decoding="async"
+                        width={40}
+                        height={40}
+                        unoptimized
                       />
                     </div>
                   ))}
@@ -318,7 +333,11 @@ export default function Home() {
             </p>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="relative">
+             {/* Connecting Line (Mobile: hidden, Desktop: visible) */}
+             <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent -translate-y-1/2 z-0" />
+             
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
             {[
               {
                 step: "01",
@@ -349,6 +368,7 @@ export default function Home() {
                 </MagicCard>
               </FadeIn>
             ))}
+            </div>
           </div>
         </Container>
       </Wrapper>

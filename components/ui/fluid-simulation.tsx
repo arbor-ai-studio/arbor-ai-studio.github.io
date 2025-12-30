@@ -422,9 +422,9 @@ function NeuralLines({ count = 500 }) {
   const colorCold = new THREE.Color(isDark ? "#0f766e" : "#0d9488"); // Teal 700/600
   const colorHot = new THREE.Color(isDark ? "#22d3ee" : "#06b6d4"); // Cyan 400/500
 
-  // Calculate spread duration: we want 10 lines per second.
-  // Count / 10 = Seconds to finish all.
-  const spreadDuration = count / 10.0;
+  // Calculate spread duration: we want 5 lines per second (Slower pace).
+  // Count / 5 = Seconds to finish all.
+  const spreadDuration = count / 5.0;
 
   return (
     <lineSegments ref={lines}>
@@ -466,7 +466,7 @@ function NeuralLines({ count = 500 }) {
         blending={THREE.AdditiveBlending}
         uColorCold={colorCold}
         uColorHot={colorHot}
-        uLineDuration={1.0}
+        uLineDuration={2.0}
         uSpreadDuration={spreadDuration}
       />
     </lineSegments>

@@ -179,7 +179,8 @@ const LineMaterial = shaderMaterial(
   {
     uTime: 0,
     uMouse: new THREE.Vector3(0, 0, 0),
-    uColor: new THREE.Color(0.0, 1.0, 0.5), // Vivid Electric Green/Cyan
+    uColorCold: new THREE.Color(0.0, 0.5, 0.5), // Faint Teal
+    uColorHot: new THREE.Color(0.0, 1.0, 0.8),  // Bright Cyan
     uScroll: 0,
     uOpacity: 0.0,
     uConnectProgress: 0,
@@ -190,8 +191,10 @@ const LineMaterial = shaderMaterial(
     uniform vec3 uMouse;
     uniform float uScroll;
     uniform float uConnectProgress;
+    attribute float aRandom;
     
     varying float vOpacity;
+    varying float vPulse;
 
     // Simplex Noise (Standard) - Copied for sync
     vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -272,29 +275,61 @@ const LineMaterial = shaderMaterial(
       finalPos = mix(finalPos, spherePos, mix2);
 
       // --- VISIBILITY LOGIC ---
-      // 1. Must be in sphere phase (uScroll near 1.0)
-      // Relaxed threshold to ensure visibility before hitting absolute bottom
       float phaseFade = smoothstep(0.85, 0.95, uScroll);
       
-      // 2. Sequential Reveal based on uConnectProgress
-      float pulse = 0.5 + 0.5 * sin(uTime * 3.0 + pos.x + pos.y);
+      // Travelling Pulse Logic (Data moving through lines)
+      // Use aRandom to offset the timing for each line so they don't flash in unison
+      float speed = 2.0;
+      float t = uTime * speed + aRandom * 10.0;
       
-      // Apply visibility based on scroll and connection progress
+      // Create a sharp, short pulse
+      float pulseWave = sin(t);
+      // Remap -1..1 to tightly peaked 0..1
+      pulseWave = smoothstep(0.8, 1.0, pulseWave); 
+      
+      vPulse = pulseWave;
+      
+      // Basic visibility based on connection progress
       float reveal = smoothstep(0.0, 1.0, uConnectProgress);
       
-      vOpacity = phaseFade * pulse * reveal;
+      // Electric Jitter (High frequency noise)
+      // Only apply when visible
+      if (vOpacity > 0.01) {
+        float jitterSpeed = uTime * 20.0;
+        float jitterAmt = 0.05 * reveal; // Grow jitter as it reveals
+        finalPos.x += (snoise(vec3(pos.x, uTime, 0.0)) - 0.5) * jitterAmt;
+        finalPos.y += (snoise(vec3(pos.y, uTime, 1.0)) - 0.5) * jitterAmt;
+        finalPos.z += (snoise(vec3(pos.z, uTime, 2.0)) - 0.5) * jitterAmt;
+      }
+      
+      vOpacity = phaseFade * reveal;
 
       gl_Position = projectionMatrix * modelViewMatrix * vec4(finalPos, 1.0);
     }
   `,
   // Fragment Shader
   `
-    uniform vec3 uColor;
+    uniform vec3 uColorCold;
+    uniform vec3 uColorHot;
     varying float vOpacity;
+    varying float vPulse;
 
     void main() {
       if (vOpacity < 0.01) discard;
-      gl_FragColor = vec4(uColor, vOpacity);
+      
+      // Mix cold (faint) and hot (bright) based on pulse
+      // Pulse 0 -> Cold, Pulse 1 -> Hot
+      vec3 finalColor = mix(uColorCold, uColorHot, vPulse * 0.8 + 0.2);
+      
+      // Add extra brightness for the "core" of the pulse
+      if (vPulse > 0.9) {
+        finalColor += 0.5; // White hot
+      }
+      
+      // Base opacity + Pulse opacity boost
+      float alpha = vOpacity * (0.3 + vPulse * 0.7);
+
+      gl_FragColor = vec4(finalColor, alpha);
     }
   `
 );
@@ -308,11 +343,13 @@ extend({ LineMaterial });
 function NeuralLines({ count = 500 }) {
   const lines = useRef<THREE.LineSegments>(null);
   const material = useRef<THREE.ShaderMaterial>(null);
+  const { theme, systemTheme } = useTheme();
   // Ref to track accumulated progress for "drawing" the lines
   const connectProgressRef = useRef(0);
 
-  const positions = useMemo(() => {
+  const [positions, randoms] = useMemo(() => {
     const pts = [];
+    const rnd = [];
     const r = 12.0;
     
     // Create random line segments on sphere surface
@@ -327,9 +364,9 @@ function NeuralLines({ count = 500 }) {
         const z1 = r * Math.cos(phi);
         
         // Point 2 (Nearby)
-        // Perturb spherical coordinates slightly
-        const theta2 = theta + (Math.random() - 0.5) * 0.5;
-        const phi2 = phi + (Math.random() - 0.5) * 0.5;
+        // Perturb spherical coordinates slightly more for "organic" look
+        const theta2 = theta + (Math.random() - 0.5) * 0.8; 
+        const phi2 = phi + (Math.random() - 0.5) * 0.8;
         
         const x2 = r * Math.sin(phi2) * Math.cos(theta2);
         const y2 = r * Math.sin(phi2) * Math.sin(theta2);
@@ -337,8 +374,12 @@ function NeuralLines({ count = 500 }) {
         
         pts.push(x1, y1, z1);
         pts.push(x2, y2, z2);
+        
+        // Random attribute for sync offset (same for both vertices in line)
+        const randomVal = Math.random();
+        rnd.push(randomVal, randomVal);
     }
-    return new Float32Array(pts);
+    return [new Float32Array(pts), new Float32Array(rnd)];
   }, [count]);
 
   useFrame((state, delta) => {
@@ -367,6 +408,13 @@ function NeuralLines({ count = 500 }) {
     material.current.uniforms.uConnectProgress.value = connectProgressRef.current;
   });
 
+  // Theme-aware colors
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const isDark = currentTheme === "dark";
+  
+  const colorCold = new THREE.Color(isDark ? "#0f766e" : "#0d9488"); // Teal 700/600
+  const colorHot = new THREE.Color(isDark ? "#22d3ee" : "#06b6d4"); // Cyan 400/500
+
   return (
     <lineSegments ref={lines}>
       <bufferGeometry>
@@ -377,6 +425,13 @@ function NeuralLines({ count = 500 }) {
           itemSize={3}
           args={[positions, 3]} 
         />
+        <bufferAttribute
+          attach="attributes-aRandom"
+          count={randoms.length}
+          array={randoms}
+          itemSize={1}
+          args={[randoms, 1]}
+        />
       </bufferGeometry>
       {/* @ts-expect-error - Custom shader material */}
       <lineMaterial
@@ -384,6 +439,8 @@ function NeuralLines({ count = 500 }) {
         transparent
         depthWrite={false}
         blending={THREE.AdditiveBlending}
+        uColorCold={colorCold}
+        uColorHot={colorHot}
       />
     </lineSegments>
   );

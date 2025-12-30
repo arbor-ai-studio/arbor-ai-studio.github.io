@@ -697,7 +697,7 @@ export function FluidSimulation() {
         dpr={[1, 2]}
       >
         <Particles count={10000} />
-        <NeuralNetwork count={1000} />
+        <NeuralNetwork count={300} />
       </Canvas>
     </div>
   );

@@ -400,16 +400,16 @@ function NeuralLines({ count = 500 }) {
     if (scrollPct > 0.9) {
       isDeepRef.current = true;
     } 
-    // Only deactivate if they scroll back up significantly (below 70%)
-    else if (scrollPct < 0.7) {
+    // Deactivate as soon as it fades out (below 85%)
+    else if (scrollPct < 0.85) {
       isDeepRef.current = false;
     }
 
     if (isDeepRef.current) {
         activeTimeRef.current += delta;
     } else {
-        // Rewind if not deep enough
-        activeTimeRef.current = Math.max(0, activeTimeRef.current - delta * 5.0);
+        // Instant reset when not active, so it replays fresh
+        activeTimeRef.current = 0;
     }
     
     material.current.uniforms.uActiveTime.value = activeTimeRef.current;

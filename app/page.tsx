@@ -61,7 +61,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
+              className="relative z-10 text-lg md:text-xl text-foreground/90 max-w-2xl mb-12 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 p-6 md:p-8 rounded-2xl shadow-sm"
             >
               <p className="mb-4">
                 From <span className="text-foreground font-semibold border-b border-primary/20">internal tools</span> that cut costs,

@@ -327,6 +327,8 @@ function NeuralLines({ count = 500 }) {
   
   // Track accumulated active time
   const activeTimeRef = useRef(0);
+  // Track if we are in the "active" zone (Hysteresis)
+  const isDeepRef = useRef(false);
 
   const [positions, randoms, partners, progress] = useMemo(() => {
     const pts = []; // Positions
@@ -393,12 +395,20 @@ function NeuralLines({ count = 500 }) {
         0.05
     );
 
-    // Logic: If user is at the bottom (scroll > 0.9), increment active time
+    // Hysteresis Logic:
+    // Trigger activation at 90% scroll
     if (scrollPct > 0.9) {
+      isDeepRef.current = true;
+    } 
+    // Only deactivate if they scroll back up significantly (below 70%)
+    else if (scrollPct < 0.7) {
+      isDeepRef.current = false;
+    }
+
+    if (isDeepRef.current) {
         activeTimeRef.current += delta;
     } else {
-        // Optional: Reset or pause? 
-        // Let's pause/slowly rewind so it replays if they scroll back
+        // Rewind if not deep enough
         activeTimeRef.current = Math.max(0, activeTimeRef.current - delta * 5.0);
     }
     

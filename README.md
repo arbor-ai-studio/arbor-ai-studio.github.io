@@ -38,3 +38,4 @@ This script:
 GitHub Pages will then serve the freshly exported build at the custom domain declared in `CNAME`.
 
 > Tip: if you only need the static export (for manual upload, etc.), just run `npm run build` and grab the `out/` directory.
+Happy coding! 🚀

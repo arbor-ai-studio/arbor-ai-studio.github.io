@@ -24,7 +24,6 @@ export const metadata: Metadata = {
   title: "Arbor AI Studio - AI Solutions for Your Business",
   description: "Comprehensive AI solutions tailored to your business needs. From AI agent development to consulting, we help you harness the power of artificial intelligence.",
   icons: {
-    icon: "/logo.png",
     apple: "/logo.png",
   },
   openGraph: {

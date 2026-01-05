@@ -15,7 +15,6 @@ import Marquee from "@/components/ui/marquee" // Keep Marquee for technologies
 import { MagicCard } from "@/components/ui/magic-card"
 import { FadeIn } from "@/components/ui/fade-in"
 import Magnetic from "@/components/ui/magnetic"
-import { TextReveal } from "@/components/ui/text-reveal"
 import Image from "next/image"
 
 export default function Home() {
@@ -52,29 +51,23 @@ export default function Home() {
               <SectionBadge title="AI Solutions Provider" className="mb-8" />
             </motion.div>
 
-            <TextReveal
-              text="Turn Agentic AI Potential into Real Business Impact"
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 mb-6 leading-tight"
-            />
+            >
+              Turn Agentic AI Potential into Real Business Impact
+            </motion.h1>
 
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative z-10 text-lg md:text-xl text-foreground/90 max-w-2xl mb-12 leading-relaxed bg-white/30 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 p-6 md:p-8 rounded-2xl shadow-sm"
+              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
             >
-              <p className="mb-4">
-                From <span className="text-foreground font-semibold border-b border-primary/20">internal tools</span> that cut costs,
-                <br className="hidden sm:block" />
-                to launching your own <span className="text-foreground font-semibold border-b border-primary/20">SaaS product</span>.
-              </p>
-              
-              <div className="flex items-center justify-center gap-3 text-sm font-medium tracking-wide opacity-80">
-                 <span className="h-px w-6 md:w-12 bg-gradient-to-r from-transparent to-primary/50"></span>
-                 <span className="text-foreground/80">We bridge Technology & Value</span>
-                 <span className="h-px w-6 md:w-12 bg-gradient-to-l from-transparent to-primary/50"></span>
-              </div>
-            </motion.div>
+              From custom internal business tools that save you money, to launching your own SaaS product. We bridge the gap between technology and value.
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

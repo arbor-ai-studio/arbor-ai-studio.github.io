@@ -33,7 +33,7 @@ export function CareerList({ jobsEndpoint, applyBase, location }: CareerListProp
           throw new Error("Unable to load open roles")
         }
         const data = await response.json()
-        setJobs(Array.isArray(data?.results) ? data.results : [])
+        setJobs(Array.isArray(data?.results) ? data.results.reverse() : [])
       } catch {
         setError("Unable to load open roles right now. Please try again shortly.")
       } finally {

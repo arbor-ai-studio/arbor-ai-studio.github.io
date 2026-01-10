@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[598],{2598:(e,l,n)=>{n.r(l),n.d(l,{FluidSimulationClient:()=>i});var t=n(5155);let a=(0,n(7909).default)(()=>Promise.all([n.e(367),n.e(831),n.e(413),n.e(928),n.e(43)]).then(n.bind(n,2043)).then(e=>e.FluidSimulation),{loadableGenerated:{webpack:()=>[2043]},ssr:!1});function i(){return(0,t.jsx)(a,{})}}}]);
+//# sourceMappingURL=598.1961894891878683.js.map

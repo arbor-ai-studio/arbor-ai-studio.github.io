@@ -76,7 +76,9 @@ export default function RootLayout({
             <BookingWidget />
             <Analytics />
             <Navbar />
-            {children}
+            <main id="main-content">
+              {children}
+            </main>
           </SmoothScroll>
         </ThemeProvider>
       </body>

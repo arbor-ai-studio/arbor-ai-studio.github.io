@@ -688,8 +688,8 @@ export function FluidSimulation() {
         style={{ pointerEvents: "none" }}
         eventSource={document.body}
       >
-        <Particles count={10000} />
-        <NeuralNetwork count={300} />
+        <Particles count={4000} />
+        <NeuralNetwork count={150} />
       </Canvas>
     </div>
   );

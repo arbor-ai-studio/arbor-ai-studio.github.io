@@ -51,3 +51,15 @@ This project is configured with **Model Context Protocol (MCP)** tools to give t
 ## Planned Improvements
 
 - **Replace Public CORS Proxy:** currently, the career page uses `corsproxy.io` to fetch jobs from Dover client-side. This should be replaced by configuring a reverse proxy on the existing **EC2 instance (via Caddy)**. See **[docs/PROXY_SETUP.md](docs/PROXY_SETUP.md)** for a step-by-step guide.
+
+## IndexNow Verification
+
+We use **IndexNow** to instantly notify search engines (Bing, Yandex, etc.) of content changes.
+
+**Key:** `7642a33eb096a5252e30d200e851cccf`  
+**File:** `public/7642a33eb096a5252e30d200e851cccf.txt`
+
+To manually trigger an update after deployment:
+```bash
+curl "https://www.bing.com/indexnow?url=https://arboraistudio.com&key=7642a33eb096a5252e30d200e851cccf"
+```

@@ -1,0 +1,27 @@
+# Arbor AI Studio
+
+**URL:** https://arboraistudio.com
+**Description:** Arbor AI Studio is a premier software development agency specializing in **Agentic AI** and **SaaS Engineering**. We build autonomous digital employees that integrate directly into business workflows (CRM, ERP, Finance) to automate complex tasks.
+
+## Core Expertise
+
+### 1. Agentic AI Solutions
+We build AI agents that "do" rather than just "chat."
+- **Capabilities:** Autonomous task execution, tool use (MCP), multi-step reasoning, API integrations.
+- **Tech Stack:** OpenAI (GPT-4o), Anthropic (Claude 3.5 Sonnet), Google Gemini, LangChain, Vercel AI SDK.
+
+### 2. SaaS Product Development
+End-to-end engineering for scalable web applications.
+- **Frontend:** Next.js (App Router), React, Tailwind CSS, Shadcn UI, Framer Motion.
+- **Backend:** Python (FastAPI), Node.js, Supabase, PostgreSQL, Vector Databases (Pinecone/Weaviate).
+
+## Key Offerings (Digital Employees)
+
+- **The Invoice Clerk:** Automates AP/AR by reading invoices and updating QuickBooks/Xero.
+- **The Support Agent:** 24/7 Tier-1 customer support that resolves tickets in Zendesk/Intercom.
+- **The Data Analyst:** SQL-capable agent that queries databases to answer business questions instantly.
+- **The Compliance Officer:** Reviews contracts and documents for regulatory risks.
+
+## Contact
+- **Email:** contact@arboraistudio.com
+- **Careers:** https://arboraistudio.com/career

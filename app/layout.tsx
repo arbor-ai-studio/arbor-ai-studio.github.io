@@ -8,6 +8,7 @@ import { FluidSimulationClient } from "@/components/fluid-simulation-client";
 
 import { Navbar } from "@/components/navbar";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { JsonLd } from "@/components/json-ld";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -94,6 +95,7 @@ document.head.appendChild(o)}initApollo();`,
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
+        <JsonLd />
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-T6L2GL9C"

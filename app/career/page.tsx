@@ -2,36 +2,15 @@ import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
 import { CareerList } from "@/components/career-list"
-import { Zap, Globe, Users, Mail, Laptop, Cpu, TrendingUp } from "lucide-react"
+import { Zap, Globe, Users, Laptop, Cpu, TrendingUp } from "lucide-react"
 import { FadeIn } from "@/components/ui/fade-in"
 import { MagicCard } from "@/components/ui/magic-card"
 
-interface ApiJob {
-  id: string;
-  title: string;
-}
-
-const JOBS_ENDPOINT = "https://cover-gen-user-data.vercel.app/api/jobs";
+const JOBS_ENDPOINT = "https://corsproxy.io/?https://cover-gen-user-data.vercel.app/api/jobs";
 const APPLY_BASE = "https://app.dover.com/apply/22029207-c38c-4586-99f2-91c12a57475d";
 const LOCATION = "Dhaka, Bangladesh";
 
-async function getJobs(): Promise<{ jobs: ApiJob[]; error: string | null }> {
-  try {
-    const response = await fetch(JOBS_ENDPOINT, { next: { revalidate: 3600 } });
-    if (!response.ok) {
-      return { jobs: [], error: "Unable to load open roles right now. Please try again shortly." };
-    }
-    const data = await response.json();
-    return { jobs: Array.isArray(data?.results) ? data.results : [], error: null };
-  } catch {
-    return { jobs: [], error: "Unable to load open roles right now. Please try again shortly." };
-  }
-}
-
-export default async function CareerPage() {
-  const { jobs, error } = await getJobs();
-  const hasJobs = jobs.length > 0;
-
+export default function CareerPage() {
   return (
     <div className="flex flex-col w-full min-h-screen relative">
       
@@ -77,47 +56,11 @@ export default async function CareerPage() {
       <Wrapper id="open-roles" className="py-24 bg-muted/30 border-t border-border/50">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <FadeIn className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
-              <h2 className="text-2xl md:text-3xl font-bold">Open Positions</h2>
-              <span className="text-sm font-medium text-muted-foreground bg-background border border-border px-3 py-1 rounded-full">
-                {jobs.length} Active Roles
-              </span>
-            </FadeIn>
-
-            {error && (
-              <FadeIn>
-                <div className="rounded-xl border border-destructive/50 bg-destructive/5 p-6 text-center">
-                  <p className="text-destructive mb-2 font-medium">Could not load jobs</p>
-                  <p className="text-muted-foreground text-sm">{error}</p>
-                </div>
-              </FadeIn>
-            )}
-
-            {!error && !hasJobs && (
-              <FadeIn>
-                <MagicCard className="py-20 flex flex-col items-center justify-center text-center px-4">
-                  <p className="text-lg font-medium mb-2">No open positions right now</p>
-                  <p className="text-muted-foreground mb-8">But we&apos;re always looking for exceptional talent.</p>
-                  <a 
-                    href="mailto:contact@arboraistudio.com" 
-                    className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:opacity-90 transition-opacity font-medium"
-                  >
-                    <Mail className="w-4 h-4" />
-                    Send us your CV
-                  </a>
-                </MagicCard>
-              </FadeIn>
-            )}
-
-            {hasJobs && (
-              <FadeIn>
-                <CareerList 
-                  jobs={jobs} 
-                  applyBase={APPLY_BASE} 
-                  location={LOCATION} 
-                />
-              </FadeIn>
-            )}
+            <CareerList 
+              jobsEndpoint={JOBS_ENDPOINT} 
+              applyBase={APPLY_BASE} 
+              location={LOCATION} 
+            />
           </div>
         </Container>
       </Wrapper>

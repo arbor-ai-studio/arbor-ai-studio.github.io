@@ -126,7 +126,7 @@ export const aiTechnologies = [
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "#solutions", label: "Solutions" },
+  { href: "#integrations", label: "Solutions" },
   { href: "#about", label: "About" },
   // { href: "#reviews", label: "Reviews" },
   { href: "/projects", label: "Projects" },

@@ -203,7 +203,7 @@ export default function Home() {
       </Wrapper>
 
       {/* MCP Integration Showcase */}
-      <Wrapper className="py-24 border-y border-border/50">
+      <Wrapper id="integrations" className="py-24 border-y border-border/50">
         <Container>
           <FadeIn className="max-w-3xl mx-auto text-center mb-16">
             <SectionBadge title="Next-Gen Integrations" className="mb-6" />

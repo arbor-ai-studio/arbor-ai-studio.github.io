@@ -9,10 +9,10 @@ import { MagicCard } from "@/components/ui/magic-card"
 
 export const metadata: Metadata = {
   title: "AI Careers & Jobs | Join Arbor AI Studio",
-  description: "Join our team of elite engineers building the future of Agentic AI. We offer remote work, top-tier tools, and the chance to build high-impact autonomous agents.",
+  description: "Join elite engineers building the future of Agentic AI. We offer remote work, premium tools, and the chance to build high-impact autonomous agents.",
   openGraph: {
     title: "AI Careers & Jobs | Join Arbor AI Studio",
-    description: "Join our team of elite engineers building the future of Agentic AI. We offer remote work, top-tier tools, and the chance to build high-impact autonomous agents.",
+    description: "Join elite engineers building the future of Agentic AI. We offer remote work, premium tools, and the chance to build high-impact autonomous agents.",
   }
 }
 

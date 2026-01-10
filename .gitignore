@@ -38,3 +38,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+mcp-analysis/mcp-gsc/service_account_credentials.json
+.vscode/
+.gemini/settings.json

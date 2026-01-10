@@ -120,8 +120,34 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+  html, body {
     @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  }
+
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) oklch(0.1 0 0);
+  }
+
+  html::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, oklch(0.75 0.13 135), oklch(0.55 0.09 135));
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    box-shadow: 0 2px 10px oklch(0.4 0.07 135 / 0.6);
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, oklch(0.7 0.13 135), oklch(0.48 0.08 135));
   }
 }
 
@@ -144,6 +170,27 @@
     }
   }
 
+  @keyframes spin-around {
+    0% {
+      transform: translateZ(0) rotate(0);
+    }
+    15%, 35% {
+      transform: translateZ(0) rotate(90deg);
+    }
+    65%, 85% {
+      transform: translateZ(0) rotate(270deg);
+    }
+    100% {
+      transform: translateZ(0) rotate(360deg);
+    }
+  }
+
+  @keyframes slide {
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
+    }
+  }
+
   .animate-marquee {
     animation: marquee var(--duration) linear infinite;
   }
@@ -154,6 +201,14 @@
 
   .animate-border-beam {
     animation: border-beam calc(var(--duration) * 1s) linear infinite;
+  }
+  
+  .animate-spin-around {
+    animation: spin-around calc(var(--speed) * 2) infinite linear;
+  }
+
+  .animate-slide {
+    animation: slide var(--speed) ease-in-out infinite alternate;
   }
 
   /* Support for after pseudo element animation */

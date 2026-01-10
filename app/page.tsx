@@ -1,20 +1,26 @@
 "use client"
 
-import Image from "next/image"
-
+import { useState } from "react"
 import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
 import { Button } from "@/components/ui/button"
-import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import Marquee from "@/components/ui/marquee"
-import { services, reviews, aiTechnologies } from "@/lib/constants"
-import { ArrowRight, Mail, Phone, MapPin, User } from "lucide-react"
+import { services, aiTechnologies, BOOKING_URL } from "@/lib/constants"
+import { serviceExamples } from "@/lib/service-examples"
+import { ServiceModal } from "@/components/service-modal"
+import { ArrowRight, Mail, Phone, MapPin, Calendar, Globe, Clock, ShieldCheck, Zap } from "lucide-react"
 import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import Marquee from "@/components/ui/marquee" // Keep Marquee for technologies
+import { MagicCard } from "@/components/ui/magic-card"
+import { FadeIn } from "@/components/ui/fade-in"
+import Magnetic from "@/components/ui/magnetic"
+import Image from "next/image"
+import { useCases, mcpShowcase } from "@/lib/home-content"
 
 export default function Home() {
+  const [selectedServiceTitle, setSelectedServiceTitle] = useState<string | null>(null)
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
@@ -22,18 +28,21 @@ export default function Home() {
     }
   }
 
-  const firstRow = reviews.slice(0, reviews.length / 2)
-  const secondRow = reviews.slice(reviews.length / 2)
+  const handleServiceClick = (title: string) => {
+    if (serviceExamples[title]) {
+      setSelectedServiceTitle(title)
+    }
+  }
+
+  const selectedService = selectedServiceTitle ? serviceExamples[selectedServiceTitle] : null
+  const SelectedServiceIcon = selectedServiceTitle ? services.find(s => s.title === selectedServiceTitle)?.icon : undefined
 
   return (
-    <div className="flex flex-col w-full">
-      <Navbar />
+    <div className="flex flex-col w-full relative">
 
       {/* Hero Section */}
       <Wrapper>
-        <div className="absolute inset-0 dark:bg-[linear-gradient(to_right,#ffffff20_1px,transparent_1px),linear-gradient(to_bottom,#ffffff20_1px,transparent_1px)] bg-[linear-gradient(to_right,#00000012_1px,transparent_1px),linear-gradient(to_bottom,#00000012_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] -z-10 h-[120vh]" />
-
-        <Container className="py-24 lg:py-32">
+        <Container className="py-24 lg:py-32 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -49,39 +58,46 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70 mb-6 leading-tight"
             >
-              Transform Your Business with AI Agents
+              Agentic AI Solutions for Business Automation & SaaS
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8"
+              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
             >
-              Comprehensive AI solutions tailored to your business needs. From AI agent development to consulting, we help you harness the power of artificial intelligence.
+              Transform your business with autonomous AI agents. From custom internal tools that cut costs to launching your next SaaS product, we bridge technology and value.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 mb-24 items-center justify-center"
             >
-              <Button size="lg" onClick={() => scrollToSection("#contact")} className="gap-2">
-                Get Started
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline" onClick={() => scrollToSection("#services")}>
-                View Services
-              </Button>
+              <Magnetic>
+                <Button size="lg" asChild className="gap-2 h-14 px-8 rounded-full text-base">
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                    Book a Meeting
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </Button>
+              </Magnetic>
+              
+              <Magnetic>
+                <Button size="lg" variant="outline" className="h-14 px-8 rounded-full text-base backdrop-blur-sm bg-background/50" onClick={() => scrollToSection("#solutions")}>
+                  Explore Solutions
+                </Button>
+              </Magnetic>
             </motion.div>
-
+            
             {/* AI Technologies Marquee */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-12 mb-0 w-full"
+              className="mt-0 w-full"
             >
               <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4">
                 <Marquee pauseOnHover className="[--duration:40s] select-none">
@@ -94,10 +110,10 @@ export default function Home() {
                       <Image
                         src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color}`}
                         alt={tech.name}
+                        className="w-10 h-10 dark:invert dark:brightness-0 dark:contrast-200"
                         width={40}
                         height={40}
                         unoptimized
-                        className="w-10 h-10 dark:invert dark:brightness-0 dark:contrast-200"
                       />
                     </div>
                   ))}
@@ -106,240 +122,382 @@ export default function Home() {
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
               </div>
             </motion.div>
-
-            {/* Placeholder for hero image */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-8 w-full max-w-5xl"
-            >
-              <div className="relative aspect-video rounded-xl bg-gradient-to-br from-primary/20 via-secondary/20 to-primary/20 border border-border shadow-lg flex items-center justify-center">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
-                <p className="text-muted-foreground z-10">Hero Image Placeholder</p>
-                <BorderBeam size={250} duration={12} delay={9} colorFrom="#86a447" colorTo="#31593a" />
-              </div>
-            </motion.div> */}
           </div>
         </Container>
       </Wrapper>
 
       {/* About Section */}
-      <Wrapper id="about" className="py-24 bg-muted/30">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <SectionBadge title="About Us" className="mb-6" />
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Your Partner in AI Innovation
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              At Arbor AI Studio, we specialize in developing cutting-edge AI solutions that drive business growth and efficiency. Our team of experts combines deep technical knowledge with industry experience to deliver solutions that truly make a difference.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                <p className="text-muted-foreground">Projects Completed</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">30+</div>
-                <p className="text-muted-foreground">Happy Clients</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">98%</div>
-                <p className="text-muted-foreground">Client Satisfaction</p>
+      <FadeIn>
+        <Wrapper id="about" className="py-24 bg-muted/30">
+          <Container>
+            <div className="max-w-3xl mx-auto text-center">
+              <SectionBadge title="About Us" className="mb-6" />
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-snug">
+                We Build the AI Tech So You Can Build the Business
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                At Arbor AI Studio, we don&apos;t just deliver code; we deliver measurable business outcomes. Whether you need to automate internal costs or launch a revenue-generating product, our team aligns technology with your bottom line.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div className="flex flex-col items-center">
+                  <Globe className="w-8 h-8 text-primary mb-4" />
+                  <div className="text-4xl font-bold text-primary mb-2">Global</div>
+                  <p className="text-muted-foreground">Remote-First Operation</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Clock className="w-8 h-8 text-primary mb-4" />
+                  <div className="text-4xl font-bold text-primary mb-2">24/7</div>
+                  <p className="text-muted-foreground">System Reliability</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <ShieldCheck className="w-8 h-8 text-primary mb-4" />
+                  <div className="text-4xl font-bold text-primary mb-2">100%</div>
+                  <p className="text-muted-foreground">Code Ownership</p>
+                </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </Wrapper>
+          </Container>
+        </Wrapper>
+      </FadeIn>
 
-      {/* Services Section */}
-      <Wrapper id="services" className="py-24">
+      {/* Use Cases Section */}
+      <Wrapper id="use-cases" className="py-24 bg-muted/30">
         <Container>
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <SectionBadge title="Our Services" className="mb-6" />
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
-              Comprehensive AI Solutions
+          <FadeIn className="max-w-3xl mx-auto text-center mb-16">
+            <SectionBadge title="Real World Impact" className="mb-6" />
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-snug">
+              Beyond Chatbots: Intelligent Digital Workers for Your Business
             </h2>
             <p className="text-lg text-muted-foreground">
-              Comprehensive AI solutions tailored to your business needs
+              We build autonomous agents that execute complex workflows to automate your business processes end-to-end.
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="group relative p-6 rounded-xl border border-border bg-card hover:bg-primary/10 hover:shadow-sm transition-all duration-300"
-              >
-                <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </div>
+          <div className="flex flex-col gap-6 lg:gap-8">
+            {useCases.map((item, i) => (
+              <FadeIn key={i} delay={i * 0.1} className={`flex w-full ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                <motion.div 
+                  whileHover={{ scale: 1.01 }}
+                  className="relative group w-full md:w-[95%] lg:w-[97%] p-8 rounded-2xl border border-border bg-card hover:bg-muted/30 transition-all duration-300 shadow-sm hover:shadow-md"
+                >
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center">
+                    <div className="flex-1 text-center md:text-left">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">The Problem</span>
+                      <h3 className="text-xl md:text-2xl font-bold mt-2 text-foreground">&quot;{item.problem}&quot;</h3>
+                    </div>
+
+                    <div className="flex-shrink-0">
+                      <ArrowRight className="w-8 h-8 text-muted-foreground/50 rotate-90 md:rotate-0" />
+                    </div>
+
+                    <div className="flex-1 text-center md:text-left">
+                      <span className="text-xs font-bold uppercase tracking-wider text-primary">The AI Fix</span>
+                      <p className="mt-2 text-muted-foreground leading-relaxed">{item.fix}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </FadeIn>
             ))}
           </div>
         </Container>
       </Wrapper>
 
-      {/* Reviews Section */}
-      <Wrapper id="reviews" className="flex flex-col items-center justify-center py-24 relative">
+      {/* MCP Integration Showcase */}
+      <Wrapper className="py-24 border-y border-border/50">
         <Container>
-          <div className="max-w-md mx-auto text-center mb-12">
-            <SectionBadge title="Client Reviews" />
-            <h2 className="text-3xl lg:text-4xl font-semibold mt-6">
-              What Our Clients Say
+          <FadeIn className="max-w-3xl mx-auto text-center mb-16">
+            <SectionBadge title="Next-Gen Integrations" className="mb-6" />
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-snug">
+              Direct System Action. <br />
+              <span className="text-primary">Zero Browser Clicking.</span>
             </h2>
-            <p className="text-muted-foreground mt-6">
-              See how we&apos;ve helped businesses transform with AI
+            <p className="text-lg text-muted-foreground">
+              Most AI agents just talk. Ours act. We connect your AI directly to your core business systems for secure, instant execution.
             </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {mcpShowcase.map((card, i) => (
+              <FadeIn key={card.title} delay={i * 0.1}>
+                <MagicCard className="p-8 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                    <Zap className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">{card.title}</h3>
+                  <div className="space-y-4 text-sm">
+                    <div className="bg-muted/50 p-3 rounded-lg border border-border/50">
+                      <span className="text-xs font-bold uppercase text-muted-foreground block mb-1">You Ask</span>
+                      &quot;{card.scenario}&quot;
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-start gap-2">
+                        <ArrowRight className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground">{card.action}</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <ShieldCheck className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                        <span className="font-medium text-foreground">{card.result}</span>
+                      </div>
+                    </div>
+                  </div>
+                </MagicCard>
+              </FadeIn>
+            ))}
           </div>
+
+          <FadeIn delay={0.4}>
+            <div className="mt-20 p-8 md:p-12 rounded-2xl bg-primary/5 border border-primary/10 text-center max-w-4xl mx-auto backdrop-blur-sm">
+              <h3 className="text-2xl md:text-4xl font-bold mb-4 text-foreground">
+                Yes, we build these.
+              </h3>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                We are one of the few studios globally specialized in <strong className="text-foreground">Action-Based Agentic AI</strong>. While most agencies deliver chatbots that just <em>talk</em>, we engineer secure, autonomous agents that <strong className="text-primary font-semibold">act</strong>.
+              </p>
+            </div>
+          </FadeIn>
         </Container>
+      </Wrapper>
+
+      {/* Services Section */}
+      <Wrapper id="solutions" className="py-24">
         <Container>
-          <div className="w-full">
-            <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden py-10">
-              <Marquee pauseOnHover className="[--duration:20s] select-none">
-                {firstRow.map((review) => (
-                  <figure
-                    key={review.name}
-                    className={cn(
-                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                      "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
-                    )}
-                  >
-                    <div className="flex flex-row items-center gap-2">
-                      <User className="w-6 h-6" />
-                      <div className="flex flex-col">
-                        <figcaption className="text-sm font-medium">
-                          {review.name}
-                        </figcaption>
-                        <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
+            <FadeIn className="max-w-3xl mx-auto text-center mb-16">
+              <SectionBadge title="Our Solutions" className="mb-6" />
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-snug">
+                Solutions for Every Stage
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Whether you are an established enterprise or a fast-moving startup, we have the right tools for you.
+              </p>
+            </FadeIn>
+
+          <div className="grid grid-cols-1 gap-12">
+            <div>
+              <FadeIn direction="right">
+                <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">1</span>
+                  For Established Businesses
+                </h3>
+              </FadeIn>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services.filter((s) => s.category === 'enterprise').map((service, i) => (
+                  <FadeIn key={service.title} delay={i * 0.1}>
+                    <MagicCard
+                      onClick={() => handleServiceClick(service.title)}
+                      className="p-6 cursor-pointer"
+                    >
+                      <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <service.icon className="w-6 h-6 text-primary" />
                       </div>
-                    </div>
-                    <blockquote className="mt-2 text-sm">{review.body}</blockquote>
-                  </figure>
+                      <h3 className="text-xl font-semibold mb-3 flex items-center gap-2 group">
+                        {service.title}
+                        <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+                      </h3>
+                      <p className="text-muted-foreground">{service.description}</p>
+                    </MagicCard>
+                  </FadeIn>
                 ))}
-              </Marquee>
-              <Marquee reverse pauseOnHover className="[--duration:20s] select-none">
-                {secondRow.map((review) => (
-                  <figure
-                    key={review.name}
-                    className={cn(
-                      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                      "border-zinc-50/[.1] bg-background hover:bg-zinc-50/[.15]",
-                    )}
-                  >
-                    <div className="flex flex-row items-center gap-2">
-                      <User className="w-6 h-6" />
-                      <div className="flex flex-col">
-                        <figcaption className="text-sm font-medium">
-                          {review.name}
-                        </figcaption>
-                        <p className="text-xs font-medium text-muted-foreground">{review.username}</p>
+              </div>
+            </div>
+
+            <div>
+              <FadeIn direction="right">
+                <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm">2</span>
+                  For Founders & Startups
+                </h3>
+              </FadeIn>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services.filter((s) => s.category === 'startup').map((service, i) => (
+                  <FadeIn key={service.title} delay={i * 0.1}>
+                    <MagicCard
+                      onClick={() => handleServiceClick(service.title)}
+                      className="p-6 cursor-pointer"
+                    >
+                      <div className="mb-4 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <service.icon className="w-6 h-6 text-primary" />
                       </div>
-                    </div>
-                    <blockquote className="mt-2 text-sm">{review.body}</blockquote>
-                  </figure>
+                      <h3 className="text-xl font-semibold mb-3 flex items-center gap-2 group">
+                        {service.title}
+                        <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
+                      </h3>
+                      <p className="text-muted-foreground">{service.description}</p>
+                    </MagicCard>
+                  </FadeIn>
                 ))}
-              </Marquee>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background"></div>
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background"></div>
+              </div>
             </div>
           </div>
         </Container>
       </Wrapper>
 
-      {/* Contact/CTA Section */}
+      {/* Infinite Potential Section */}
+      <Wrapper className="py-32 md:py-48 min-h-[60vh] flex items-center justify-center overflow-hidden border-y border-border/50">
+        <div className="absolute inset-0 bg-primary/5 -z-10" />
+        <Container>
+          <FadeIn className="flex flex-col items-center justify-center text-center">
+            <SectionBadge title="Limitless Possibilities" className="mb-6" />
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+              And much, much more.
+            </h2>
+            <p className="text-xl text-muted-foreground mt-6 max-w-2xl mb-10 leading-relaxed">
+              The possibilities are endless. If you have data, we can build an agent to understand it. No challenge is too specific for our team.
+            </p>
+            <Button size="lg" asChild className="gap-2">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                Book a Meeting
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </Button>
+          </FadeIn>
+        </Container>
+      </Wrapper>
+
+      {/* Process Section */}
+      <Wrapper id="process" className="py-24 bg-muted/30">
+        <Container>
+          <FadeIn className="max-w-3xl mx-auto text-center mb-16">
+            <SectionBadge title="Our Process" className="mb-6" />
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-snug">
+              From Concept to Launch in 4 Steps
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              We don&apos;t just guess. We follow a proven framework to ensure your AI solution delivers real value from day one.
+            </p>
+          </FadeIn>
+
+          <div className="relative">
+             {/* Connecting Line (Mobile: hidden, Desktop: visible) */}
+             <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent -translate-y-1/2 z-0" />
+             
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+            {[
+              {
+                step: "01",
+                title: "Discovery",
+                desc: "We audit your current workflows to identify high-ROI opportunities where AI can save time or money."
+              },
+              {
+                step: "02",
+                title: "Strategy",
+                desc: "We design the agent architecture, selecting the right models (LLMs) and tools for your specific needs."
+              },
+              {
+                step: "03",
+                title: "Build",
+                desc: "Our engineers develop your custom solution, connecting it securely to your existing data and software."
+              },
+              {
+                step: "04",
+                title: "Launch",
+                desc: "We deploy to production, train your team, and set up 24/7 monitoring to ensure everything runs smoothly."
+              }
+            ].map((item, i) => (
+              <FadeIn key={item.step} delay={i * 0.1}>
+                <MagicCard className="p-6 flex flex-col items-start h-full">
+                  <div className="text-5xl font-bold text-primary/50 mb-4 transition-colors duration-300 group-hover:text-primary">{item.step}</div>
+                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                </MagicCard>
+              </FadeIn>
+            ))}
+            </div>
+          </div>
+        </Container>
+      </Wrapper>
+
+      {/* Contact Section */}
       <Wrapper id="contact" className="pt-12 pb-24">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <FadeIn className="text-center mb-12">
               <SectionBadge title="Get In Touch" className="mb-6" />
-              <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+              <h2 className="text-3xl lg:text-5xl font-bold mb-6 leading-snug">
                 Ready to Transform Your Business?
               </h2>
               <p className="text-lg text-muted-foreground">
                 Let&apos;s discuss how we can help you leverage AI to achieve your business goals
               </p>
-            </div>
+            </FadeIn>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Contact Form Placeholder */}
-              <div className="p-8 rounded-xl border border-border bg-card">
-                <h3 className="text-2xl font-semibold mb-6">Send Us a Message</h3>
-                <div className="space-y-4">
-                  <div className="h-12 rounded-lg bg-muted flex items-center px-4 text-muted-foreground">
-                    Name field placeholder
+              <FadeIn direction="right" className="h-full">
+                <MagicCard className="p-8 flex flex-col items-center justify-center text-center h-full">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                    <Calendar className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="h-12 rounded-lg bg-muted flex items-center px-4 text-muted-foreground">
-                    Email field placeholder
-                  </div>
-                  <div className="h-56 rounded-lg bg-muted flex items-center px-4 text-muted-foreground">
-                    Message field placeholder
-                  </div>
-                  <Button className="w-full" size="lg">
-                    Send Message
+                  <h3 className="text-2xl font-semibold mb-4">Book a Meeting</h3>
+                  <p className="text-muted-foreground mb-8">
+                    Schedule a strategy session directly on our calendar.
+                  </p>
+                  <Button size="lg" asChild className="gap-2">
+                    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                      Book a Meeting
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
                   </Button>
-                </div>
-              </div>
+                </MagicCard>
+              </FadeIn>
 
-              {/* Contact Info */}
               <div className="space-y-6">
-                <div className="p-8 rounded-xl border border-border bg-card">
-                  <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Mail className="w-5 h-5 text-primary" />
+                <FadeIn direction="left" delay={0.2}>
+                  <MagicCard className="p-8">
+                    <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Mail className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">Email</p>
+                          <p className="text-muted-foreground">contact@arboraistudio.com</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-medium">Email</p>
-                        <p className="text-muted-foreground">admin@arboraistudio.com</p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Phone className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">Phone</p>
+                          <p className="text-muted-foreground">+880 131 666 1100</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <MapPin className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-medium">Location</p>
+                          <p className="text-muted-foreground">Dhaka, Bangladesh (Operating Globally)</p>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Phone className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Phone</p>
-                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-medium">Location</p>
-                        <p className="text-muted-foreground">Winnipeg, Canada</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  </MagicCard>
+                </FadeIn>
 
-                <div className="p-8 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/20">
-                  <h4 className="text-xl font-semibold mb-3">Why Choose Us?</h4>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Expert team with years of AI experience</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Tailored solutions for your specific needs</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Ongoing support and maintenance</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>Proven track record of success</span>
-                    </li>
-                  </ul>
-                </div>
+                <FadeIn direction="left" delay={0.4}>
+                  <div className="p-8 rounded-xl bg-gradient-to-br from-primary/10 via-background to-secondary/10 border border-primary/20 shadow-lg dark:shadow-none">
+                    <h4 className="text-xl font-bold mb-4 text-foreground">Why Choose Us?</h4>
+                    <ul className="space-y-3 text-foreground/80 font-medium">
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        <span>Expert team with years of AI experience</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        <span>Tailored solutions for your specific needs</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        <span>Ongoing support and maintenance</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="text-primary mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        <span>Proven track record of success</span>
+                      </li>
+                    </ul>
+                  </div>
+                </FadeIn>
               </div>
             </div>
           </div>
@@ -347,6 +505,13 @@ export default function Home() {
       </Wrapper>
 
       <Footer />
+
+      <ServiceModal
+        isOpen={!!selectedServiceTitle}
+        onOpenChange={(open) => !open && setSelectedServiceTitle(null)}
+        service={selectedService}
+        icon={SelectedServiceIcon}
+      />
     </div>
   )
 }

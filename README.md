@@ -38,3 +38,12 @@ This script:
 GitHub Pages will then serve the freshly exported build at the custom domain declared in `CNAME`.
 
 > Tip: if you only need the static export (for manual upload, etc.), just run `npm run build` and grab the `out/` directory.
+Happy coding! 🚀
+
+## MCP Tools (SEO & Analytics)
+
+This project is configured with **Model Context Protocol (MCP)** tools to give the AI agent advanced capabilities:
+1.  **Google Search Console:** Check indexing, submit sitemaps, and analyze traffic.
+2.  **Google Keyword Insight:** Research high-volume global keywords.
+
+👉 **[Read the Setup Guide (docs/MCP_SETUP.md)](docs/MCP_SETUP.md)** to configure these tools locally.

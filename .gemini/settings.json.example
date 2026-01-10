@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "gsc-server": {
+      "command": "python3",
+      "args": [
+        "mcp-analysis/mcp-gsc/gsc_server.py"
+      ],
+      "env": {
+        "GSC_CREDENTIALS_PATH": "mcp-analysis/mcp-gsc/service_account_credentials.json",
+        "GSC_SKIP_OAUTH": "true"
+      }
+    },
+    "Google-Keyword-Insight": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp.rapidapi.com",
+        "--header",
+        "x-api-host: google-keyword-insight1.p.rapidapi.com",
+        "--header",
+        "x-api-key: YOUR_RAPIDAPI_KEY_HERE"
+      ]
+    }
+  }
+}

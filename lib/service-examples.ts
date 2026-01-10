@@ -10,8 +10,8 @@ export interface ServiceDetail {
 }
 
 export const serviceExamples: Record<string, ServiceDetail> = {
-  "Intelligent Support Agents": {
-    title: "Intelligent Support Agents",
+  "AI Customer Support Agents": {
+    title: "AI Customer Support Agents",
     coreValue: "24/7 instant resolution, not just deflection.",
     examples: [
       {
@@ -28,8 +28,8 @@ export const serviceExamples: Record<string, ServiceDetail> = {
       }
     ]
   },
-  "SaaS Product Engineering": {
-    title: "SaaS Product Engineering",
+  "SaaS Product Development": {
+    title: "SaaS Product Development",
     coreValue: "From napkin sketch to production-ready scalable product.",
     examples: [
       {
@@ -51,7 +51,7 @@ export const serviceExamples: Record<string, ServiceDetail> = {
     coreValue: "Your 24/7 digital workforce for the boring stuff.",
     examples: [
       {
-        title: "The Invoice Clerk",
+        title: "Intelligent Document Processing",
         description: "It watches your inbox for bills, reads the PDFs (even scanned ones), and enters the details into your accounting software. You just click 'Pay'."
       },
       {
@@ -59,18 +59,18 @@ export const serviceExamples: Record<string, ServiceDetail> = {
         description: "When a customer fills your contact form at 2 AM, this agent researches them on LinkedIn, drafts a personalized reply, and alerts your sales team only if it's a big deal."
       },
       {
-        title: "The Social Media Manager",
-        description: "Paste a link to your latest video. The agent watches it, writes a blog post, creates 5 tweets, and schedules them all to post throughout the week."
+        title: "The Trend Jacker",
+        description: "It monitors X/Twitter for trending topics in your niche. When one spikes, it instantly drafts a relevant, witty post in your brand voice to capture the viral wave."
       }
     ]
   },
-  "Predictive Business Insights": {
-    title: "Predictive Business Insights",
+  "Predictive Analytics & Insights": {
+    title: "Predictive Analytics & Insights",
     coreValue: "Turning 'what happened' into 'what will happen'.",
     examples: [
       {
         title: "The Inventory Forecaster",
-        description: "Analyzes 3 years of sales history and warns you: 'Order more winter coats now or you'll run out by November 15th.'"
+        description: "Analyzes sales history and warns you: 'Stockout Risk: Order 500 units by Tuesday to capture $50k in predicted Black Friday demand.'"
       },
       {
         title: "Churn Prevention Radar",
@@ -82,8 +82,8 @@ export const serviceExamples: Record<string, ServiceDetail> = {
       }
     ]
   },
-  "Custom AI Solutions": {
-    title: "Custom AI Solutions",
+  "Custom AI Solutions & Consulting": {
+    title: "Custom AI Solutions & Consulting",
     coreValue: "Solving unique problems that off-the-shelf tools can't.",
     examples: [
       {
@@ -131,8 +131,8 @@ export const serviceExamples: Record<string, ServiceDetail> = {
         description: "An AI agent watches your system logs 24/7. It spots weird patterns and alerts you: 'Hard drive failing in Server 3' before it crashes."
       },
       {
-        title: "Instant Modern API",
-        description: "Want to build a mobile app but your data is stuck in an old system? We use AI to wrap your old code so new apps can talk to it immediately."
+        title: "The 20-Year Leap",
+        description: "Skip the 2-year migration project. We wrap your legacy database in an AI layer today, letting your modern mobile app read live inventory instantly."
       }
     ]
   },
@@ -154,8 +154,8 @@ export const serviceExamples: Record<string, ServiceDetail> = {
       }
     ]
   },
-  "Mobile App AI Features": {
-    title: "Mobile App AI Features",
+  "AI Mobile App Development": {
+    title: "AI Mobile App Development",
     coreValue: "Making mobile experiences smarter.",
     examples: [
       {

@@ -4,13 +4,13 @@ export const services = [
 
   {
     icon: Bot,
-    title: "Intelligent Support Agents",
+    title: "AI Customer Support Agents",
     description: "24/7 AI agents that handle customer inquiries, booking, and support tickets instantly.",
     category: "enterprise",
   },
   {
     icon: Code,
-    title: "SaaS Product Engineering",
+    title: "SaaS Product Development",
     description: "Full-cycle development from idea to MVP to scalable product with final quality check and end to end production deployments.",
     category: "startup",
   },
@@ -22,13 +22,13 @@ export const services = [
   },
   {
     icon: Globe,
-    title: "Predictive Business Insights",
+    title: "Predictive Analytics & Insights",
     description: "Turn your historical data into actionable forecasts for inventory, sales, and customer behavior.",
     category: "enterprise",
   },
   {
     icon: Sparkles,
-    title: "Custom AI Solutions",
+    title: "Custom AI Solutions & Consulting",
     description: "Tailored AI tools built specifically for your unique business challenges and goals.",
     category: "startup",
   },
@@ -52,7 +52,7 @@ export const services = [
   },
   {
     icon: Smartphone,
-    title: "Mobile App AI Features",
+    title: "AI Mobile App Development",
     description: "Add intelligent features like voice control, vision analysis, or smart recommendations to your mobile app.",
     category: "startup",
   },
@@ -126,7 +126,7 @@ export const aiTechnologies = [
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "#solutions", label: "Solutions" },
+  { href: "#integrations", label: "Solutions" },
   { href: "#about", label: "About" },
   // { href: "#reviews", label: "Reviews" },
   { href: "/projects", label: "Projects" },

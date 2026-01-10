@@ -39,3 +39,27 @@ GitHub Pages will then serve the freshly exported build at the custom domain dec
 
 > Tip: if you only need the static export (for manual upload, etc.), just run `npm run build` and grab the `out/` directory.
 Happy coding! 🚀
+
+## MCP Tools (SEO & Analytics)
+
+This project is configured with **Model Context Protocol (MCP)** tools to give the AI agent advanced capabilities:
+1.  **Google Search Console:** Check indexing, submit sitemaps, and analyze traffic.
+2.  **Google Keyword Insight:** Research high-volume global keywords.
+
+👉 **[Read the Setup Guide (docs/MCP_SETUP.md)](docs/MCP_SETUP.md)** to configure these tools locally.
+
+## Planned Improvements
+
+- **Replace Public CORS Proxy:** currently, the career page uses `corsproxy.io` to fetch jobs from Dover client-side. This should be replaced by configuring a reverse proxy on the existing **EC2 instance (via Caddy)**. See **[docs/PROXY_SETUP.md](docs/PROXY_SETUP.md)** for a step-by-step guide.
+
+## IndexNow Verification
+
+We use **IndexNow** to instantly notify search engines (Bing, Yandex, etc.) of content changes.
+
+**Key:** `7642a33eb096a5252e30d200e851cccf`  
+**File:** `public/7642a33eb096a5252e30d200e851cccf.txt`
+
+To manually trigger an update after deployment:
+```bash
+curl "https://www.bing.com/indexnow?url=https://arboraistudio.com&key=7642a33eb096a5252e30d200e851cccf"
+```

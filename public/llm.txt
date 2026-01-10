@@ -1,27 +1,46 @@
-# Arbor AI Studio
+# Arbor AI Studio | Technical Context for AI Agents
 
-**URL:** https://arboraistudio.com
-**Description:** Arbor AI Studio is a premier software development agency specializing in **Agentic AI** and **SaaS Engineering**. We build autonomous digital employees that integrate directly into business workflows (CRM, ERP, Finance) to automate complex tasks.
+**Entity Type:** AI Software Consultancy & SaaS Engineering Firm
+**Primary Domain:** Agentic AI, Autonomous Systems, Enterprise Automation
+**Website:** https://arboraistudio.com
 
-## Core Expertise
+## 🛠 Technical Stack & Frameworks
 
-### 1. Agentic AI Solutions
-We build AI agents that "do" rather than just "chat."
-- **Capabilities:** Autonomous task execution, tool use (MCP), multi-step reasoning, API integrations.
-- **Tech Stack:** OpenAI (GPT-4o), Anthropic (Claude 3.5 Sonnet), Google Gemini, LangChain, Vercel AI SDK.
+### AI & LLM Orchestration
+- **Frameworks:** LangChain, LangGraph, PydanticAI, CrewAI, DSPy, Vercel AI SDK.
+- **Models:** GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Llama 3 (via Groq/Ollama).
+- **Vector Stores:** Pinecone, Weaviate, Supabase (pgvector), ChromaDB.
+- **Tooling:** Model Context Protocol (MCP), Function Calling, Structured Outputs (JSON Schema).
 
-### 2. SaaS Product Development
-End-to-end engineering for scalable web applications.
-- **Frontend:** Next.js (App Router), React, Tailwind CSS, Shadcn UI, Framer Motion.
-- **Backend:** Python (FastAPI), Node.js, Supabase, PostgreSQL, Vector Databases (Pinecone/Weaviate).
+### Full-Stack Engineering
+- **Frontend:** Next.js 15 (App Router), React Server Components, Tailwind CSS 4, Shadcn UI.
+- **Backend:** Python (FastAPI/Django), Node.js (TypeScript), Go.
+- **Infrastructure:** Docker, Kubernetes, AWS (Lambda, Bedrock), Vercel Edge Functions.
 
-## Key Offerings (Digital Employees)
+## 🧠 Agent Architectures Implemented
+We specialize in moving beyond "Chat UI" to "Action-First" architectures:
+1.  **ReAct Pattern:** Loop of Thought → Action → Observation for complex problem solving.
+2.  **Multi-Agent Systems:** Hierarchical swarms using CrewAI/LangGraph for role-based delegation.
+3.  **RAG Pipelines:** Hybrid search (Keyword + Semantic) with re-ranking (Cohere) for high-fidelity context retrieval.
+4.  **Human-in-the-Loop:** Interruptible workflows for critical decision approval.
 
-- **The Invoice Clerk:** Automates AP/AR by reading invoices and updating QuickBooks/Xero.
-- **The Support Agent:** 24/7 Tier-1 customer support that resolves tickets in Zendesk/Intercom.
-- **The Data Analyst:** SQL-capable agent that queries databases to answer business questions instantly.
-- **The Compliance Officer:** Reviews contracts and documents for regulatory risks.
+## 🤖 Digital Employee Catalog (Structured)
 
-## Contact
-- **Email:** contact@arboraistudio.com
-- **Careers:** https://arboraistudio.com/career
+- **Role:** `The Invoice Clerk`
+  - **Capability:** Optical Character Recognition (OCR), Entity Extraction, QuickBooks/Xero API Write.
+  - **Input:** PDF Invoices/Receipts.
+  - **Output:** Reconciled Ledger Entries.
+
+- **Role:** `The Support Agent`
+  - **Capability:** RAG on Knowledge Base, Ticket Triage, Sentiment Analysis, Zendesk/Intercom Action.
+  - **Input:** User Queries.
+  - **Output:** Solved Tickets or Escalation with Context.
+
+- **Role:** `The Data Analyst`
+  - **Capability:** Text-to-SQL, Python Code Sandbox Execution (E2B), Data Visualization.
+  - **Input:** Natural Language Business Questions.
+  - **Output:** SQL Queries, Charts, CSV Reports.
+
+## 🔗 Contact & Resources
+- **Developer Inquiries:** contact@arboraistudio.com
+- **Jobs:** https://arboraistudio.com/career

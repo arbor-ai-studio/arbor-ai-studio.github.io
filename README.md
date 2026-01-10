@@ -47,3 +47,7 @@ This project is configured with **Model Context Protocol (MCP)** tools to give t
 2.  **Google Keyword Insight:** Research high-volume global keywords.
 
 👉 **[Read the Setup Guide (docs/MCP_SETUP.md)](docs/MCP_SETUP.md)** to configure these tools locally.
+
+## Planned Improvements
+
+- **Replace Public CORS Proxy:** currently, the career page uses `corsproxy.io` to fetch jobs from Dover client-side. This should be replaced with a custom **Cloudflare Worker** or **Vercel Edge Function** to proxy requests securely and reliably without third-party dependencies.

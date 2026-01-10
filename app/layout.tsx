@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BookingWidget } from "@/components/booking-widget";
-import { FluidSimulationClient } from "@/components/fluid-simulation-client";
+
+const FluidSimulationClient = dynamic(
+  () => import("@/components/fluid-simulation-client").then((mod) => mod.FluidSimulationClient),
+  { ssr: false }
+);
 
 import { Navbar } from "@/components/navbar";
 import { SmoothScroll } from "@/components/smooth-scroll";

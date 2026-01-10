@@ -24,7 +24,28 @@ export function JsonLd() {
       "Business Automation",
       "Large Language Models",
       "Generative AI"
-    ]
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI & Software Services",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "name": "Agentic AI Development",
+          "description": "Custom autonomous AI agents that automate complex business workflows and task execution."
+        },
+        {
+          "@type": "Service",
+          "name": "SaaS Product Engineering",
+          "description": "End-to-end full-stack development for scalable web applications using Next.js and Python."
+        },
+        {
+          "@type": "Service",
+          "name": "Business Process Automation",
+          "description": "Intelligent document processing and system integration to eliminate manual data entry."
+        }
+      ]
+    }
   };
 
   return (

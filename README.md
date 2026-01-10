@@ -50,4 +50,4 @@ This project is configured with **Model Context Protocol (MCP)** tools to give t
 
 ## Planned Improvements
 
-- **Replace Public CORS Proxy:** currently, the career page uses `corsproxy.io` to fetch jobs from Dover client-side. This should be replaced with a custom **Cloudflare Worker** or **Vercel Edge Function** to proxy requests securely and reliably without third-party dependencies.
+- **Replace Public CORS Proxy:** currently, the career page uses `corsproxy.io` to fetch jobs from Dover client-side. This should be replaced by configuring a reverse proxy on the existing **EC2 instance (via Caddy)**. This will allow secure, controlled access to the Dover API without third-party dependencies.

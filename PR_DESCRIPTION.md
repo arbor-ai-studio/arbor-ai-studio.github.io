@@ -39,6 +39,7 @@ We used global keyword research (via Google Keyword Insight MCP) to rename core 
 *   **IndexNow Integration:** Configured IndexNow to enable instant indexing on Bing and other search engines.
 
 ## 🏗️ Codebase Improvements
+*   **Performance:** Lazy-loaded the heavy 3D Fluid Simulation and **disabled it on mobile devices** (<768px) to drastically improve LCP and TBT scores on mobile networks.
 *   **Refactor:** Extracted homepage content into `lib/home-content.tsx` for better maintainability.
 *   **Career Logic:** Refactored `components/career-list.tsx` to handle its own loading, error, and empty states.
 *   **New Component:** Added `components/json-ld.tsx` for clean structured data management.

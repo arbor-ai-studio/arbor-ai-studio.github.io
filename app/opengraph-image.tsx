@@ -1,7 +1,9 @@
 import { ImageResponse } from 'next/og'
+
+export const dynamic = 'force-static'
  
 // Route segment config
-export const runtime = 'edge'
+// export const runtime = 'edge'
  
 // Image metadata
 export const alt = 'Arbor AI Studio | Agentic AI Solutions'

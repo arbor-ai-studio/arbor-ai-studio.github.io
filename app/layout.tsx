@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://arboraistudio.com"),
   title: "Arbor AI Studio | Agentic AI Solutions & SaaS Development",
   description: "Transform your business with autonomous AI agents. Arbor AI Studio specializes in custom Agentic AI solutions, AI-powered business automation, and high-quality SaaS development.",
+  alternates: {
+    canonical: "./",
+  },
   icons: {
     apple: "/logo.png",
   },
@@ -32,6 +35,13 @@ export const metadata: Metadata = {
     title: "Arbor AI Studio | Agentic AI Solutions & SaaS Development",
     description: "Transform your business with autonomous AI agents. Arbor AI Studio specializes in custom Agentic AI solutions, AI-powered business automation, and high-quality SaaS development.",
     images: ["/logo.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arbor AI Studio | Agentic AI Solutions & SaaS Development",
+    description: "Transform your business with autonomous AI agents. Arbor AI Studio specializes in custom Agentic AI solutions, AI-powered business automation, and high-quality SaaS development.",
+    images: ["/logo.png"],
+    creator: "@arbor_ai",
   },
 };
 

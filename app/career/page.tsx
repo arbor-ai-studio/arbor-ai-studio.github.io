@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { Container } from "@/components/ui/container"
 import { Wrapper } from "@/components/ui/wrapper"
 import { SectionBadge } from "@/components/ui/section-badge"
@@ -5,6 +6,15 @@ import { CareerList } from "@/components/career-list"
 import { Zap, Globe, Users, Laptop, Cpu, TrendingUp } from "lucide-react"
 import { FadeIn } from "@/components/ui/fade-in"
 import { MagicCard } from "@/components/ui/magic-card"
+
+export const metadata: Metadata = {
+  title: "AI Careers & Jobs | Join Arbor AI Studio",
+  description: "Join our team of elite engineers building the future of Agentic AI. We offer remote work, top-tier tools, and the chance to build high-impact autonomous agents.",
+  openGraph: {
+    title: "AI Careers & Jobs | Join Arbor AI Studio",
+    description: "Join our team of elite engineers building the future of Agentic AI. We offer remote work, top-tier tools, and the chance to build high-impact autonomous agents.",
+  }
+}
 
 const JOBS_ENDPOINT = "https://corsproxy.io/?https://cover-gen-user-data.vercel.app/api/jobs";
 const APPLY_BASE = "https://app.dover.com/apply/22029207-c38c-4586-99f2-91c12a57475d";

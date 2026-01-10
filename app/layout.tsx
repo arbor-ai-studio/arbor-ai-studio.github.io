@@ -2,14 +2,9 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BookingWidget } from "@/components/booking-widget";
-
-const FluidSimulationClient = dynamic(
-  () => import("@/components/fluid-simulation-client").then((mod) => mod.FluidSimulationClient),
-  { ssr: false }
-);
+import { FluidSimulationLoader } from "@/components/fluid-simulation-loader";
 
 import { Navbar } from "@/components/navbar";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -116,7 +111,7 @@ document.head.appendChild(o)}initApollo();`,
           disableTransitionOnChange
         >
           <SmoothScroll>
-            <FluidSimulationClient />
+            <FluidSimulationLoader />
             <BookingWidget />
             <Navbar />
             {children}

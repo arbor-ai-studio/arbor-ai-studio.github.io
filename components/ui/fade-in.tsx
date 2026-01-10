@@ -46,7 +46,7 @@ export function FadeIn({
     <motion.div
       initial={getInitial()}
       whileInView={getAnimate()}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={cn(className)}
       {...props}

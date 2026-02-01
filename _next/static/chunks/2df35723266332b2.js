@@ -1,3 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,38265,e=>{"use strict";var r=e.i(71645),t=e.i(18566);function a(){let e=(0,t.usePathname)();return(0,r.useEffect)(()=>{window.dataLayer&&window.dataLayer.push({event:"404_error",page_path:e,referrer:document.referrer})},[e]),null}e.s(["NotFoundTracker",()=>a])}]);
-
-//# sourceMappingURL=57548366b406abc1.js.map

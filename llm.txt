@@ -1,0 +1,46 @@
+# Arbor AI Studio | Technical Context for AI Agents
+
+**Entity Type:** AI Software Consultancy & SaaS Engineering Firm
+**Primary Domain:** Agentic AI, Autonomous Systems, Enterprise Automation
+**Website:** https://arboraistudio.com
+
+## 🛠 Technical Stack & Frameworks
+
+### AI & LLM Orchestration
+- **Frameworks:** LangChain, LangGraph, PydanticAI, CrewAI, DSPy, Vercel AI SDK.
+- **Models:** GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Llama 3 (via Groq/Ollama).
+- **Vector Stores:** Pinecone, Weaviate, Supabase (pgvector), ChromaDB.
+- **Tooling:** Model Context Protocol (MCP), Function Calling, Structured Outputs (JSON Schema).
+
+### Full-Stack Engineering
+- **Frontend:** Next.js 15 (App Router), React Server Components, Tailwind CSS 4, Shadcn UI.
+- **Backend:** Python (FastAPI/Django), Node.js (TypeScript), Go.
+- **Infrastructure:** Docker, Kubernetes, AWS (Lambda, Bedrock), Vercel Edge Functions.
+
+## 🧠 Agent Architectures Implemented
+We specialize in moving beyond "Chat UI" to "Action-First" architectures:
+1.  **ReAct Pattern:** Loop of Thought → Action → Observation for complex problem solving.
+2.  **Multi-Agent Systems:** Hierarchical swarms using CrewAI/LangGraph for role-based delegation.
+3.  **RAG Pipelines:** Hybrid search (Keyword + Semantic) with re-ranking (Cohere) for high-fidelity context retrieval.
+4.  **Human-in-the-Loop:** Interruptible workflows for critical decision approval.
+
+## 🤖 Digital Employee Catalog (Structured)
+
+- **Role:** `The Invoice Clerk`
+  - **Capability:** Optical Character Recognition (OCR), Entity Extraction, QuickBooks/Xero API Write.
+  - **Input:** PDF Invoices/Receipts.
+  - **Output:** Reconciled Ledger Entries.
+
+- **Role:** `The Support Agent`
+  - **Capability:** RAG on Knowledge Base, Ticket Triage, Sentiment Analysis, Zendesk/Intercom Action.
+  - **Input:** User Queries.
+  - **Output:** Solved Tickets or Escalation with Context.
+
+- **Role:** `The Data Analyst`
+  - **Capability:** Text-to-SQL, Python Code Sandbox Execution (E2B), Data Visualization.
+  - **Input:** Natural Language Business Questions.
+  - **Output:** SQL Queries, Charts, CSV Reports.
+
+## 🔗 Contact & Resources
+- **Developer Inquiries:** contact@arboraistudio.com
+- **Jobs:** https://arboraistudio.com/career

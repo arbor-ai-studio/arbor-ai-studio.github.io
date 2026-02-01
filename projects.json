@@ -1,0 +1,50 @@
+[
+  {
+    "name": "BetterSales",
+    "website": "https://bettersalesai.com",
+    "description": "An AI powered cold call sales coach that analyzes sales calls to provide feedback, assign training, and track progress for sales teams.",
+    "image": "/bettersales.png",
+    "tags": ["Sales", "Analytics", "Enterprise"]
+  },
+  {
+    "name": "Covergen AI",
+    "website": "https://covergen.io/",
+    "description": "An AI powered tool that helps Upwork freelancers generate personalized cover letters in seconds by analyzing job postings and profiles.",
+    "image": "/covergen.png",
+    "tags": ["AI", "Generative", "Productivity"]
+  },
+  {
+    "name": "MCP WorkDesk",
+    "website": "https://youtu.be/M9mdbkD2CYw",
+    "videoUrl": "https://youtu.be/M9mdbkD2CYw",
+    "description": "A work order management system designed for small businesses with seamless MCP integration.",
+    "longDescription": "A work order management system designed for small businesses with seamless MCP integration. Helps create, track, and assign tasks efficiently while leveraging MCP tools for streamlined operations.\n\nBuilt with Python, Flask, React, and SQLite for a secure and scalable workflow.\n\nCompletion Date: Dec 13, 2025",
+    "image": "/assets/images/mcp_workdesk.jpeg",
+    "tags": ["AI & Machine Learning", "AI Agent Development", "Python", "Flask", "React"]
+  },
+  {
+    "name": "XopsLab",
+    "website": "https://xopslab.org/",
+    "description": "A global open source community empowering AI and Cloud Native enthusiasts to connect, learn, build, and grow together.",
+    "image": "/xops.png",
+    "tags": ["DevOps", "Cloud", "Monitoring"]
+  },
+  {
+    "name": "Shobdopath AI",
+    "website": "https://youtu.be/Cjl0tp79RUU",
+    "videoUrl": "https://youtu.be/Cjl0tp79RUU",
+    "description": "A sophisticated, AI-driven EdTech platform designed to bridge the language gap for non-native speakers.",
+    "longDescription": "Shobdopath is a sophisticated, AI-driven EdTech platform designed to bridge the language gap for non-native speakers. Built on a modular architecture, the system leverages Large Language Models (LLMs) and Multi-Agent Systems to provide a personalized, interactive, and contextual learning experience.\n\nCore Ecosystem Features:\n\n1. Word Explorer (Lexical Intelligence)\nA deep-dive tool for vocabulary mastery. Instead of simple translations, it provides a 360-degree view of language: Contextual Analytics, Localization, and Grammar Insights.\n\n2. Language Games (Gamified Mastery)\nMoving beyond rote memorization, this module uses gamification to strengthen mental word networks: Word Association, Tiered Vocab Builder, and Anagram Solver.\n\n3. Reading Assistant (Intelligent Comprehension)\nAn advanced tool designed to break down complex literature, academic texts, or news: Language Simplification, Strategic Summarization, and Keyword Extraction.\n\nTech Stack:\nFrontend: Streamlit\nAI Orchestration: LangChain\nCore Intelligence: Gemini API\nAgent Framework: CrewAI\n\nCompletion Date: Dec 15, 2025",
+    "image": "/assets/images/shopdopath_ai.jpg",
+    "tags": ["LangChain", "Generative AI", "Gemini", "AI Agent Development", "Streamlit", "CrewAI"]
+  },
+  {
+    "name": "FeedbackSynthesizer",
+    "website": "https://youtu.be/EuvvTUcMx10",
+    "videoUrl": "https://youtu.be/EuvvTUcMx10",
+    "description": "An AI tool that helps teams manage scattered customer feedback from platforms like Intercom, emails, Discord, and app reviews.",
+    "longDescription": "An AI tool that helps teams manage scattered customer feedback from platforms like Intercom, emails, Discord, and app reviews. It cleans and categorizes feedback into bugs, feature requests, and UX issues, then highlights the top 3 requested features to help teams prioritize improvements quickly.\n\nBuilt with Crew AI for workflow, LLM for smart analysis, and Flask for the dashboard and API.\n\nCompletion Date: Dec 9, 2025",
+    "image": "/assets/images/feedback_synth.jpeg",
+    "tags": ["AI & Machine Learning", "AI Agent Development", "Python", "Flask", "Crew AI"]
+  }
+]

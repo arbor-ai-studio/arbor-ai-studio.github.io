@@ -1,3 +1,0 @@
-(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,8251,t=>{"use strict";var e=t.i(43476);let i=(0,t.i(70703).default)(()=>t.A(17707).then(t=>t.FluidSimulation),{loadableGenerated:{modules:[25794]},ssr:!1});function l(){return(0,e.jsx)(i,{})}t.s(["FluidSimulationClient",()=>l])},37453,t=>{t.n(t.i(8251))},17707,t=>{t.v(e=>Promise.all(["static/chunks/67da97d917928c38.js"].map(e=>t.l(e))).then(()=>e(25794)))}]);
-
-//# sourceMappingURL=3ff0397863014ed7.js.map
